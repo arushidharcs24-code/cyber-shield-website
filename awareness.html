@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyber Safety - Awareness</title>
+  <style>
+    /* General Styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0b3d91;
+      color: white;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      text-decoration: underline;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #eaf0ff;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #0b3d91;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #555;
+      max-width: 700px;
+      margin: 10px auto 0;
+    }
+
+    /* Awareness Cards */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      color: #0b3d91;
+    }
+
+    .card p {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    .card button {
+      background: #0b3d91;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .card button:hover {
+      background: #072f6b;
+    }
+
+    .card button:focus {
+      outline: 3px solid #ffc107;
+      outline-offset: 3px;
+    }
+
+    /* Responsive Padding for smaller screens */
+    @media (max-width: 480px) {
+      .cards-container {
+        padding: 20px 10px;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #0b3d91;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">CyberShield</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="awareness.html" class="active" aria-current="page">Awareness</a></li>
+      <li><a href="prevention.html">Prevention</a></li>
+      <li><a href="fraud.html">Report Fraud</a></li>
+      <li><a href="resourcecontact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Cyber Safety Awareness</h1>
+    <p>Be aware. Stay alert. Protect yourself from online fraud and cybercrimes.</p>
+  </header>
+
+  <!-- Awareness Cards Section -->
+  <section class="cards-container">
+
+    <div class="card">
+      <h2>🎓 Students</h2>
+      <p>Fake scholarship emails, exam scams, gaming app frauds, and phishing links are major threats. Always verify before clicking any unknown link.</p>
+      <button>Learn More</button>
+    </div>
+
+    <div class="card">
+      <h2>💼 Working Professionals</h2>
+      <p>Phishing work emails, ransomware, fake job offers, and data theft are common. Always use strong passwords and beware of suspicious attachments.</p>
+      <button>Learn More</button>
+    </div>
+
+    <div class="card">
+      <h2>🏡 Homemakers & Rural Users</h2>
+      <p>Be cautious about fake online shopping offers, UPI scams, and prize messages. Never share OTPs or banking details with strangers.</p>
+      <button>Learn More</button>
+    </div>
+
+    <div class="card">
+      <h2>👴 Senior Citizens</h2>
+      <p>Beware of calls asking for OTPs or personal details. Government organizations never ask for such information over calls.</p>
+      <button>Learn More</button>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 CyberShield | Created for Cyber Safety Awareness</p>
+  </footer>
+
+</body>
+</html>
