@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -963,45 +964,145 @@
           }
         });
       });
-    });
 
-    // Quiz functionality
-    const quizData = [
-      { 
-        text: "Your enterprise account access has been suspended. Click here immediately to restore access and verify your credentials.", 
-        answer: "scam",
-        explanation: "Legitimate IT departments use established channels for account issues, not unsolicited links."
-      },
-      { 
-        text: "Financial institutions will never request authentication codes or passwords via telephone communication.", 
-        answer: "safe",
-        explanation: "This is a legitimate security principle. Verified institutions follow strict authentication protocols."
-      },
-      { 
-        text: "Congratulations! Your organization has been selected for a $10,000 technology grant. Click to claim funding.", 
-        answer: "scam",
-        explanation: "Unsolicited financial offers are common social engineering tactics targeting organizational assets."
-      },
-      { 
-        text: "All official federal communications will originate from verified .gov domains with proper encryption.", 
-        answer: "safe",
-        explanation: "Correct. Always validate sender domains and encryption status in official communications."
-      },
-      { 
-        text: "Limited availability: Click this secure link to activate immediate corporate tax benefits for your organization.", 
-        answer: "scam",
-        explanation: "Urgent financial offers with embedded links are typically phishing attempts targeting corporate data."
+      // Quiz functionality
+      const quizData = [
+        { 
+          text: "Your enterprise account access has been suspended. Click here immediately to restore access and verify your credentials.", 
+          answer: "scam",
+          explanation: "Legitimate IT departments use established channels for account issues, not unsolicited links."
+        },
+        { 
+          text: "Financial institutions will never request authentication codes or passwords via telephone communication.", 
+          answer: "safe",
+          explanation: "This is a legitimate security principle. Verified institutions follow strict authentication protocols."
+        },
+        { 
+          text: "Congratulations! Your organization has been selected for a $10,000 technology grant. Click to claim funding.", 
+          answer: "scam",
+          explanation: "Unsolicited financial offers are common social engineering tactics targeting organizational assets."
+        },
+        { 
+          text: "All official federal communications will originate from verified .gov domains with proper encryption.", 
+          answer: "safe",
+          explanation: "Correct. Always validate sender domains and encryption status in official communications."
+        },
+        { 
+          text: "Limited availability: Click this secure link to activate immediate corporate tax benefits for your organization.", 
+          answer: "scam",
+          explanation: "Urgent financial offers with embedded links are typically phishing attempts targeting corporate data."
+        }
+      ];
+
+      // Shuffle questions for variety
+      quizData.sort(() => Math.random() - 0.5);
+
+      let currentQuestion = 0;
+      let score = 0;
+
+      const quizContainer = document.getElementById("quiz-container");
+      const resultContainer = document.getElementById("result");
+      const progressText = document.getElementById("progress-text");
+      const scoreText = document.getElementById("score-text");
+      const progressFill = document.getElementById("quiz-progress");
+
+      function displayQuestion() {
+        if (currentQuestion >= quizData.length) {
+          showResult();
+          return;
+        }
+
+        const question = quizData[currentQuestion];
+        const questionBox = document.createElement('div');
+        questionBox.className = 'question-box';
+
+        questionBox.innerHTML = `
+          <p>${question.text}</p>
+          <div class="buttons">
+            <button class="safe-btn" onclick="handleAnswer('safe')">
+              <i class="fas fa-check"></i> Safe
+            </button>
+            <button class="scam-btn" onclick="handleAnswer('scam')">
+              <i class="fas fa-times"></i> Scam
+            </button>
+          </div>
+          <div class="feedback" id="feedback"></div>
+        `;
+
+        quizContainer.innerHTML = '';
+        quizContainer.appendChild(questionBox);
+
+        // Update progress
+        progressText.textContent = `Scenario ${currentQuestion + 1} of ${quizData.length}`;
+        progressFill.style.width = `${((currentQuestion) / quizData.length) * 100}%`;
+        scoreText.textContent = `Performance: ${score}/${currentQuestion}`;
       }
-    ];
 
-    // Shuffle questions for variety
-    quizData.sort(() => Math.random() - 0.5);
+      window.handleAnswer = function(selectedAnswer) {
+        const question = quizData[currentQuestion];
+        const feedback = document.getElementById('feedback');
+        const isCorrect = selectedAnswer === question.answer;
 
-    let currentQuestion = 0;
-    let score = 0;
+        if (isCorrect) {
+          score++;
+          feedback.innerHTML = `
+            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+            Correct! ${question.explanation}
+          `;
+          feedback.style.backgroundColor = 'var(--success-light)';
+        } else {
+          feedback.innerHTML = `
+            <i class="fas fa-times-circle" style="color: var(--danger);"></i>
+            Incorrect. ${question.explanation}
+          `;
+          feedback.style.backgroundColor = 'var(--danger-light)';
+        }
 
-    const quizContainer = document.getElementById("quiz-container");
-    const resultContainer = document.getElementById("result");
-    const progressText = document.getElementById("progress-text");
-    const scoreText = document.getElementById("score-text");
-    const progressFill = document.getElementById("quiz-progress");
+        // Disable buttons
+        const buttons = document.querySelectorAll('.buttons button');
+        buttons.forEach(btn => btn.disabled = true);
+
+        // Update score display
+        scoreText.textContent = `Performance: ${score}/${currentQuestion + 1}`;
+
+        // Auto-advance after 3 seconds
+        setTimeout(() => {
+          currentQuestion++;
+          displayQuestion();
+        }, 3000);
+      };
+
+      function showResult() {
+        quizContainer.innerHTML = '';
+        let message = '';
+        let resultColor = '';
+
+        const percentage = (score / quizData.length) * 100;
+        if (percentage >= 80) {
+          message = `Excellent! You scored ${score}/${quizData.length} (${percentage.toFixed(0)}%). You're well-prepared for threat identification.`;
+          resultColor = 'var(--success-light)';
+        } else if (percentage >= 60) {
+          message = `Good job! You scored ${score}/${quizData.length} (${percentage.toFixed(0)}%). Keep practicing to strengthen your defenses.`;
+          resultColor = 'var(--warning-light)';
+        } else {
+          message = `Room for improvement. You scored ${score}/${quizData.length} (${percentage.toFixed(0)}%). Review the protocols and try again.`;
+          resultColor = 'var(--danger-light)';
+        }
+
+        resultContainer.innerHTML = `
+          <h3>Assessment Complete</h3>
+          <p>${message}</p>
+          <button onclick="location.reload()" style="background: var(--primary); color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+            <i class="fas fa-redo"></i> Restart Quiz
+          </button>
+        `;
+        resultContainer.style.backgroundColor = resultColor;
+        resultContainer.style.display = 'block';
+      }
+
+      // Start the quiz
+      displayQuestion();
+    });
+  </script>
+</body>
+</html>
