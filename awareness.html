@@ -3,201 +3,287 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cyber Safety - Awareness</title>
+  <title>CyberShield | Cyber Safety Awareness</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* General Styles */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      margin: 0;
       background-color: #f4f6f8;
       color: #333;
+      scroll-behavior: smooth;
     }
-
-    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #0b3d91;
+      padding: 15px 40px;
+      background: linear-gradient(90deg, #0b3d91, #1b63d1);
       color: white;
-      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
+    .logo { font-size: 24px; font-weight: 600; }
+    .nav-links { display: flex; list-style: none; gap: 25px; }
     .nav-links a {
       text-decoration: none;
       color: white;
       font-weight: 500;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
+      transition: color 0.3s;
     }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      text-decoration: underline;
-    }
-
-    /* Header */
-    .header {
+    .nav-links a:hover { color: #ffd54f; }
+    .hero {
+      background: linear-gradient(rgba(11,61,145,0.7), rgba(11,61,145,0.7)), url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1400&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
       text-align: center;
-      padding: 50px 20px;
-      background-color: #eaf0ff;
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease;
     }
-
-    .header h1 {
-      font-size: 36px;
-      color: #0b3d91;
+    .hero h1 { font-size: 42px; margin-bottom: 10px; }
+    .hero p { font-size: 18px; max-width: 700px; margin: 0 auto 20px; }
+    .hero button {
+      padding: 12px 25px;
+      background: #ffd54f;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
     }
+    .hero button:hover { background: #ffca28; }
 
-    .header p {
-      font-size: 18px;
-      color: #555;
-      max-width: 700px;
-      margin: 10px auto 0;
-    }
-
-    /* Awareness Cards */
     .cards-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 60px 40px;
     }
-
     .card {
       background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
     }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
-    }
-
-    .card h2 {
-      margin-bottom: 10px;
-      color: #0b3d91;
-    }
-
-    .card p {
-      font-size: 15px;
-      margin-bottom: 15px;
-      color: #444;
-    }
-
+    .card.visible { opacity: 1; transform: translateY(0); transition: all 0.6s ease-out; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+    .card h2 { color: #0b3d91; margin-bottom: 12px; }
+    .card ul { margin-left: 20px; color: #555; font-size: 15px; line-height: 1.6; }
     .card button {
+      margin-top: 15px;
       background: #0b3d91;
       color: white;
-      padding: 10px 15px;
       border: none;
+      padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
+    .card button:hover { background: #08337a; }
 
-    .card button:hover {
-      background: #072f6b;
+    .carousel {
+      background: #eaf0ff;
+      padding: 50px 20px;
+      text-align: center;
     }
+    .carousel h2 { color: #0b3d91; margin-bottom: 20px; }
+    .tip { font-size: 18px; color: #333; transition: opacity 0.5s ease-in-out; min-height: 40px; }
 
-    .card button:focus {
-      outline: 3px solid #ffc107;
-      outline-offset: 3px;
-    }
-
-    /* Responsive Padding for smaller screens */
-    @media (max-width: 480px) {
-      .cards-container {
-        padding: 20px 10px;
-      }
-    }
-
-    /* Footer */
     .footer {
-      background-color: #0b3d91;
+      background: #0b3d91;
       color: white;
       text-align: center;
-      padding: 15px 0;
+      padding: 15px;
       font-size: 14px;
     }
 
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: left;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: popUp 0.4s ease;
+    }
+    .close-btn {
+      background: #0b3d91;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      float: right;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .cards-container { padding: 30px 15px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">CyberShield</div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="awareness.html" class="active" aria-current="page">Awareness</a></li>
+      <li><a href="awareness.html" class="active">Awareness</a></li>
       <li><a href="prevention.html">Prevention</a></li>
       <li><a href="fraud.html">Report Fraud</a></li>
       <li><a href="resourcecontact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Header Section -->
-  <header class="header">
+  <section class="hero">
     <h1>Cyber Safety Awareness</h1>
-    <p>Be aware. Stay alert. Protect yourself from online fraud and cybercrimes.</p>
-  </header>
+    <p>Stay alert, stay informed, and protect yourself from the growing threat of online fraud and cybercrime.</p>
+    <button onclick="document.querySelector('.cards-container').scrollIntoView({behavior: 'smooth'});">Get Started</button>
+  </section>
 
-  <!-- Awareness Cards Section -->
   <section class="cards-container">
-
     <div class="card">
       <h2>🎓 Students</h2>
-      <p>Fake scholarship emails, exam scams, gaming app frauds, and phishing links are major threats. Always verify before clicking any unknown link.</p>
-      <button>Learn More</button>
+      <ul>
+        <li>Beware of fake scholarship and internship offers that ask for payments or personal details.</li>
+        <li>Don’t share login credentials for online classes or portals with anyone.</li>
+        <li>Avoid downloading pirated games or cracked software — they often contain malware.</li>
+        <li>Use privacy settings on social media and think before sharing personal photos or data.</li>
+      </ul>
+      <button onclick="openModal('students')">Learn More</button>
     </div>
 
     <div class="card">
       <h2>💼 Working Professionals</h2>
-      <p>Phishing work emails, ransomware, fake job offers, and data theft are common. Always use strong passwords and beware of suspicious attachments.</p>
-      <button>Learn More</button>
+      <ul>
+        <li>Watch for phishing emails pretending to be from HR or IT requesting login credentials.</li>
+        <li>Never open attachments from unknown sources — they may contain ransomware.</li>
+        <li>Secure your devices with strong passwords and multi-factor authentication (MFA).</li>
+        <li>Lock your computer when leaving your desk and report any suspicious activity.</li>
+      </ul>
+      <button onclick="openModal('professionals')">Learn More</button>
     </div>
 
     <div class="card">
       <h2>🏡 Homemakers & Rural Users</h2>
-      <p>Be cautious about fake online shopping offers, UPI scams, and prize messages. Never share OTPs or banking details with strangers.</p>
-      <button>Learn More</button>
+      <ul>
+        <li>Be cautious of online shopping deals that look too good to be true — always verify sellers.</li>
+        <li>Don’t respond to calls or messages asking for your bank OTP or UPI PIN.</li>
+        <li>Use official banking apps — avoid third-party links sent via WhatsApp or SMS.</li>
+        <li>Educate family members about digital payments and online fraud warning signs.</li>
+      </ul>
+      <button onclick="openModal('homemakers')">Learn More</button>
     </div>
 
     <div class="card">
       <h2>👴 Senior Citizens</h2>
-      <p>Beware of calls asking for OTPs or personal details. Government organizations never ask for such information over calls.</p>
-      <button>Learn More</button>
+      <ul>
+        <li>Never share OTPs, account numbers, or ATM PINs with anyone over the phone.</li>
+        <li>Don’t trust callers who claim to be from your bank or government — verify first.</li>
+        <li>Ask a trusted family member before making any online payments or clicking links.</li>
+        <li>Use caller ID and spam filters to block suspicious numbers or messages.</li>
+      </ul>
+      <button onclick="openModal('seniors')">Learn More</button>
     </div>
-
   </section>
 
-  <!-- Footer -->
+  <section class="carousel">
+    <h2>💡 Cyber Safety Tips</h2>
+    <p class="tip" id="tipText">Use strong and unique passwords for all your accounts.</p>
+  </section>
+
   <footer class="footer">
     <p>© 2025 CyberShield | Created for Cyber Safety Awareness</p>
   </footer>
 
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">Close</button>
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+    </div>
+  </div>
+
+  <script>
+    // Scroll fade-in
+    const cards = document.querySelectorAll('.card');
+    const showOnScroll = () => {
+      cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) card.classList.add('visible');
+      });
+    };
+    window.addEventListener('scroll', showOnScroll);
+    showOnScroll();
+
+    // Modal content
+    const modalData = {
+      students: {
+        title: "Online Safety for Students",
+        body: "Students are frequent targets for scams offering scholarships, jobs, or free gadgets. Always verify through official channels. Use secure university networks and avoid clicking suspicious exam or login links."
+      },
+      professionals: {
+        title: "Cyber Hygiene for Professionals",
+        body: "Corporate employees face phishing, ransomware, and data theft risks. Regularly update your software, report suspicious emails, and never use personal drives for office data transfer."
+      },
+      homemakers: {
+        title: "Safety for Homemakers & Rural Users",
+        body: "Scammers target homemakers through fake prize messages, shopping deals, or digital payment scams. Use verified apps, cross-check sellers, and keep financial credentials private."
+      },
+      seniors: {
+        title: "Senior Citizen Awareness",
+        body: "Elderly users are prime targets for fraud calls and phishing. Remember: no bank or government agency will ask for OTPs or account info. Use family support and avoid unfamiliar websites."
+      }
+    };
+
+    function openModal(type) {
+      const modal = document.getElementById('modal');
+      document.getElementById('modalTitle').textContent = modalData[type].title;
+      document.getElementById('modalBody').textContent = modalData[type].body;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    // Tips carousel
+    const tips = [
+      "Use strong and unique passwords for all your accounts.",
+      "Enable two-factor authentication on all important apps.",
+      "Never share OTPs, PINs, or passwords over calls or messages.",
+      "Update your software and antivirus regularly.",
+      "Use secure Wi-Fi and avoid public networks for banking."
+    ];
+    let currentTip = 0;
+    setInterval(() => {
+      const tip = document.getElementById('tipText');
+      tip.style.opacity = 0;
+      setTimeout(() => {
+        currentTip = (currentTip + 1) % tips.length;
+        tip.textContent = tips[currentTip];
+        tip.style.opacity = 1;
+      }, 500);
+    }, 4000);
+  </script>
 </body>
 </html>
