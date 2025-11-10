@@ -29,26 +29,32 @@
       --border-light: #f1f5f9;
     }
 
-    /* Navbar Styles (added for consistency) */
+    /* Navbar Styles */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #0b3d91;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       padding: 15px 30px;
       z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
     }
 
     .navbar .logo {
       font-size: 22px;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
       margin: 0;
       padding: 0;
     }
@@ -57,12 +63,32 @@
       text-decoration: none;
       color: white;
       font-weight: 500;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+      width: 100%;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      text-decoration: underline;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -130,6 +156,7 @@
       position: relative;
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
     .alert-content {
@@ -147,7 +174,7 @@
     header {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
-      padding: 3.5rem 1.5rem;
+      padding: 4rem 1.5rem;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       position: relative;
@@ -184,7 +211,6 @@
       font-size: 3.5rem;
       color: white;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-      /* Removed rotation animation */
       animation: pulse 2s infinite;
     }
 
@@ -193,8 +219,6 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-
-    /* Removed the rotate keyframes entirely */
 
     .site-title {
       font-size: 2.75rem;
@@ -234,11 +258,17 @@
       background: var(--card-bg);
       padding: 2.5rem;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       margin-bottom: 2.5rem;
       border: 1px solid var(--border-light);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     section::before {
@@ -296,6 +326,7 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .tip-card::before {
@@ -315,7 +346,7 @@
 
     .tip-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .tip-card.good {
@@ -417,6 +448,8 @@
       transition: color 0.2s;
       position: relative;
       overflow: hidden;
+      padding: 5px 10px;
+      border-radius: 6px;
     }
 
     .expand-btn::after {
@@ -436,6 +469,7 @@
 
     .expand-btn:hover {
       color: var(--primary-dark);
+      background: rgba(30, 58, 138, 0.05);
     }
 
     .expand-btn i {
@@ -458,6 +492,7 @@
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .question-box::before {
@@ -500,6 +535,9 @@
       font-family: 'Source Sans Pro', sans-serif;
       position: relative;
       overflow: hidden;
+      flex: 1;
+      min-width: 150px;
+      justify-content: center;
     }
 
     .buttons button::before {
@@ -564,6 +602,7 @@
       background: var(--bg-lighter);
       border: 1px solid var(--border);
       animation: fadeIn 0.5s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .progress-container {
@@ -633,6 +672,227 @@
       border-radius: 2px;
     }
 
+    /* New Styles for Enhanced Features */
+    .media-section {
+      margin-top: 2rem;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .media-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .media-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .media-card-content {
+      padding: 1.5rem;
+      background: white;
+    }
+
+    .media-card h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.2rem;
+      color: var(--primary-dark);
+    }
+
+    .media-card p {
+      color: var(--text-medium);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .media-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .media-link:hover {
+      color: var(--primary-dark);
+    }
+
+    .leaderboard-section {
+      margin-top: 2rem;
+    }
+
+    .leaderboard-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .leaderboard-table th {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .leaderboard-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .leaderboard-table tr:nth-child(even) {
+      background: var(--bg-lighter);
+    }
+
+    .leaderboard-table tr:hover {
+      background: var(--primary-light);
+    }
+
+    .rank {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    .rank-1 {
+      background: gold;
+      color: var(--text-dark);
+    }
+
+    .rank-2 {
+      background: silver;
+      color: var(--text-dark);
+    }
+
+    .rank-3 {
+      background: #cd7f32;
+      color: white;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .quiz-actions button {
+      padding: 0.9rem 1.75rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-family: 'Source Sans Pro', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-actions button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .quiz-actions button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .restart-btn {
+      background: var(--primary);
+    }
+
+    .restart-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(30, 58, 138, 0.3);
+    }
+
+    .save-score-btn {
+      background: var(--success);
+    }
+
+    .save-score-btn:hover {
+      background: #0da271;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-top: 1.5rem;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .security-tip {
+      background: var(--warning-light);
+      border-left: 4px solid var(--warning);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .security-tip i {
+      color: var(--warning);
+      font-size: 1.5rem;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -696,14 +956,29 @@
       .nav-links {
         gap: 15px;
       }
+
+      .media-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-actions {
+        flex-direction: column;
+      }
+
+      .quiz-actions button {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar (added) -->
+  <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="logo">CyberShield</div>
+    <div class="logo">
+      <i class="fas fa-shield-alt"></i> CyberShield
+    </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="awareness.html">Awareness</a></li>
@@ -878,6 +1153,46 @@
       </div>
     </section>
 
+    <!-- New Media Section with Images and Videos -->
+    <section class="media-section">
+      <h2><i class="fas fa-images"></i> Cybersecurity Resources</h2>
+      <div class="accent-border"></div>
+      <p class="intro">Explore these visual resources to enhance your understanding of cybersecurity threats and protection strategies.</p>
+      
+      <div class="media-grid">
+        <div class="media-card">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Phishing Attack Visualization">
+          <div class="media-card-content">
+            <h3>Phishing Attack Analysis</h3>
+            <p>Learn how to identify and avoid sophisticated phishing attempts targeting enterprises.</p>
+            <a href="#" class="media-link">View Resource <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        
+        <div class="media-card">
+          <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Multi-Factor Authentication">
+          <div class="media-card-content">
+            <h3>MFA Implementation Guide</h3>
+            <p>Step-by-step guide to implementing multi-factor authentication across your organization.</p>
+            <a href="#" class="media-link">View Guide <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        
+        <div class="media-card">
+          <img src="https://images.unsplash.com/photo-1563013541-3ab36cc058e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Encryption">
+          <div class="media-card-content">
+            <h3>Data Encryption Protocols</h3>
+            <p>Understand how encryption protects sensitive data in transit and at rest.</p>
+            <a href="#" class="media-link">Learn More <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/6_cx7nAKlw4" title="Cybersecurity Awareness Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </section>
+
     <section class="quiz">
       <h2><i class="fas fa-clipboard-check"></i> Threat Identification Assessment</h2>
       <div class="accent-border"></div>
@@ -893,7 +1208,42 @@
       
       <div id="quiz-container"></div>
       <div class="result" id="result"></div>
+      
+      <div class="quiz-actions" id="quiz-actions" style="display: none;">
+        <button class="restart-btn" id="restart-btn"><i class="fas fa-redo"></i> Restart Quiz</button>
+        <button class="save-score-btn" id="save-score-btn"><i class="fas fa-trophy"></i> Save Score to Leaderboard</button>
+      </div>
     </section>
+
+    <!-- New Leaderboard Section -->
+    <section class="leaderboard-section">
+      <h2><i class="fas fa-trophy"></i> Quiz Leaderboard</h2>
+      <div class="accent-border"></div>
+      <p class="intro">See how your cybersecurity knowledge compares to other participants in our threat identification assessment.</p>
+      
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Participant</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <!-- Leaderboard entries will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Security Tip of the Day -->
+    <div class="security-tip">
+      <i class="fas fa-lightbulb"></i>
+      <div>
+        <h3>Security Tip of the Day</h3>
+        <p>Regularly update your software and operating systems to patch security vulnerabilities. Enable automatic updates when possible to ensure you're always protected against the latest threats.</p>
+      </div>
+    </div>
   </main>
 
   <footer>
@@ -965,7 +1315,7 @@
         safe: true,
       },
       {
-        question: "You get a call requesting your OTP to verify a transaction you didn’t initiate. Should you share it?",
+        question: "You get a call requesting your OTP to verify a transaction you didn't initiate. Should you share it?",
         safe: false,
       },
       {
@@ -983,9 +1333,17 @@
     const progressText = document.getElementById('progress-text');
     const progressFill = document.getElementById('quiz-progress');
     const scoreText = document.getElementById('score-text');
+    const quizActions = document.getElementById('quiz-actions');
+    const restartBtn = document.getElementById('restart-btn');
+    const saveScoreBtn = document.getElementById('save-score-btn');
+    const leaderboardBody = document.getElementById('leaderboard-body');
 
     let current = 0;
     let score = 0;
+
+    // Initialize leaderboard from localStorage
+    let leaderboard = JSON.parse(localStorage.getItem('cybersecurity-leaderboard')) || [];
+    updateLeaderboard();
 
     function loadQuestion() {
       if (current >= quizData.length) {
@@ -1048,13 +1406,71 @@
         message = "🚨 Caution! Review cyber hygiene practices carefully.";
       }
       resultDiv.innerHTML = `<strong>Final Score: ${score}/${quizData.length}</strong><br>${message}`;
+      quizActions.style.display = 'flex';
+    }
+
+    // Restart quiz functionality
+    restartBtn.addEventListener('click', function() {
+      current = 0;
+      score = 0;
+      resultDiv.innerHTML = '';
+      quizActions.style.display = 'none';
+      scoreText.textContent = `Performance: ${score}/${quizData.length}`;
+      loadQuestion();
+    });
+
+    // Save score functionality
+    saveScoreBtn.addEventListener('click', function() {
+      const name = prompt("Enter your name for the leaderboard:");
+      if (name) {
+        const scoreEntry = {
+          name: name,
+          score: score,
+          date: new Date().toLocaleDateString()
+        };
+        
+        leaderboard.push(scoreEntry);
+        // Sort leaderboard by score (descending)
+        leaderboard.sort((a, b) => b.score - a.score);
+        // Keep only top 10 scores
+        leaderboard = leaderboard.slice(0, 10);
+        
+        // Save to localStorage
+        localStorage.setItem('cybersecurity-leaderboard', JSON.stringify(leaderboard));
+        
+        // Update leaderboard display
+        updateLeaderboard();
+        
+        alert(`Score saved! You're now ranked #${leaderboard.findIndex(entry => entry.name === name) + 1} on the leaderboard.`);
+      }
+    });
+
+    // Update leaderboard display
+    function updateLeaderboard() {
+      leaderboardBody.innerHTML = '';
+      
+      if (leaderboard.length === 0) {
+        leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align: center;">No scores yet. Be the first to complete the quiz!</td></tr>';
+        return;
+      }
+      
+      leaderboard.forEach((entry, index) => {
+        const row = document.createElement('tr');
+        const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : '';
+        
+        row.innerHTML = `
+          <td><span class="rank ${rankClass}">${index + 1}</span></td>
+          <td>${entry.name}</td>
+          <td>${entry.score}/${quizData.length}</td>
+          <td>${entry.date}</td>
+        `;
+        
+        leaderboardBody.appendChild(row);
+      });
     }
 
     loadQuestion();
   });
 </script>
-</body>
-</html>
-
 </body>
 </html>
