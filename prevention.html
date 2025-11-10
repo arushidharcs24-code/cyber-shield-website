@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,28 +27,36 @@
       --card-bg: #ffffff;
       --border: #e2e8f0;
       --border-light: #f1f5f9;
+      --gradient-primary: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      --gradient-secondary: linear-gradient(135deg, #3b82f6, #10b981);
     }
 
-    /* Navbar Styles (added for consistency) */
+    /* Navbar Styles */
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #0b3d91;
+      background: var(--gradient-primary);
       color: white;
       padding: 15px 30px;
       z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
     }
 
     .navbar .logo {
       font-size: 22px;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
       margin: 0;
       padding: 0;
     }
@@ -58,12 +65,32 @@
       text-decoration: none;
       color: white;
       font-weight: 500;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+      width: 100%;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
-      text-decoration: underline;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -131,6 +158,7 @@
       position: relative;
       font-weight: 600;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 10;
     }
 
     .alert-content {
@@ -146,9 +174,9 @@
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: var(--gradient-primary);
       color: white;
-      padding: 3.5rem 1.5rem;
+      padding: 4rem 1.5rem;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       position: relative;
@@ -185,7 +213,6 @@
       font-size: 3.5rem;
       color: white;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-      /* Removed rotation animation */
       animation: pulse 2s infinite;
     }
 
@@ -194,8 +221,6 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
-
-    /* Removed the rotate keyframes entirely */
 
     .site-title {
       font-size: 2.75rem;
@@ -235,11 +260,17 @@
       background: var(--card-bg);
       padding: 2.5rem;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       margin-bottom: 2.5rem;
       border: 1px solid var(--border-light);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     section::before {
@@ -249,7 +280,7 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background: var(--gradient-secondary);
       background-size: 200% 100%;
       animation: shimmer 3s infinite;
     }
@@ -297,6 +328,7 @@
       flex-direction: column;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .tip-card::before {
@@ -316,7 +348,7 @@
 
     .tip-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .tip-card.good {
@@ -418,6 +450,8 @@
       transition: color 0.2s;
       position: relative;
       overflow: hidden;
+      padding: 5px 10px;
+      border-radius: 6px;
     }
 
     .expand-btn::after {
@@ -437,6 +471,7 @@
 
     .expand-btn:hover {
       color: var(--primary-dark);
+      background: rgba(30, 58, 138, 0.05);
     }
 
     .expand-btn i {
@@ -459,6 +494,7 @@
       border: 1px solid var(--border);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .question-box::before {
@@ -468,7 +504,7 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+      background: var(--gradient-secondary);
     }
 
     .question-box p {
@@ -501,6 +537,9 @@
       font-family: 'Source Sans Pro', sans-serif;
       position: relative;
       overflow: hidden;
+      flex: 1;
+      min-width: 150px;
+      justify-content: center;
     }
 
     .buttons button::before {
@@ -565,6 +604,7 @@
       background: var(--bg-lighter);
       border: 1px solid var(--border);
       animation: fadeIn 0.5s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .progress-container {
@@ -588,7 +628,7 @@
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: var(--gradient-secondary);
       border-radius: 4px;
       transition: width 0.5s ease;
       width: 0%;
@@ -628,7 +668,7 @@
 
     .accent-border {
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: var(--gradient-secondary);
       width: 80px;
       margin: 0.5rem 0 1.5rem;
       border-radius: 2px;
@@ -702,9 +742,11 @@
 </head>
 <body>
 
-  <!-- Navigation Bar (added) -->
+  <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="logo">CyberShield</div>
+    <div class="logo">
+      <i class="fas fa-shield-alt"></i> CyberShield
+    </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="awareness.html">Awareness</a></li>
@@ -958,105 +1000,4 @@
     // --- Quiz Logic ---
     const quizData = [
       {
-        question: "You receive an email from 'admin@bank-secure.com' asking to verify your credentials urgently. What should you do?",
-        safe: false,
-      },
-      {
-        question: "Your system prompts a security update from your IT department's official portal. Should you proceed?",
-        safe: true,
-      },
-      {
-        question: "You get a call requesting your OTP to verify a transaction you didn’t initiate. Should you share it?",
-        safe: false,
-      },
-      {
-        question: "A co-worker asks you to share a company file over your official email for review. Is this safe?",
-        safe: true,
-      },
-      {
-        question: "You find a USB drive labeled 'Payroll Data' in the office parking lot. Should you plug it in?",
-        safe: false,
-      },
-    ];
-
-    const quizContainer = document.getElementById('quiz-container');
-    const resultDiv = document.getElementById('result');
-    const progressText = document.getElementById('progress-text');
-    const progressFill = document.getElementById('quiz-progress');
-    const scoreText = document.getElementById('score-text');
-
-    let current = 0;
-    let score = 0;
-
-    function loadQuestion() {
-      if (current >= quizData.length) {
-        showResult();
-        return;
-      }
-
-      const q = quizData[current];
-      quizContainer.innerHTML = `
-        <div class="question-box">
-          <p>${q.question}</p>
-          <div class="buttons">
-            <button class="safe-btn"><i class="fas fa-check"></i> Safe</button>
-            <button class="scam-btn"><i class="fas fa-times"></i> Scam</button>
-          </div>
-          <div class="feedback" id="feedback"></div>
-        </div>
-      `;
-
-      progressText.textContent = `Scenario ${current + 1} of ${quizData.length}`;
-      progressFill.style.width = `${((current) / quizData.length) * 100}%`;
-
-      const buttons = quizContainer.querySelectorAll('button');
-      const feedback = document.getElementById('feedback');
-
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          const isSafe = button.classList.contains('safe-btn');
-          if (isSafe === q.safe) {
-            score++;
-            feedback.textContent = "✅ Correct! Well identified.";
-            feedback.style.background = "var(--success-light)";
-            feedback.style.color = "var(--success)";
-          } else {
-            feedback.textContent = "❌ Incorrect. Review the warning signs carefully.";
-            feedback.style.background = "var(--danger-light)";
-            feedback.style.color = "var(--danger)";
-          }
-
-          buttons.forEach(b => (b.disabled = true));
-          scoreText.textContent = `Performance: ${score}/${quizData.length}`;
-          progressFill.style.width = `${((current + 1) / quizData.length) * 100}%`;
-
-          setTimeout(() => {
-            current++;
-            loadQuestion();
-          }, 1500);
-        });
-      });
-    }
-
-    function showResult() {
-      quizContainer.innerHTML = '';
-      let message = '';
-      if (score === quizData.length) {
-        message = "🏆 Excellent! You're a true Cyber Shield defender.";
-      } else if (score >= 3) {
-        message = "⚡ Good job! You have a strong grasp of digital safety.";
-      } else {
-        message = "🚨 Caution! Review cyber hygiene practices carefully.";
-      }
-      resultDiv.innerHTML = `<strong>Final Score: ${score}/${quizData.length}</strong><br>${message}`;
-    }
-
-    loadQuestion();
-  });
-</script>
-</body>
-</html>
-
-</body>
-</html>
-
+        question: "You receive an email from 'admin@bank-secure.com' asking to verify your
