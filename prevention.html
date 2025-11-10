@@ -893,6 +893,147 @@
       font-size: 1.5rem;
     }
 
+    /* Hero Section with Visual Content */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-image {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* Featured Resources Section */
+    .featured-resources {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .resource-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .resource-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .resource-content {
+      padding: 1.5rem;
+    }
+
+    .resource-content h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+    }
+
+    .resource-content p {
+      color: var(--text-medium);
+      margin-bottom: 1rem;
+    }
+
+    /* Quick Links Section */
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .quick-link-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+      border: 1px solid var(--border-light);
+    }
+
+    .quick-link-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .quick-link-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .quick-link-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-dark);
+    }
+
+    .quick-link-card p {
+      color: var(--text-medium);
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -969,6 +1110,18 @@
         width: 100%;
         justify-content: center;
       }
+
+      .hero-visual {
+        flex-direction: column;
+      }
+
+      .featured-resources {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -1013,6 +1166,103 @@
   </header>
 
   <main>
+    <!-- Hero Visual Section -->
+    <section>
+      <div class="hero-visual">
+        <div class="hero-content">
+          <h2><i class="fas fa-shield-alt"></i> Visual Threat Intelligence</h2>
+          <div class="accent-border"></div>
+          <p>Our advanced threat detection systems analyze millions of data points to identify and neutralize cyber threats before they impact your organization. Visualize attack patterns and security metrics with our interactive dashboard.</p>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/6_cx7nAKlw4" title="Cybersecurity Awareness Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cybersecurity Dashboard">
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <h2 style="color: white;">Cyber Threat Statistics</h2>
+      <div class="accent-border" style="background: white; margin: 0.5rem auto 2rem;"></div>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-number">45%</div>
+          <div class="stat-label">Increase in Phishing Attacks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3.4M</div>
+          <div class="stat-label">Malware Detections This Month</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99.9%</div>
+          <div class="stat-label">Threat Detection Accuracy</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">78%</div>
+          <div class="stat-label">Organizations Using MFA</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Resources Section -->
+    <section>
+      <h2><i class="fas fa-images"></i> Featured Cybersecurity Resources</h2>
+      <div class="accent-border"></div>
+      <p class="intro">Explore our curated collection of visual resources to enhance your understanding of cybersecurity threats and protection strategies.</p>
+      
+      <div class="featured-resources">
+        <div class="resource-card">
+          <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Multi-Factor Authentication">
+          <div class="resource-content">
+            <h3>MFA Implementation Guide</h3>
+            <p>Step-by-step visual guide to implementing multi-factor authentication across your organization with best practices and common pitfalls to avoid.</p>
+            <a href="#" class="media-link">View Guide <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+        
+        <div class="resource-card">
+          <img src="https://images.unsplash.com/photo-1563013541-3ab36cc058e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Data Encryption">
+          <div class="resource-content">
+            <h3>Data Encryption Protocols</h3>
+            <p>Visual explanation of how encryption protects sensitive data in transit and at rest with real-world implementation examples.</p>
+            <a href="#" class="media-link">Learn More <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section>
+      <h2><i class="fas fa-rocket"></i> Quick Access Resources</h2>
+      <div class="accent-border"></div>
+      <div class="quick-links">
+        <div class="quick-link-card">
+          <i class="fas fa-video"></i>
+          <h3>Training Videos</h3>
+          <p>Access our library of cybersecurity training videos and tutorials</p>
+        </div>
+        <div class="quick-link-card">
+          <i class="fas fa-file-pdf"></i>
+          <h3>Security Guides</h3>
+          <p>Download comprehensive security guides and best practices</p>
+        </div>
+        <div class="quick-link-card">
+          <i class="fas fa-tools"></i>
+          <h3>Security Tools</h3>
+          <p>Access our recommended security tools and utilities</p>
+        </div>
+        <div class="quick-link-card">
+          <i class="fas fa-headset"></i>
+          <h3>Support Center</h3>
+          <p>Get help from our cybersecurity experts and support team</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Protocol Framework -->
     <section>
       <h2><i class="fas fa-shield-alt"></i> Security Protocol Framework</h2>
       <div class="accent-border"></div>
@@ -1153,46 +1403,43 @@
       </div>
     </section>
 
-    <!-- New Media Section with Images and Videos -->
+    <!-- Additional Media Resources -->
     <section class="media-section">
-      <h2><i class="fas fa-images"></i> Cybersecurity Resources</h2>
+      <h2><i class="fas fa-photo-video"></i> Additional Security Resources</h2>
       <div class="accent-border"></div>
-      <p class="intro">Explore these visual resources to enhance your understanding of cybersecurity threats and protection strategies.</p>
+      <p class="intro">Expand your cybersecurity knowledge with these additional visual and interactive resources.</p>
       
       <div class="media-grid">
         <div class="media-card">
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Phishing Attack Visualization">
+          <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Network Security">
           <div class="media-card-content">
-            <h3>Phishing Attack Analysis</h3>
-            <p>Learn how to identify and avoid sophisticated phishing attempts targeting enterprises.</p>
+            <h3>Network Security Fundamentals</h3>
+            <p>Learn the basics of securing your network infrastructure against external threats.</p>
             <a href="#" class="media-link">View Resource <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
         
         <div class="media-card">
-          <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Multi-Factor Authentication">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Incident Response">
           <div class="media-card-content">
-            <h3>MFA Implementation Guide</h3>
-            <p>Step-by-step guide to implementing multi-factor authentication across your organization.</p>
+            <h3>Incident Response Planning</h3>
+            <p>Develop an effective incident response plan to minimize damage from security breaches.</p>
             <a href="#" class="media-link">View Guide <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
         
         <div class="media-card">
-          <img src="https://images.unsplash.com/photo-1563013541-3ab36cc058e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Data Encryption">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Security Awareness">
           <div class="media-card-content">
-            <h3>Data Encryption Protocols</h3>
-            <p>Understand how encryption protects sensitive data in transit and at rest.</p>
+            <h3>Security Awareness Training</h3>
+            <p>Implement effective security awareness programs for your employees.</p>
             <a href="#" class="media-link">Learn More <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
       </div>
-      
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/6_cx7nAKlw4" title="Cybersecurity Awareness Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
     </section>
 
+    <!-- Quiz Section -->
     <section class="quiz">
       <h2><i class="fas fa-clipboard-check"></i> Threat Identification Assessment</h2>
       <div class="accent-border"></div>
@@ -1215,7 +1462,7 @@
       </div>
     </section>
 
-    <!-- New Leaderboard Section -->
+    <!-- Leaderboard Section -->
     <section class="leaderboard-section">
       <h2><i class="fas fa-trophy"></i> Quiz Leaderboard</h2>
       <div class="accent-border"></div>
