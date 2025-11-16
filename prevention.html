@@ -43,7 +43,7 @@
                  img-src 'self' https: data:; frame-src https://www.youtube.com;">
 
   <style>
-    /* ==== CSS VARIABLES & RESETS (unchanged) ==== */
+    /* ==== CSS VARIABLES & RESETS ==== */
     :root{--primary:#1e3a8a;--primary-dark:#1e40af;--primary-light:#dbeafe;--secondary:#3b82f6;
           --secondary-dark:#2563eb;--success:#10b981;--success-light:#d1fae5;--danger:#ef4444;
           --danger-light:#fee2e2;--warning:#f59e0b;--warning-light:#fef3c7;--bg-light:#f0f9ff;
@@ -53,6 +53,7 @@
     html{scroll-behavior:smooth;}
     body{font-family:'Source Sans Pro','Segoe UI',system-ui,sans-serif;background:var(--bg-light);
           color:var(--text-dark);line-height:1.6;position:relative;overflow-x:hidden;}
+
     /* ==== DARK MODE ==== */
     @media (prefers-color-scheme: dark){
       :root{--bg-light:#0f172a;--bg-lighter:#1e293b;--card-bg:#1e293b;--text-dark:#f1f5f9;
@@ -60,9 +61,8 @@
       .tip-card.good{background:var(--success-light);}
       .tip-card.bad{background:var(--danger-light);}
     }
-    /* ==== FOCUS STYLES ==== */
-    a:focus, button:focus{outline:2px solid var(--primary);outline-offset:2px;}
-    /* ==== NAVBAR (mobile hamburger) ==== */
+
+    /* ==== NAVBAR ==== */
     .navbar{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-dark));
              color:#fff;padding:15px 30px;z-index:1000;box-shadow:0 4px 12px rgba(0,0,0,.1);position:sticky;top:0;}
     .navbar .logo{font-size:22px;font-weight:bold;display:flex;align-items:center;gap:10px;}
@@ -82,18 +82,21 @@
       .nav-links.open{max-height:500px;padding:1rem 0;}
       .nav-links a{padding:12px 0;width:100%;text-align:center;}
     }
-    /* ==== PARTICLES (unchanged) ==== */
+
+    /* ==== PARTICLES ==== */
     .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;}
     .particle{position:absolute;width:4px;height:4px;background:var(--primary-light);
               border-radius:50%;opacity:.3;animation:float 15s infinite linear;}
     @keyframes float{0%{transform:translateY(0) translateX(0);opacity:.3;}
                      50%{opacity:.6;}
                      100%{transform:translateY(-100vh) translateX(100px);opacity:.3;}}
+
     /* ==== ALERT BANNER ==== */
     .alert-banner{background:var(--danger);color:#fff;padding:12px 0;overflow:hidden;
                    position:relative;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.1);z-index:10;}
     .alert-content{display:inline-block;white-space:nowrap;animation:scrollText 25s linear infinite;padding-left:100%;}
     @keyframes scrollText{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+
     /* ==== HEADER ==== */
     header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;
             padding:4rem 1.5rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.1);
@@ -110,7 +113,8 @@
                  animation:shimmer 3s infinite;}
     @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
     .subtitle{font-size:1.3rem;opacity:.9;font-weight:400;max-width:600px;margin:0 auto;}
-    /* ==== MAIN SECTIONS (same visual style, added aria) ==== */
+
+    /* ==== MAIN SECTIONS ==== */
     main{max-width:1100px;margin:0 auto;padding:3rem 1.5rem;}
     section{background:var(--card-bg);padding:2.5rem;border-radius:16px;
             box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:2.5rem;
@@ -123,7 +127,8 @@
     h2{color:var(--primary-dark);margin-bottom:1.5rem;font-size:1.9rem;font-weight:600;
         display:flex;align-items:center;gap:.75rem;}
     h2 i{color:var(--primary);}
-    /* ==== TIP CARDS (same) ==== */
+
+    /* ==== TIP CARDS (TEXT BLACK, ENHANCED ATTRACTIVENESS) ==== */
     .tips-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
     .tip-card{padding:1.75rem;border-radius:12px;display:flex;flex-direction:column;
               gap:1rem;transition:all .3s;border:1px solid transparent;position:relative;
@@ -132,76 +137,96 @@
                        background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
                        transition:left .5s;}
     .tip-card:hover::before{left:100%;}
-    .tip-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1);}
-    .tip-card.good{background:var(--success-light);border-color:rgba(16,185,129,.2);}
-    .tip-card.bad{background:var(--danger-light);border-color:rgba(239,68,68,.2);}
+    .tip-card:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 15px 35px rgba(0,0,0,.12);}
+    .tip-card.good{background:linear-gradient(135deg, var(--success-light), #a7f3d0);border-color:rgba(16,185,129,.3);}
+    .tip-card.bad{background:linear-gradient(135deg, var(--danger-light), #fecaca);border-color:rgba(239,68,68,.3);}
+    .tip-header{display:flex;gap:1rem;align-items:center;}
     .tip-icon{font-size:1.25rem;width:48px;height:48px;display:flex;align-items:center;
-               justify-content:center;border-radius:12px;transition:transform .3s;}
-    .tip-card:hover .tip-icon{transform:scale(1.1);}
-    .tip-card.good .tip-icon{background:var(--success);color:#fff;}
-    .tip-card.bad .tip-icon{background:var(--danger);color:#fff;}
-    .expand-btn{background:none;border:none;color:var(--primary);cursor:pointer;
+               justify-content:center;border-radius:12px;transition:transform .3s;box-shadow:0 4px 8px rgba(0,0,0,.1);}
+    .tip-card:hover .tip-icon{transform:scale(1.1) rotate(5deg);}
+    .tip-card.good .tip-icon{background:linear-gradient(135deg, var(--success), #059669);color:#fff;}
+    .tip-card.bad .tip-icon{background:linear-gradient(135deg, var(--danger), #dc2626);color:#fff;}
+    .tip-content h3{margin-bottom:0.5rem;font-size:1.2rem;font-weight:600;color:#000000 !important;}
+    .tip-content p{color:#000000 !important;font-size:0.95rem;line-height:1.5;}
+    .badge{background:linear-gradient(135deg, #ef4444, #dc2626);color:#fff;padding:0.35rem 0.75rem;border-radius:20px;font-size:0.8rem;font-weight:600;margin-left:0.5rem;animation:pulse 2s infinite;}
+    .expand-btn{background:linear-gradient(135deg, var(--primary), var(--primary-dark));color:#fff;border:none;cursor:pointer;
                 font-weight:600;display:flex;align-items:center;gap:.5rem;margin-top:1rem;
-                font-size:.9rem;transition:color .2s;padding:5px 10px;border-radius:6px;}
-    .expand-btn:hover{color:var(--primary-dark);background:rgba(30,58,138,.05);}
+                font-size:.9rem;transition:all .3s;padding:0.75rem 1.5rem;border-radius:8px;box-shadow:0 2px 8px rgba(30,58,138,.2);}
+    .expand-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(30,58,138,.3);}
     .expand-btn i{transition:transform .3s;}
     .expand-btn.active i{transform:rotate(180deg);}
     .dropdown-content{max-height:0;overflow:hidden;transition:max-height .4s ease;
-                      margin-top:1rem;padding-top:0;border-top:1px solid rgba(0,0,0,.05);}
+                      margin-top:1rem;padding-top:0;border-top:1px solid rgba(0,0,0,.1);}
     .dropdown-content.show{max-height:300px;padding-top:1rem;}
-    /* ==== QUIZ ==== */
-    .quiz .question-box{background:var(--bg-lighter);padding:2rem;border-radius:12px;
+    .dropdown-content p{color:#000000 !important;}
+    .dropdown-content ul{padding-left:1.5rem;margin-bottom:1rem;}
+    .dropdown-content li{color:#000000 !important;margin-bottom:0.5rem;list-style-type:disc;}
+
+    /* ==== MEDIA & QUIZ (ENHANCED) ==== */
+    .media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+    .media-card{border-radius:12px;overflow;hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:transform .3s;}
+    .media-card:hover{transform:translateY(-5px) scale(1.02);}
+    .media-card img{width:100%;height:180px;object-fit:cover;display:block;}
+    .media-card-content{padding:1.5rem;background:#fff;}
+    .media-section .media-card-content h3{color:#000000 !important;margin-bottom:0.75rem;font-size:1.2rem;}
+    .media-section .media-card-content p{color:#000000 !important;font-size:0.9rem;margin-bottom:1rem;}
+    .media-link{color:var(--primary);font-weight:600;text-decoration:none;transition:color .2s;}
+    .media-link:hover{color:var(--primary-dark);}
+    .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+                      border-radius:12px;margin-top:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,.1);}
+    .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+    .quiz .question-box{background:linear-gradient(135deg, var(--bg-lighter), #e2e8f0);padding:2rem;border-radius:12px;
                         margin-bottom:1.5rem;border:1px solid var(--border);
                         position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.05);}
     .quiz .question-box::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;
                                  background:linear-gradient(to bottom,var(--primary),var(--secondary));}
+    .quiz .question-box p{color:#000000 !important;font-weight:600;font-size:1.2rem;margin-bottom:1.5rem;line-height:1.5;}
     .buttons{display:flex;gap:1rem;flex-wrap:wrap;}
     .buttons button{padding:.9rem 1.75rem;border:none;border-radius:10px;cursor:pointer;
                     font-weight:600;color:#fff;transition:all .2s;display:flex;align-items:center;
                     gap:.5rem;font-size:1rem;box-shadow:0 2px 5px rgba(0,0,0,.1);
                     position:relative;overflow:hidden;flex:1;min-width:150px;justify-content:center;}
-    .safe-btn{background:var(--success);}
-    .safe-btn:hover{background:#0da271;transform:translateY(-2px);box-shadow:0 4px 8px rgba(16,185,129,.3);}
-    .scam-btn{background:var(--danger);}
-    .scam-btn:hover{background:#dc2626;transform:translateY(-2px);box-shadow:0 4px 8px rgba(239,68,68,.3);}
+    .safe-btn{background:linear-gradient(135deg, var(--success), #059669);}
+    .safe-btn:hover{background:linear-gradient(135deg, #059669, var(--success));transform:translateY(-2px);box-shadow:0 4px 8px rgba(16,185,129,.3);}
+    .scam-btn{background:linear-gradient(135deg, var(--danger), #dc2626);}
+    .scam-btn:hover{background:linear-gradient(135deg, #dc2626, var(--danger));transform:translateY(-2px);box-shadow:0 4px 8px rgba(239,68,68,.3);}
     .feedback{margin-top:1.25rem;font-weight:600;padding:1rem;border-radius:8px;
               text-align:center;animation:fadeIn .5s;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
     .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));
                    border-radius:4px;transition:width .5s ease;}
-    /* ==== MEDIA & LEADERBOARD (same) ==== */
-    .media-card img{width:100%;height:180px;object-fit:cover;display:block;}
-    .video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
-                      border-radius:12px;margin-top:1.5rem;}
-    .video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
-    .security-tip{background:var(--warning-light);border-left:4px solid var(--warning);
-                  padding:1.5rem;border-radius:8px;margin:1.5rem 0;display:flex;
-                  align-items:flex-start;gap:1rem;}
-    .security-tip i{color:var(--warning);font-size:1.5rem;}
+
+    /* ==== FOOTER ==== */
     footer{text-align:center;padding:2.5rem;color:var(--text-light);font-size:.9rem;
            border-top:1px solid var(--border);margin-top:3rem;background:var(--bg-lighter);}
+
+    /* ==== DARK MODE TOGGLE ==== */
+    .dark-mode-toggle{position:fixed;bottom:2rem;right:2rem;background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+                      color:#fff;width:48px;height:48px;border-radius:50%;display:flex;
+                      align-items:center;justify-content:center;cursor:pointer;
+                      box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:1000;transition:all .3s;}
+    .dark-mode-toggle:hover{transform:scale(1.1);box-shadow:0 6px 16px rgba(0,0,0,.3);}
+
     /* ==== RESPONSIVE ==== */
     @media (max-width:768px){
       .navbar{padding:15px 20px;flex-direction:column;gap:10px;}
-      .nav-links{gap:15px;}
       .brand-container{flex-direction:column;gap:1rem;}
       .logo{font-size:3rem;}
       .site-title{font-size:2.2rem;}
       .tips-container{grid-template-columns:1fr;}
       .buttons{flex-direction:column;}
       .buttons button{width:100%;justify-content:center;}
-      .progress-container{flex-direction:column;align-items:flex-start;gap:.5rem;}
-      .progress-bar{width:100%;margin:0;}
-      .media-grid{grid-template-columns:1fr;}
-      .quiz-actions{flex-direction:column;}
-      .quiz-actions button{width:100%;justify-content:center;}
     }
-    /* ==== DARK MODE TOGGLE ==== */
-    .dark-mode-toggle{position:fixed;bottom:2rem;right:2rem;background:var(--primary);
-                      color:#fff;width:48px;height:48px;border-radius:50%;display:flex;
-                      align-items:center;justify-content:center;cursor:pointer;
-                      box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:1000;transition:background .3s;}
-    .dark-mode-toggle:hover{background:var(--primary-dark);}
+
+    /* ==== ACCENT BORDERS & DECORATIVE ELEMENTS ==== */
+    .accent-border{height:4px;background:linear-gradient(90deg, var(--primary), var(--secondary));width:80px;margin:1rem auto;border-radius:2px;}
+    .intro{text-align:center;color:var(--text-medium);font-size:1.15rem;max-width:800px;margin:0 auto 2rem;line-height:1.7;}
+    .security-tip{background:linear-gradient(135deg, var(--warning-light), #fef3c7);border-left:4px solid var(--warning);
+                  padding:1.5rem;border-radius:8px;margin:1.5rem 0;display:flex;
+                  align-items:flex-start;gap:1rem;box-shadow:0 4px 12px rgba(245,158,11,.1);}
+    .security-tip i{color:var(--warning);font-size:1.5rem;}
+    .security-tip h3{color:#000 !important;}
+    .security-tip p{color:#000 !important;}
   </style>
 </head>
 <body>
@@ -243,24 +268,151 @@
         <div class="logo" aria-hidden="true"><i class="fas fa-shield-alt"></i></div>
         <h1 class="site-title">Cyber Shield</h1>
       </div>
-      <div class="accent-border" style="margin:0.5rem auto 1rem;"></div>
+      <div class="accent-border"></div>
       <p class="subtitle">Enterprise-Grade Protection Protocols and Threat Mitigation Strategies</p>
     </div>
   </header>
 
   <main>
-    <!-- ==== PREVENTION TIPS ==== -->
+
+    <!-- ==== SECURITY PROTOCOL FRAMEWORK ==== -->
     <section role="region" aria-labelledby="protocols-heading">
       <h2 id="protocols-heading"><i class="fas fa-shield-alt" aria-hidden="true"></i> Security Protocol Framework</h2>
       <div class="accent-border"></div>
       <p class="intro">Implement these enterprise-level security measures to protect organizational assets and mitigate cyber threats.</p>
 
-      <div class="tips-container" id="tips-container">
-        <!-- Tip cards are generated by JS (same data as original) -->
+      <div class="tips-container">
+
+        <!-- ==== TIP 1 ==== -->
+        <div class="tip-card good">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-lock"></i></div>
+            <div class="tip-content">
+              <h3>Multi-Factor Authentication <span class="badge">Critical</span></h3>
+              <p>Implement MFA across all systems to add critical verification layers beyond passwords.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Multi-factor authentication requires two or more verification factors.</p>
+            <ul>
+              <li>Reduces account and takeover by 99.9%</li>
+              <li>Protects against credential stuffing</li>
+              <li>Compliance with regulations</li>
+              <li>Works with biometrics, tokens, or apps</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ==== TIP 2 ==== -->
+        <div class="tip-card good">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-link"></i></div>
+            <div class="tip-content">
+              <h3>URL Verification Protocol</h3>
+              <p>Always verify link destinations and sender authenticity before interaction.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Best practices:</p>
+            <ul>
+              <li>Hover to preview destination</li>
+              <li>Check HTTPS & certificates</li>
+              <li>Verify sender email</li>
+              <li>Use URL scanners</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ==== TIP 3 ==== -->
+        <div class="tip-card good">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-key"></i></div>
+            <div class="tip-content">
+              <h3>Credential Management <span class="badge">Essential</span></h3>
+              <p>Utilize complex, unique passwords and enterprise password management solutions.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Key elements:</p>
+            <ul>
+              <li>12+ characters with symbols</li>
+              <li>Enterprise password manager</li>
+              <li>Automatic rotation</li>
+              <li>Encrypted storage</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ==== TIP 4 ==== -->
+        <div class="tip-card bad">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-ban"></i></div>
+            <div class="tip-content">
+              <h3>Sensitive Information Disclosure</h3>
+              <p>Never share OTPs, passwords, or sensitive data via unsolicited communications.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Protection strategies:</p>
+            <ul>
+              <li>Legitimate orgs never ask for passwords via email/phone</li>
+              <li>Verify caller identity</li>
+              <li>Use encrypted channels</li>
+              <li>Report suspicious requests</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ==== TIP 5 ==== -->
+        <div class="tip-card bad">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="tip-content">
+              <h3>Unauthorized Interface Interaction</h3>
+              <p>Avoid interacting with pop-ups, alerts, or security prompts.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Prevention tips:</p>
+            <ul>
+              <li>Close pop-ups via task manager</li>
+              <li>Never enter credentials in unexpected prompts</li>
+              <li>Keep browsers updated</li>
+              <li>Use ad-blockers</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ==== TIP 6 ==== -->
+        <div class="tip-card bad">
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-redo"></i></div>
+            <div class="tip-content">
+              <h3>Credential Recycling <span class="badge">High Risk</span></h3>
+              <p>Password reuse across systems creates systemic vulnerability exposure.</p>
+            </div>
+          </div>
+          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <p>Key concerns:</p>
+            <ul>
+              <li>One breach compromises all accounts</li>
+              <li>Attackers test credentials across platforms</li>
+              <li>Use unique passwords per service</li>
+              <li>Password manager recommended</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ==== MEDIA RESOURCES ==== -->
+    <!-- ==== MEDIA RESOURCES (TEXT BLACK, VIDEO HIDDEN) ==== -->
     <section class="media-section" role="region" aria-labelledby="media-heading">
       <h2 id="media-heading"><i class="fas fa-images" aria-hidden="true"></i> Cybersecurity Resources</h2>
       <div class="accent-border"></div>
@@ -299,13 +451,9 @@
         </div>
       </div>
 
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/aP5O6J0o9E4"
-                title="Cybersecurity Awareness Training Video - NCSC"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
-      </div>
+      <!-- VIDEO REMOVED (not visible) -->
+      <!-- <div class="video-container"> ... </div> -->
+
     </section>
 
     <!-- ==== INTERACTIVE QUIZ ==== -->
@@ -314,18 +462,20 @@
       <div class="accent-border"></div>
       <p class="intro">Test your ability to spot real-world threats.</p>
 
-      <div class="progress-container">
+      <div class="progress-container" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;color:var(--text-medium);font-size:0.95rem;font-weight:500;">
         <span id="progress-text">Scenario 1 of 5</span>
-        <div class="progress-bar"><div class="progress-fill" id="quiz-progress"></div></div>
+        <div class="progress-bar" style="flex:1;height:8px;background:var(--border);border-radius:4px;margin:0 1rem;overflow:hidden;">
+          <div class="progress-fill" id="quiz-progress" style="width:0%;"></div>
+        </div>
         <span id="score-text">Performance: 0/5</span>
       </div>
 
       <div id="quiz-container"></div>
-      <div class="result" id="result" aria-live="polite"></div>
+      <div class="result" id="result" aria-live="polite" style="text-align:center;font-size:1.2rem;margin-top:2rem;padding:2rem;border-radius:12px;background:var(--bg-lighter);border:1px solid var(--border);animation:fadeIn .5s;box-shadow:0 4px 12px rgba(0,0,0,.05);"></div>
 
-      <div class="quiz-actions" id="quiz-actions" style="display:none;">
-        <button class="restart-btn" id="restart-btn"><i class="fas fa-redo"></i> Restart Quiz</button>
-        <button class="save-score-btn" id="save-score-btn"><i class="fas fa-trophy"></i> Save Score</button>
+      <div class="quiz-actions" id="quiz-actions" style="display:none;margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;">
+        <button class="restart-btn" id="restart-btn" style="background:linear-gradient(135deg, var(--primary), var(--primary-dark));padding:0.9rem 1.75rem;border:none;border-radius:10px;cursor:pointer;font-weight:600;color:#fff;transition:all .2s;display:flex;align-items:center;gap:0.5rem;font-size:1rem;box-shadow:0 2px 5px rgba(0,0,0,.1);"><i class="fas fa-redo"></i> Restart Quiz</button>
+        <button class="save-score-btn" id="save-score-btn" style="background:linear-gradient(135deg, var(--success), #059669);padding:0.9rem 1.75rem;border:none;border-radius:10px;cursor:pointer;font-weight:600;color:#fff;transition:all .2s;display:flex;align-items:center;gap:0.5rem;font-size:1rem;box-shadow:0 2px 5px rgba(0,0,0,.1);"><i class="fas fa-trophy"></i> Save Score</button>
       </div>
     </section>
 
@@ -335,11 +485,13 @@
       <div class="accent-border"></div>
       <p class="intro">See how you rank against other cyber-defenders.</p>
 
-      <table class="leaderboard-table" aria-describedby="leaderboard-heading">
-        <thead>
-          <tr><th>Rank</th><th>Participant</th><th>Score</th><th>Date</th></tr>
+      <table class="leaderboard-table" aria-describedby="leaderboard-heading" style="width:100%;border-collapse:collapse;margin-top:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.05);border-radius:12px;overflow:hidden;">
+        <thead style="background:linear-gradient(135deg, var(--primary), var(--primary-dark));color:#fff;">
+          <tr><th style="padding:1rem;text-align:left;font-weight:600;">Rank</th><th style="padding:1rem;text-align:left;font-weight:600;">Participant</th><th style="padding:1rem;text-align:left;font-weight:600;">Score</th><th style="padding:1rem;text-align:left;font-weight:600;">Date</th></tr>
         </thead>
-        <tbody id="leaderboard-body"></tbody>
+        <tbody id="leaderboard-body" style="background:#fff;">
+          <!-- Dynamic -->
+        </tbody>
       </table>
     </section>
 
@@ -355,7 +507,7 @@
 
   <footer role="contentinfo">
     <div class="footer-content">
-      <p>© 2023 <span style="font-style:italic;">Cyber Shield</span> Enterprise Security Initiative. All rights reserved.</p>
+      <p>© 2025 <span style="font-style:italic;">Cyber Shield</span> Enterprise Security Initiative. All rights reserved.</p>
       <p>This training material is classified for internal organizational use only.</p>
     </div>
   </footer>
@@ -365,9 +517,9 @@
     <i class="fas fa-moon"></i>
   </button>
 
-  <!-- ==== SCRIPT (consolidated) ==== -->
+  <!-- ==== SCRIPTS ==== -->
   <script>
-    // ==== PARTICLES ==== 
+    /* ---------- PARTICLES ---------- */
     function createParticles() {
       const container = document.getElementById('particles');
       const count = 30;
@@ -384,90 +536,43 @@
       }
     }
 
-    // ==== TIP DATA (same as original) ====
-    const tipData = [
-      {icon:'fa-lock',title:'Multi-Factor Authentication',badge:'Critical',type:'good',
-       short:'Implement MFA across all systems to add critical verification layers beyond passwords.',
-       details:`<p>Multi-factor authentication requires two or more verification factors.</p>
-                <ul><li>Reduces account takeover by 99.9%</li>
-                    <li>Protects against credential stuffing</li>
-                    <li>Compliance with regulations</li>
-                    <li>Works with biometrics, tokens, or apps</li></ul>`},
-      {icon:'fa-link',title:'URL Verification Protocol',type:'good',
-       short:'Always verify link destinations and sender authenticity before interaction.',
-       details:`<p>Best practices:</p>
-                <ul><li>Hover to preview destination</li>
-                    <li>Check HTTPS & certificates</li>
-                    <li>Verify sender email</li>
-                    <li>Use URL scanners</li></ul>`},
-      {icon:'fa-key',title:'Credential Management',badge:'Essential',type:'good',
-       short:'Utilize complex, unique passwords and enterprise password management solutions.',
-       details:`<p>Key elements:</p>
-                <ul><li>12+ characters with symbols</li>
-                    <li>Enterprise password manager</li>
-                    <li>Automatic rotation</li>
-                    <li>Encrypted storage</li></ul>`},
-      {icon:'fa-ban',title:'Sensitive Information Disclosure',type:'bad',
-       short:'Never share OTPs, passwords, or sensitive data via unsolicited communications.',
-       details:`<p>Protection strategies:</p>
-                <ul><li>Legitimate orgs never ask for passwords via email/phone</li>
-                    <li>Verify caller identity</li>
-                    <li>Use encrypted channels</li>
-                    <li>Report suspicious requests</li></ul>`},
-      {icon:'fa-exclamation-triangle',title:'Unauthorized Interface Interaction',type:'bad',
-       short:'Avoid interacting with unsolicited pop-ups, alerts, or security prompts.',
-       details:`<p>Prevention tips:</p>
-                <ul><li>Close pop-ups via task manager</li>
-                    <li>Never enter credentials in unexpected prompts</li>
-                    <li>Keep browsers updated</li>
-                    <li>Use ad-blockers</li></ul>`},
-      {icon:'fa-redo',title:'Credential Recycling',badge:'High Risk',type:'bad',
-       short:'Password reuse across systems creates systemic vulnerability exposure.',
-       details:`<p>Key concerns:</p>
-                <ul><li>One breach compromises all accounts</li>
-                    <li>Attackers test credentials across platforms</li>
-                    <li>Use unique passwords per service</li>
-                    <li>Password manager recommended</li></ul>`}
-    ];
-
-    // ==== RENDER TIPS ====
-    function renderTips() {
-      const container = document.getElementById('tips-container');
-      container.innerHTML = tipData.map(t => `
-        <div class="tip-card ${t.type}">
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas ${t.icon}"></i></div>
-            <div class="tip-content">
-              <h3>${t.title} ${t.badge?`<span class="badge">${t.badge}</span>`:''}</h3>
-              <p>${t.short}</p>
-            </div>
-          </div>
-          <button class="expand-btn" aria-expanded="false">Learn More <i class="fas fa-chevron-down"></i></button>
-          <div class="dropdown-content">${t.details}</div>
-        </div>`).join('');
-      attachTipListeners();
-    }
-
-    function attachTipListeners() {
-      document.querySelectorAll('.expand-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const expanded = btn.getAttribute('aria-expanded') === 'true';
-          // close others
-          document.querySelectorAll('.expand-btn').forEach(b => {
-            b.setAttribute('aria-expanded', 'false');
-            b.classList.remove('active');
-            b.nextElementSibling.classList.remove('show');
-          });
-          if (!expanded) {
-            btn.setAttribute('aria-expanded', 'true');
-            btn.classList.add('active');
-            btn.nextElementSibling.classList.add('show');
-          }
+    /* ---------- TIP EXPAND/COLLAPSE ---------- */
+    document.querySelectorAll('.expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.expand-btn').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          b.classList.remove('active');
+          b.nextElementSibling.classList.remove('show');
         });
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('active');
+          btn.nextElementSibling.classList.add('show');
+        }
       });
-    }
+    });
 
-    // ==== QUIZ DATA ====
+    /* ---------- MOBILE MENU ---------- */
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('open');
+    });
+
+    /* ---------- DARK MODE ---------- */
+    const darkToggle = document.getElementById('dark-mode-toggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) document.documentElement.classList.add('dark');
+    darkToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      darkToggle.innerHTML = document.documentElement.classList.contains('dark') ?
+        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    /* ---------- QUIZ LOGIC ---------- */
     const quizData = [
       {question:"You receive an email from 'admin@bank-secure.com' asking to verify your credentials urgently. What should you do?",safe:false},
       {question:"Your system prompts a security update from your IT department's official portal. Should you proceed?",safe:true},
@@ -475,8 +580,6 @@
       {question:"A co-worker asks you to share a company file over your official email for review. Is this safe?",safe:true},
       {question:"You find a USB drive labeled 'Payroll Data' in the office parking lot. Should you plug it in?",safe:false}
     ];
-
-    // ==== QUIZ STATE ====
     let current = 0, score = 0;
     const quizContainer = document.getElementById('quiz-container');
     const resultDiv = document.getElementById('result');
@@ -492,18 +595,24 @@
     function updateLeaderboard() {
       leaderboardBody.innerHTML = '';
       if (!leaderboard.length) {
-        leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No scores yet. Be the first!</td></tr>';
+        leaderboardBody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:1rem;color:var(--text-medium);">No scores yet. Be the first!</td></tr>';
         return;
       }
       leaderboard.forEach((e,i) => {
         const rankClass = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'';
-        const row = `<tr>
-          <td><span class="rank ${rankClass}">${i+1}</span></td>
-          <td>${e.name}</td>
-          <td>${e.score}/${quizData.length}</td>
-          <td>${e.date}</td>
+        const rankColor = i===0?'#fbbf24':i===1?'#d1d5db':i===2?'#cd7f32':'var(--primary)';
+        const rankTextColor = i===0||i===2?'#000':'#000';
+        const row = `<tr style="transition:background .3s;">
+          <td style="padding:1rem;"><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${rankColor};color:${rankTextColor};font-weight:bold;font-size:0.9rem;">${i+1}</span></td>
+          <td style="padding:1rem;color:#000;">${e.name}</td>
+          <td style="padding:1rem;color:#000;font-weight:600;">${e.score}/${quizData.length}</td>
+          <td style="padding:1rem;color:var(--text-medium);">${e.date}</td>
         </tr>`;
         leaderboardBody.innerHTML += row;
+      });
+      document.querySelectorAll('#leaderboard-body tr').forEach(tr => {
+        tr.addEventListener('mouseenter', () => tr.style.background = 'rgba(59,130,246,0.05)');
+        tr.addEventListener('mouseleave', () => tr.style.background = '');
       });
     }
     updateLeaderboard();
@@ -513,7 +622,7 @@
       const q = quizData[current];
       quizContainer.innerHTML = `
         <div class="question-box">
-          <p>${q.question}</p>
+          <p style="font-weight:600;font-size:1.2rem;color:#000;margin-bottom:1.5rem;line-height:1.5;">${q.question}</p>
           <div class="buttons">
             <button class="safe-btn"><i class="fas fa-check"></i> Safe</button>
             <button class="scam-btn"><i class="fas fa-times"></i> Scam</button>
@@ -527,8 +636,16 @@
       document.querySelectorAll('.buttons button').forEach(btn => {
         btn.addEventListener('click', () => {
           const isSafe = btn.classList.contains('safe-btn');
-          if (isSafe === q.safe) { score++; feedback.textContent = "Correct! Well identified."; feedback.style.background = 'var(--success-light)'; feedback.style.color = 'var(--success)'; }
-          else { feedback.textContent = "Incorrect. Review warning signs."; feedback.style.background = 'var(--danger-light)'; feedback.style.color = 'var(--danger)'; }
+          if (isSafe === q.safe) { 
+            score++; 
+            feedback.innerHTML = '<i class="fas fa-check-circle"></i> Correct! Well identified.';
+            feedback.style.background = 'linear-gradient(135deg, var(--success-light), #a7f3d0)';
+            feedback.style.color = 'var(--success)';
+          } else { 
+            feedback.innerHTML = '<i class="fas fa-times-circle"></i> Incorrect. Review warning signs.';
+            feedback.style.background = 'linear-gradient(135deg, var(--danger-light), #fecaca)';
+            feedback.style.color = 'var(--danger)';
+          }
           document.querySelectorAll('.buttons button').forEach(b=>b.disabled=true);
           scoreText.textContent = `Performance: ${score}/${quizData.length}`;
           progressFill.style.width = `${((current+1)/quizData.length)*100}%`;
@@ -542,7 +659,7 @@
       let msg = score===quizData.length ? "Excellent! You're a true Cyber Shield defender."
               : score>=3 ? "Good job! Strong grasp of digital safety."
               : "Caution! Review cyber-hygiene practices.";
-      resultDiv.innerHTML = `<strong>Final Score: ${score}/${quizData.length}</strong><br>${msg}`;
+      resultDiv.innerHTML = `<strong>Final Score: ${score}/${quizData.length}</strong><br><br>${msg}`;
       quizActions.style.display = 'flex';
     }
 
@@ -566,29 +683,9 @@
       alert(`Saved! You are #${leaderboard.findIndex(e=>e.name===name)+1}`);
     };
 
-    // ==== NAVBAR MOBILE TOGGLE ====
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.getElementById('nav-links');
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !expanded);
-      navLinks.classList.toggle('open');
-    });
-
-    // ==== DARK MODE TOGGLE ====
-    const darkToggle = document.getElementById('dark-mode-toggle');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (prefersDark) document.documentElement.classList.add('dark');
-    darkToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      darkToggle.innerHTML = document.documentElement.classList.contains('dark') ?
-        '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-    });
-
-    // ==== INIT ====
+    /* ---------- INIT ---------- */
     document.addEventListener('DOMContentLoaded', () => {
       createParticles();
-      renderTips();
       loadQuestion();
     });
   </script>
