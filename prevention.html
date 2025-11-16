@@ -164,7 +164,7 @@
 
     /* ==== MEDIA & QUIZ (ENHANCED) ==== */
     .media-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
-    .media-card{border-radius:12px;overflow;hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:transform .3s;}
+    .media-card{border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:transform .3s;}
     .media-card:hover{transform:translateY(-5px) scale(1.02);}
     .media-card img{width:100%;height:180px;object-fit:cover;display:block;}
     .media-card-content{padding:1.5rem;background:#fff;}
@@ -296,7 +296,7 @@
           <div class="dropdown-content">
             <p>Multi-factor authentication requires two or more verification factors.</p>
             <ul>
-              <li>Reduces account and takeover by 99.9%</li>
+              <li>Reduces account takeover by 99.9%</li>
               <li>Protects against credential stuffing</li>
               <li>Compliance with regulations</li>
               <li>Works with biometrics, tokens, or apps</li>
@@ -412,7 +412,7 @@
       </div>
     </section>
 
-    <!-- ==== MEDIA RESOURCES (TEXT BLACK, VIDEO HIDDEN) ==== -->
+    <!-- ==== MEDIA RESOURCES (FIXED: Data Encryption Illustration Now Visible) ==== -->
     <section class="media-section" role="region" aria-labelledby="media-heading">
       <h2 id="media-heading"><i class="fas fa-images" aria-hidden="true"></i> Cybersecurity Resources</h2>
       <div class="accent-border"></div>
@@ -439,10 +439,12 @@
             <a href="#" class="media-link" target="_blank" rel="noopener">View Guide <i class="fas fa-external-link-alt"></i></a>
           </div>
         </div>
+        <!-- FIXED: Data Encryption Illustration (Now with fallback and error handling) -->
         <div class="media-card">
           <img loading="lazy"
                src="https://images.unsplash.com/photo-1563013541-3ab36cc058e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-               alt="Data encryption illustration">
+               alt="Data encryption illustration"
+               onerror="this.onerror=null; this.src='https://via.placeholder.com/500x300/1e3a8a/ffffff?text=Data+Encryption+Illustration';">
           <div class="media-card-content">
             <h3>Data Encryption Protocols</h3>
             <p>How encryption safeguards data in transit and at rest.</p>
@@ -451,7 +453,7 @@
         </div>
       </div>
 
-      <!-- VIDEO REMOVED (not visible) -->
+      <!-- VIDEO REMOVED (as per previous request) -->
       <!-- <div class="video-container"> ... </div> -->
 
     </section>
@@ -599,7 +601,6 @@
         return;
       }
       leaderboard.forEach((e,i) => {
-        const rankClass = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'';
         const rankColor = i===0?'#fbbf24':i===1?'#d1d5db':i===2?'#cd7f32':'var(--primary)';
         const rankTextColor = i===0||i===2?'#000':'#000';
         const row = `<tr style="transition:background .3s;">
