@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Shield - Home</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b1623;
+            color: white;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #09111c;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px #00eaff;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #00eaff;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: url("https://img.freepik.com/free-vector/cyber-security-concept_23-2148532227.jpg") center/cover no-repeat;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            text-shadow: 0 0 10px black;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-top: 10px;
+            text-shadow: 0 0 10px black;
+        }
+
+        /* Sections */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin: 40px 0 20px;
+            color: #00eaff;
+        }
+
+        .info-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding: 0 20px 50px;
+        }
+
+        .card {
+            background-color: #132033;
+            width: 300px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+            color: #00eaff;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #d6e6f2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">Cyber Shield</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Stay Safe. Stay Secure.</h1>
+        <p>Your trusted guide for cybersecurity awareness and protection.</p>
+    </section>
+
+    <!-- Awareness, Prevention, Report -->
+    <h2 class="section-title">Cyber Safety Sections</h2>
+
+    <div class="info-container">
+
+        <!-- Awareness -->
+        <div class="card">
+            <img src="https://img.freepik.com/free-vector/cyber-security-concept-with-padlock_23-2148532227.jpg" alt="">
+            <h3>Awareness</h3>
+            <p>
+                Awareness helps you identify phishing, scams, malware, and online fraud.
+                Stay informed about common threats to stay protected.
+            </p>
+        </div>
+
+        <!-- Prevention -->
+        <div class="card">
+            <img src="https://img.freepik.com/free-vector/cyber-security-protection-outline-style_23-2148495410.jpg" alt="">
+            <h3>Prevention</h3>
+            <p>
+                Use strong passwords, enable 2FA, update software, and avoid suspicious links.
+                Simple steps can prevent cyber attacks.
+            </p>
+        </div>
+
+        <!-- Report -->
+        <div class="card">
+            <img src="https://img.freepik.com/free-vector/fraud-alert-concept-illustration_114360-2271.jpg" alt="">
+            <h3>Report</h3>
+            <p>
+                Report cybercrimes at <b>cybercrime.gov.in</b> or call <b>1930</b>.
+                Always keep screenshots and evidence before reporting.
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
