@@ -1,233 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CyberShield | Cyber Safety Awareness</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CyberShield | Cyber Safety Awareness</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behavior:smooth}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f9fafc;
-      color: #333;
-      scroll-behavior: smooth;
-    }
+/* NAVBAR */
+.navbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 40px;
+  background:#fff;
+  border-bottom:1px solid #e0e0e0;
+  position:sticky;top:0;z-index:1000;
+  animation:slideDown .8s ease;
+}
+.logo{font-size:24px;font-weight:600;color:#0b3d91}
+.nav-links{display:flex;list-style:none;gap:25px}
+.nav-links a{text-decoration:none;color:#333;font-weight:500;transition:0.3s}
+.nav-links a:hover{color:#0b3d91}
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
+.hamburger span{width:25px;height:3px;background:#0b3d91;border-radius:3px}
 
-    /* NAVBAR */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: #ffffff;
-      border-bottom: 1px solid #e0e0e0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+@media (max-width:768px){
+  .nav-links{display:none;flex-direction:column;background:#fff;position:absolute;top:60px;right:0;width:200px;box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:15px}
+  .nav-links.show{display:flex}
+  .hamburger{display:flex}
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: 600;
-      color: #0b3d91;
-    }
+/* HERO */
+.hero{background:linear-gradient(rgba(230,240,255,.9),rgba(230,240,255,.9)), url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1400&q=80'); background-size:cover; background-position:center; text-align:center; padding:100px 20px; animation:fadeIn 1.5s ease;}
+.hero h1{font-size:42px;color:#0b3d91;margin-bottom:10px}
+.hero p{max-width:750px;margin:0 auto 20px;font-size:18px;color:#444}
+.hero button{padding:12px 25px;background:#0b3d91;color:white;border:none;border-radius:25px;font-size:16px;font-weight:600;cursor:pointer;transition:.3s}
+.hero button:hover{background:#08337a}
 
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
+/* SECTION TITLES */
+.section-title{text-align:center;font-size:32px;margin:40px 0 10px;color:#0b3d91}
 
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
+/* CARDS */
+.cards-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;padding:50px 40px}
+.card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);opacity:0;transform:translateY(30px);transition:.6s ease}
+.card.visible{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-8px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
+.card img{width:100%;height:180px;object-fit:cover;transition:transform .5s ease}
+.card:hover img{transform:scale(1.08)}
+.card-content{padding:20px}
+.card h2{color:#0b3d91;margin-bottom:10px}
+.card ul{margin-left:18px;line-height:1.6}
+.card button{margin-top:15px;padding:10px 18px;border:none;border-radius:8px;background:#0b3d91;color:#fff;cursor:pointer;transition:.3s}
+.card button:hover{background:#08337a}
 
-    .nav-links a:hover {
-      color: #0b3d91;
-    }
+/* FOOTER */
+.footer{text-align:center;padding:15px;border-top:1px solid #e0e0e0;background:#fff;font-size:14px}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(
-        rgba(230, 240, 255, 0.9),
-        rgba(230, 240, 255, 0.9)
-      ),
-      url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1400&q=80');
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      padding: 100px 20px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-      color: #0b3d91;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto 20px;
-      color: #444;
-    }
-
-    .hero button {
-      padding: 12px 25px;
-      background: #0b3d91;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .hero button:hover {
-      background: #08337a;
-    }
-
-    /* CARDS */
-    .cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      padding: 60px 40px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 25px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.6s ease-out;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-    }
-
-    .card h2 {
-      color: #0b3d91;
-      margin-bottom: 12px;
-    }
-
-    .card ul {
-      margin-left: 20px;
-      color: #555;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .card button {
-      margin-top: 15px;
-      background: #0b3d91;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .card button:hover {
-      background: #08337a;
-    }
-
-    /* TIPS */
-    .carousel {
-      background: #eef4ff;
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .carousel h2 {
-      color: #0b3d91;
-      margin-bottom: 20px;
-    }
-
-    .tip {
-      font-size: 18px;
-      color: #333;
-      transition: opacity 0.5s ease-in-out;
-      min-height: 40px;
-    }
-
-    /* FOOTER */
-    .footer {
-      background: #ffffff;
-      border-top: 1px solid #e0e0e0;
-      color: #555;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-    }
-
-    /* MODAL */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 500px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: popUp 0.4s ease;
-    }
-
-    .close-btn {
-      background: #0b3d91;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 8px 12px;
-      cursor: pointer;
-      float: right;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes popUp {
-      from { transform: scale(0.85); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 32px; }
-      .cards-container { padding: 30px 15px; }
-    }
-  </style>
+/* ANIMATIONS */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
 </head>
-
 <body>
-  <!-- Your HTML body remains EXACTLY the same -->
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">CyberShield</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#awareness">Awareness</a></li>
+    <li><a href="#prevention">Prevention</a></li>
+    <li><a href="#report">Report Fraud</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>Stay Safe in the Digital World</h1>
+  <p>CyberShield educates all age groups about cyber threats, safe browsing habits, and digital responsibility.</p>
+  <button onclick="openSearch('Cybersecurity awareness')">Watch Video</button>
+</section>
+
+<!-- AWARENESS SECTION -->
+<h2 class="section-title" id="awareness">Cyber Awareness</h2>
+<div class="cards-container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1556155092-8707de31f9c4" alt="Phishing">
+    <div class="card-content">
+      <h2>Phishing Attacks</h2>
+      <ul>
+        <li>Fake emails & messages</li>
+        <li>Steal login credentials</li>
+        <li>Impersonate trusted brands</li>
+      </ul>
+      <button onclick="openSearch('What is phishing cyber security')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa" alt="Malware">
+    <div class="card-content">
+      <h2>Malware & Viruses</h2>
+      <ul>
+        <li>Damages devices</li>
+        <li>Steals private data</li>
+        <li>Spreads via unsafe downloads</li>
+      </ul>
+      <button onclick="openSearch('Malware explained cyber security')">Learn More</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7" alt="Password Security">
+    <div class="card-content">
+      <h2>Strong Passwords</h2>
+      <ul>
+        <li>Use long & unique passwords</li>
+        <li>Avoid personal info</li>
+        <li>Enable 2FA</li>
+      </ul>
+      <button onclick="openSearch('How to create strong passwords')">Learn More</button>
+    </div>
+  </div>
+</div>
+
+<!-- PREVENTION SECTION -->
+<h2 class="section-title" id="prevention">Prevention</h2>
+<div class="cards-container">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="Children Safety">
+    <div class="card-content">
+      <h2>Children & Teenagers</h2>
+      <ul>
+        <li>Avoid talking to strangers online</li>
+        <li>Report cyberbullying</li>
+        <li>Do not share personal info</li>
+      </ul>
+      <button onclick="openSearch('Internet safety for children')">Watch Video</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b" alt="Students Safety">
+    <div class="card-content">
+      <h2>Students</h2>
+      <ul>
+        <li>Beware of fake job offers</li>
+        <li>Protect academic accounts</li>
+        <li>Avoid online scams</li>
+      </ul>
+      <button onclick="openSearch('Cyber safety for students')">Watch Video</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" alt="Professionals Safety">
+    <div class="card-content">
+      <h2>Working Professionals</h2>
+      <ul>
+        <li>Identify phishing emails</li>
+        <li>Protect company data</li>
+        <li>Use secure networks</li>
+      </ul>
+      <button onclick="openSearch('Phishing awareness training')">Watch Video</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/elderly-1867831_1280.jpg" alt="Senior Citizens Safety">
+    <div class="card-content">
+      <h2>Senior Citizens</h2>
+      <ul>
+        <li>Avoid banking frauds</li>
+        <li>Never share OTP or PIN</li>
+        <li>Verify before trusting calls</li>
+      </ul>
+      <button onclick="openSearch('Online safety for senior citizens')">Watch Video</button>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT FRAUD SECTION -->
+<h2 class="section-title" id="report">Report Fraud</h2>
+<div style="text-align:center;padding:40px">
+  <p>If you encounter a cybercrime or fraud attempt, report it immediately to local authorities or online platforms. Keep screenshots and logs as proof.</p>
+  <button onclick="openSearch('How to report online fraud')">Learn How</button>
+</div>
+
+<!-- FOOTER / CONTACT -->
+<div class="footer" id="contact">
+  <p>Contact us at: <a href="mailto:cybershield@example.com">cybershield@example.com</a></p>
+  © 2025 CyberShield | Cyber Safety Awareness Project
+</div>
+
+<script>
+/* MOBILE NAVBAR TOGGLE */
+function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show');}
+
+/* SAFE YOUTUBE SEARCH */
+function openSearch(query){window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(query), "_blank");}
+
+/* SCROLL REVEAL */
+const cards=document.querySelectorAll('.card');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
+},{threshold:0.15});
+cards.forEach(card=>observer.observe(card));
+</script>
+
 </body>
 </html>
