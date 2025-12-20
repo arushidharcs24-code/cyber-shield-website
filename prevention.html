@@ -17,10 +17,12 @@
     /* ==== CSS VARIABLES ==== */
     :root {
       --primary: #1e3a8a;
+      --primary-dark: #1e40af;
       --primary-light: #dbeafe;
       --secondary: #3b82f6;
       --success: #10b981;
       --danger: #ef4444;
+      --danger-dark: #dc2626;
       --warning: #f59e0b;
       --bg-light: #f0f9ff;
       --card-bg: #ffffff;
@@ -54,6 +56,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     .navbar .logo {
@@ -76,14 +79,16 @@
       font-weight: 500;
       padding: 5px 10px;
       border-radius: 4px;
+      transition: all 0.3s;
     }
 
     .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .nav-links a.active {
       background: rgba(255, 255, 255, 0.2);
+      border-bottom: 2px solid white;
     }
 
     .nav-toggle {
@@ -120,18 +125,43 @@
       }
     }
 
+    /* ==== RED ALERT BANNER ==== */
+    .alert-banner {
+      background: linear-gradient(90deg, #ef4444, #dc2626, #b91c1c);
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .alert-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: alertPulse 2s infinite;
+    }
+
+    @keyframes alertPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
     /* ==== HEADER ==== */
     header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff;
       padding: 3rem 1.5rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .site-title {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .subtitle {
@@ -154,6 +184,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       margin-bottom: 2rem;
+      border: 1px solid var(--border);
     }
 
     h2 {
@@ -165,7 +196,7 @@
       gap: 10px;
     }
 
-    /* ==== TIP CARDS ==== */
+    /* ==== TIP CARDS - MORE RED ALERTS ==== */
     .tips-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -176,22 +207,33 @@
     .tip-card {
       padding: 1.5rem;
       border-radius: 8px;
-      border: 2px solid;
-      transition: transform 0.3s;
+      border: 3px solid;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
     }
 
     .tip-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     }
 
-    .tip-card.good {
-      border-color: var(--success);
-      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-    }
-
+    /* Red Alert Cards (Bad Practices) */
     .tip-card.bad {
       border-color: var(--danger);
       background: linear-gradient(135deg, #fee2e2, #fecaca);
+      animation: redAlert 3s infinite;
+    }
+
+    @keyframes redAlert {
+      0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); }
+    }
+
+    /* Good Practice Cards */
+    .tip-card.good {
+      border-color: var(--success);
+      background: linear-gradient(135deg, #d1fae5, #a7f3d0);
     }
 
     .tip-header {
@@ -203,7 +245,21 @@
 
     .tip-icon {
       font-size: 1.5rem;
-      color: var(--primary);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: white;
+    }
+
+    .tip-card.bad .tip-icon {
+      background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+    }
+
+    .tip-card.good .tip-icon {
+      background: linear-gradient(135deg, var(--success), #059669);
     }
 
     .tip-content h3 {
@@ -224,6 +280,24 @@
       border-radius: 4px;
       font-size: 0.8rem;
       margin-left: 0.5rem;
+      animation: badgePulse 2s infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .danger-level {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--danger);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
     /* ==== QUIZ ==== */
@@ -249,21 +323,25 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .safe-btn {
-      background: var(--success);
+      background: linear-gradient(135deg, var(--success), #059669);
       color: white;
     }
 
     .scam-btn {
-      background: var(--danger);
+      background: linear-gradient(135deg, var(--danger), var(--danger-dark));
       color: white;
     }
 
     .buttons button:hover {
-      opacity: 0.9;
-      transform: scale(1.02);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .feedback {
@@ -272,6 +350,39 @@
       border-radius: 6px;
       text-align: center;
       font-weight: 600;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: #f8fafc;
+      border-radius: 6px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 4px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.3s ease;
+      border-radius: 4px;
     }
 
     /* ==== FOOTER ==== */
@@ -281,12 +392,13 @@
       color: var(--text-medium);
       border-top: 1px solid var(--border);
       margin-top: 3rem;
+      background: #f8fafc;
     }
 
     /* ==== UTILITY CLASSES ==== */
     .accent-border {
       height: 3px;
-      background: var(--primary);
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       width: 60px;
       margin: 1rem auto;
       border-radius: 2px;
@@ -296,6 +408,78 @@
       text-align: center;
       color: var(--text-medium);
       margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* ==== RED ALERT HIGHLIGHT ==== */
+    .red-alert {
+      background: linear-gradient(135deg, #fee2e2, #fecaca);
+      border-left: 4px solid var(--danger);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      animation: redAlert 3s infinite;
+    }
+
+    .red-alert h4 {
+      color: var(--danger-dark);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ==== SCORE DISPLAY ==== */
+    .score-display {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      animation: fadeIn 0.5s;
+    }
+
+    .quiz-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+    }
+
+    /* ==== NEW QUESTION INDICATOR ==== */
+    .new-questions {
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+
+    .new-questions h4 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
   </style>
 </head>
@@ -318,6 +502,15 @@
     </ul>
   </nav>
 
+  <!-- ==== RED ALERT BANNER ==== -->
+  <div class="alert-banner" role="alert">
+    <div class="alert-content">
+      <i class="fas fa-exclamation-triangle"></i>
+      CRITICAL ALERT: Phishing attacks up 67% this quarter. Verify ALL suspicious emails immediately.
+      <i class="fas fa-exclamation-triangle"></i>
+    </div>
+  </div>
+
   <!-- ==== HEADER ==== -->
   <header>
     <h1 class="site-title">Cyber Shield</h1>
@@ -326,25 +519,37 @@
   </header>
 
   <main>
-    <!-- ==== SECURITY PROTOCOL FRAMEWORK ==== -->
+    <!-- ==== SECURITY PROTOCOL FRAMEWORK - MORE RED ALERTS ==== -->
     <section>
       <h2><i class="fas fa-shield-alt"></i> Security Protocol Framework</h2>
       <div class="accent-border"></div>
-      <p class="intro">Implement these enterprise-level security measures to protect organizational assets.</p>
+      <p class="intro">Implement these enterprise-level security measures to protect organizational assets. <strong>Red alerts indicate high-risk behaviors.</strong></p>
 
       <div class="tips-container">
-        <!-- TIP 1 -->
+        <!-- GOOD PRACTICE 1 -->
         <div class="tip-card good">
           <div class="tip-header">
             <div class="tip-icon"><i class="fas fa-lock"></i></div>
             <div class="tip-content">
-              <h3>Multi-Factor Authentication <span class="badge">Critical</span></h3>
+              <h3>Multi-Factor Authentication</h3>
               <p>Implement MFA across all systems to add critical verification layers beyond passwords.</p>
             </div>
           </div>
         </div>
 
-        <!-- TIP 2 -->
+        <!-- RED ALERT 1 -->
+        <div class="tip-card bad">
+          <span class="danger-level">HIGH RISK</span>
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="tip-content">
+              <h3>Public Wi-Fi for Banking <span class="badge">CRITICAL</span></h3>
+              <p>Accessing financial accounts over unsecured public networks exposes credentials to interception.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOOD PRACTICE 2 -->
         <div class="tip-card good">
           <div class="tip-header">
             <div class="tip-icon"><i class="fas fa-link"></i></div>
@@ -355,7 +560,19 @@
           </div>
         </div>
 
-        <!-- TIP 3 -->
+        <!-- RED ALERT 2 -->
+        <div class="tip-card bad">
+          <span class="danger-level">MEDIUM RISK</span>
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-redo"></i></div>
+            <div class="tip-content">
+              <h3>Password Reuse Across Sites <span class="badge">DANGER</span></h3>
+              <p>Using same passwords for multiple accounts creates systemic vulnerability exposure.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOOD PRACTICE 3 -->
         <div class="tip-card good">
           <div class="tip-header">
             <div class="tip-icon"><i class="fas fa-key"></i></div>
@@ -366,27 +583,66 @@
           </div>
         </div>
 
-        <!-- TIP 4 -->
+        <!-- RED ALERT 3 -->
         <div class="tip-card bad">
+          <span class="danger-level">HIGH RISK</span>
           <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-ban"></i></div>
+            <div class="tip-icon"><i class="fas fa-mobile-alt"></i></div>
             <div class="tip-content">
-              <h3>Sensitive Information Disclosure</h3>
-              <p>Never share OTPs, passwords, or sensitive data via unsolicited communications.</p>
+              <h3>Installing Apps from Untrusted Sources</h3>
+              <p>Third-party app stores often distribute malware disguised as legitimate applications.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RED ALERT 4 -->
+        <div class="tip-card bad">
+          <span class="danger-level">CRITICAL</span>
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+            <div class="tip-content">
+              <h3>Sharing OTP/2FA Codes <span class="badge">ALERT</span></h3>
+              <p>Legitimate organizations NEVER ask for OTP codes via phone or email.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RED ALERT 5 -->
+        <div class="tip-card bad">
+          <span class="danger-level">HIGH RISK</span>
+          <div class="tip-header">
+            <div class="tip-icon"><i class="fas fa-usb-drive"></i></div>
+            <div class="tip-content">
+              <h3>Plugging Unknown USB Devices</h3>
+              <p>Malicious USB drives can install malware automatically upon connection.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==== INTERACTIVE QUIZ ==== -->
+    <!-- ==== INTERACTIVE QUIZ WITH 25 QUESTIONS POOL ==== -->
     <section class="quiz">
       <h2><i class="fas fa-clipboard-check"></i> Threat Identification Quiz</h2>
       <div class="accent-border"></div>
-      <p class="intro">Test your ability to spot real-world threats.</p>
+      <p class="intro">Test your cybersecurity knowledge! <strong>25 questions in pool, 5 random questions per quiz.</strong> Each restart gives you new questions!</p>
+
+      <div class="new-questions">
+        <h4><i class="fas fa-sync-alt"></i> New Questions Each Time!</h4>
+        <p>With 25 questions in our database, you'll get a fresh set of 5 questions every time you restart the quiz. Perfect for repeated training!</p>
+      </div>
+
+      <div class="quiz-progress">
+        <span id="question-counter">Question 1 of 5</span>
+        <span id="score-counter">Score: 0/0</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
 
       <div class="question-box">
-        <p id="question">You receive an email from 'admin@bank-secure.com' asking to verify your credentials urgently. What should you do?</p>
+        <p id="question">Loading question...</p>
         <div class="buttons">
           <button class="safe-btn" onclick="checkAnswer(true)"><i class="fas fa-check"></i> Safe</button>
           <button class="scam-btn" onclick="checkAnswer(false)"><i class="fas fa-times"></i> Scam</button>
@@ -394,27 +650,60 @@
         <div class="feedback" id="feedback"></div>
       </div>
 
+      <div class="score-display" id="final-score" style="display: none;"></div>
+
+      <div class="quiz-stats" id="quiz-stats" style="display: none;">
+        <div class="stat-box">
+          <div class="stat-number" id="stat-score">0</div>
+          <div class="stat-label">Your Score</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="stat-percentage">0%</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="stat-total">0</div>
+          <div class="stat-label">Total Attempts</div>
+        </div>
+      </div>
+
       <div style="text-align: center; margin-top: 2rem;">
-        <button onclick="nextQuestion()" style="padding: 0.8rem 2rem; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+        <button onclick="nextQuestion()" id="next-btn" style="padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 10px; margin: 0 auto;">
           Next Question <i class="fas fa-arrow-right"></i>
+        </button>
+        <button onclick="restartQuiz()" id="restart-btn" style="margin-top: 1rem; padding: 0.8rem 2rem; background: var(--warning); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+          Restart Quiz (New Questions)
         </button>
       </div>
     </section>
 
-    <!-- ==== SECURITY TIP ==== -->
+    <!-- ==== RED ALERT HIGHLIGHTS ==== -->
     <section>
-      <h2><i class="fas fa-lightbulb"></i> Security Tip</h2>
+      <h2><i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i> Critical Security Alerts</h2>
       <div class="accent-border"></div>
-      <div style="padding: 1.5rem; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 8px;">
-        <h3 style="color: #000; margin-bottom: 1rem;">Update Regularly</h3>
-        <p style="color: #000;">Always keep your software, operating systems, and security tools updated to protect against known vulnerabilities.</p>
+      
+      <div class="red-alert">
+        <h4><i class="fas fa-skull-crossbones"></i> Business Email Compromise (BEC)</h4>
+        <p>Attackers impersonate executives to authorize fraudulent wire transfers. Always verify via secondary channels.</p>
+      </div>
+      
+      <div class="red-alert">
+        <h4><i class="fas fa-mobile-alt"></i> SIM Swapping Attacks</h4>
+        <p>Criminals transfer your phone number to their device to intercept 2FA codes. Enable port-out protection with your carrier.</p>
+      </div>
+      
+      <div class="red-alert">
+        <h4><i class="fas fa-rss"></i> Public Wi-Fi Risks</h4>
+        <p>Never access sensitive accounts on public networks. Use VPNs for encrypted connections.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Cyber Shield Enterprise Security Initiative. All rights reserved.</p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem;">This training material is for internal organizational use only.</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #dc2626; font-weight: 600;">
+      <i class="fas fa-exclamation-circle"></i> Report suspicious activity immediately to your security team.
+    </p>
   </footer>
 
   <script>
@@ -433,83 +722,278 @@
       }
     });
 
-    // Quiz Logic
-    const quizData = [
+    // Quiz Logic with 25 Questions Pool
+    const questionPool = [
       {
-        question: "You receive an email from 'admin@bank-secure.com' asking to verify your credentials urgently. What should you do?",
-        answer: false
+        question: "You receive an email from 'security@bank-official.com' asking to verify your account immediately due to 'suspicious activity'. The sender address looks official. What should you do?",
+        answer: false,
+        explanation: "Phishing emails often use urgent language and spoofed sender addresses. Never click links in unsolicited emails."
       },
       {
-        question: "Your system prompts a security update from your IT department's official portal. Should you proceed?",
-        answer: true
+        question: "Your system prompts a mandatory security update from your organization's official IT portal. Should you proceed?",
+        answer: true,
+        explanation: "Official IT department updates should be installed promptly to patch security vulnerabilities."
       },
       {
-        question: "You get a call requesting your OTP to verify a transaction you didn't initiate. Should you share it?",
-        answer: false
+        question: "You receive a call from someone claiming to be from Microsoft support, saying your computer has a virus. They ask for remote access to fix it. What should you do?",
+        answer: false,
+        explanation: "Legitimate companies never make unsolicited calls asking for remote access. This is a common tech support scam."
+      },
+      {
+        question: "A colleague emails you a Google Doc for collaborative editing of a project. You recognize the colleague's name. Is it safe to open?",
+        answer: true,
+        explanation: "Collaborative documents from known colleagues within normal workflow are generally safe."
+      },
+      {
+        question: "You find a USB drive labeled 'Confidential Salary Info' in the office parking lot. Should you plug it into your computer to identify the owner?",
+        answer: false,
+        explanation: "Unknown USB devices can contain malware that installs automatically. Report it to security."
+      },
+      {
+        question: "Your bank sends an SMS with a one-time password (OTP) for a transaction you just initiated online. Is this normal?",
+        answer: true,
+        explanation: "Banks often send OTPs for transaction verification that you initiated. This is standard security."
+      },
+      {
+        question: "A popup appears while browsing, saying 'Your computer is infected! Call this number immediately for help.' What should you do?",
+        answer: false,
+        explanation: "These are scareware tactics. Close the browser using Task Manager if needed."
+      },
+      {
+        question: "Your CEO emails asking you to urgently purchase gift cards for client rewards and send her the codes. She says she'll reimburse you. Is this request legitimate?",
+        answer: false,
+        explanation: "This is a classic Business Email Compromise (BEC) scam. Always verify through secondary channels."
+      },
+      {
+        question: "Your organization's VPN requires multi-factor authentication to connect remotely. Is this a good security practice?",
+        answer: true,
+        explanation: "MFA for remote access significantly reduces the risk of unauthorized access."
+      },
+      {
+        question: "A website offers 'free antivirus software' that claims to be better than what you're currently using. Should you download it?",
+        answer: false,
+        explanation: "Free software from unknown sources often contains malware. Stick to trusted vendors."
+      },
+      {
+        question: "You receive an invoice via email from a vendor you regularly work with, requesting payment to a new bank account. What should you do?",
+        answer: false,
+        explanation: "Vendor email compromise is common. Always verify payment changes via phone using known contact information."
+      },
+      {
+        question: "Your password manager suggests generating a new complex password for an account. Is this recommended?",
+        answer: true,
+        explanation: "Password managers generate and store unique, complex passwords for each account."
+      },
+      {
+        question: "A LinkedIn connection request comes from someone with your CEO's name and photo, but the profile has few connections. Should you accept?",
+        answer: false,
+        explanation: "This is likely a fake profile for social engineering. Verify with your CEO directly."
+      },
+      {
+        question: "Your company's security team sends a test phishing email to assess awareness. Should you report it if you recognize it as phishing?",
+        answer: true,
+        explanation: "Reporting suspected phishing emails to security is always the correct action."
+      },
+      {
+        question: "A website address shows 'https://' with a padlock icon. Does this guarantee the site is safe?",
+        answer: false,
+        explanation: "HTTPS only means the connection is encrypted, not that the site is legitimate. Phishing sites also use HTTPS."
+      },
+      {
+        question: "You receive an email with a link to reset your password, but you didn't request a password reset. Should you click the link to see what happens?",
+        answer: false,
+        explanation: "Never click unsolicited password reset links. Go directly to the official website instead."
+      },
+      {
+        question: "Your phone receives a text message with a verification code, but you didn't request it. Should you enter it somewhere to 'cancel' the request?",
+        answer: false,
+        explanation: "This could be a scammer trying to reset your password. Never share unsolicited verification codes."
+      },
+      {
+        question: "You're on vacation and receive an email from your hotel asking for credit card confirmation. The email looks legitimate. Should you reply with your card details?",
+        answer: false,
+        explanation: "Never send credit card information via email. Call the hotel directly using a number from their official website."
+      },
+      {
+        question: "A software update notification appears on your work computer during business hours. Should you install it immediately?",
+        answer: true,
+        explanation: "Work computer updates during business hours are typically legitimate and important for security."
+      },
+      {
+        question: "You receive a friend request on Facebook from someone you don't know, but they have mutual friends. Should you accept?",
+        answer: false,
+        explanation: "Scammers often create fake profiles with stolen photos. Be cautious even with mutual friends."
+      },
+      {
+        question: "Your company implements a new policy requiring regular password changes every 90 days. Is this good security practice?",
+        answer: true,
+        explanation: "Regular password changes, combined with complexity requirements, enhance security."
+      },
+      {
+        question: "You receive an email promising a huge inheritance from a distant relative you've never heard of. They just need your bank details to transfer the money. Is this legitimate?",
+        answer: false,
+        explanation: "This is a classic advance-fee fraud (inheritance scam). Never provide personal or financial details."
+      },
+      {
+        question: "Your company's IT department asks you to complete mandatory cybersecurity training. Should you take it seriously?",
+        answer: true,
+        explanation: "Cybersecurity training is essential for protecting both personal and organizational data."
+      },
+      {
+        question: "You're shopping online and the website asks for your Social Security Number to 'verify your identity'. Should you provide it?",
+        answer: false,
+        explanation: "Legitimate online retailers don't need your SSN. This is likely identity theft."
+      },
+      {
+        question: "Your company's security policy requires locking your computer when stepping away from your desk. Is this important?",
+        answer: true,
+        explanation: "Locking your computer prevents unauthorized access to sensitive information."
       }
     ];
 
-    let currentQuestion = 0;
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
     let score = 0;
+    let totalAttempts = 0;
+    const questionsPerQuiz = 5;
 
-    function updateQuestion() {
-      const questionElement = document.getElementById('question');
-      const feedbackElement = document.getElementById('feedback');
-      
-      questionElement.textContent = quizData[currentQuestion].question;
-      feedbackElement.textContent = '';
-      feedbackElement.style.background = 'transparent';
+    // Function to get random questions
+    function getRandomQuestions(count) {
+      const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    }
+
+    // Initialize quiz with random questions
+    function initializeQuiz() {
+      currentQuestions = getRandomQuestions(questionsPerQuiz);
+      currentQuestionIndex = 0;
+      score = 0;
+      document.getElementById('final-score').style.display = 'none';
+      document.getElementById('quiz-stats').style.display = 'none';
+      document.querySelector('.question-box').style.display = 'block';
+      document.getElementById('next-btn').style.display = 'flex';
+      updateQuestionDisplay();
+      updateCounters();
+      updateProgressBar();
+    }
+
+    function updateQuestionDisplay() {
+      if (currentQuestionIndex < currentQuestions.length) {
+        const question = currentQuestions[currentQuestionIndex];
+        document.getElementById('question').textContent = question.question;
+        document.getElementById('feedback').textContent = '';
+        document.getElementById('feedback').style.background = 'transparent';
+      }
+    }
+
+    function updateCounters() {
+      document.getElementById('question-counter').textContent = 
+        `Question ${currentQuestionIndex + 1} of ${currentQuestions.length}`;
+      document.getElementById('score-counter').textContent = 
+        `Score: ${score}/${currentQuestionIndex}`;
+    }
+
+    function updateProgressBar() {
+      const progressPercentage = (currentQuestionIndex / currentQuestions.length) * 100;
+      document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
     }
 
     function checkAnswer(userAnswer) {
+      const correctAnswer = currentQuestions[currentQuestionIndex].answer;
       const feedbackElement = document.getElementById('feedback');
-      const correctAnswer = quizData[currentQuestion].answer;
       
       if (userAnswer === correctAnswer) {
-        feedbackElement.textContent = '✓ Correct! Well identified.';
-        feedbackElement.style.background = '#d1fae5';
-        feedbackElement.style.color = '#065f46';
         score++;
+        feedbackElement.innerHTML = `<i class="fas fa-check-circle"></i> Correct! ${currentQuestions[currentQuestionIndex].explanation}`;
+        feedbackElement.style.background = 'linear-gradient(135deg, #d1fae5, #a7f3d0)';
+        feedbackElement.style.color = '#065f46';
       } else {
-        feedbackElement.textContent = '✗ Incorrect. This is a potential scam.';
-        feedbackElement.style.background = '#fee2e2';
+        feedbackElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Incorrect! ${currentQuestions[currentQuestionIndex].explanation}`;
+        feedbackElement.style.background = 'linear-gradient(135deg, #fee2e2, #fecaca)';
         feedbackElement.style.color = '#991b1b';
       }
+      
+      // Disable buttons after answering
+      document.querySelectorAll('.buttons button').forEach(btn => {
+        btn.disabled = true;
+      });
+      
+      updateCounters();
     }
 
     function nextQuestion() {
-      currentQuestion++;
-      if (currentQuestion >= quizData.length) {
-        document.querySelector('.question-box').innerHTML = `
-          <h3>Quiz Complete!</h3>
-          <p>Your score: ${score}/${quizData.length}</p>
-          <p>${score === quizData.length ? 'Excellent! You have strong security awareness.' : 
-              score >= 2 ? 'Good job! Keep learning.' : 
-              'Review the security tips above.'}</p>
-          <button onclick="resetQuiz()" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-            Restart Quiz
-          </button>
-        `;
+      currentQuestionIndex++;
+      
+      // Re-enable buttons
+      document.querySelectorAll('.buttons button').forEach(btn => {
+        btn.disabled = false;
+      });
+      
+      if (currentQuestionIndex < currentQuestions.length) {
+        updateQuestionDisplay();
+        updateCounters();
+        updateProgressBar();
       } else {
-        updateQuestion();
+        showFinalScore();
       }
     }
 
-    function resetQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      document.querySelector('.quiz .question-box').innerHTML = `
-        <p id="question">${quizData[0].question}</p>
-        <div class="buttons">
-          <button class="safe-btn" onclick="checkAnswer(true)"><i class="fas fa-check"></i> Safe</button>
-          <button class="scam-btn" onclick="checkAnswer(false)"><i class="fas fa-times"></i> Scam</button>
-        </div>
-        <div class="feedback" id="feedback"></div>
+    function showFinalScore() {
+      totalAttempts++;
+      const scoreElement = document.getElementById('final-score');
+      const statsElement = document.getElementById('quiz-stats');
+      const percentage = Math.round((score / currentQuestions.length) * 100);
+      
+      scoreElement.style.display = 'block';
+      statsElement.style.display = 'flex';
+      
+      let message = '';
+      let emoji = '';
+      
+      if (score === currentQuestions.length) {
+        message = 'Perfect Score! You are a cybersecurity expert!';
+        emoji = '🏆';
+        scoreElement.style.background = 'linear-gradient(135deg, #d1fae5, #10b981)';
+      } else if (percentage >= 80) {
+        message = 'Excellent! Strong cybersecurity awareness.';
+        emoji = '✅';
+        scoreElement.style.background = 'linear-gradient(135deg, #dbeafe, #3b82f6)';
+      } else if (percentage >= 60) {
+        message = 'Good effort! Review the red alerts to improve.';
+        emoji = '⚠️';
+        scoreElement.style.background = 'linear-gradient(135deg, #fef3c7, #f59e0b)';
+      } else {
+        message = 'Needs improvement. Study the security protocols carefully.';
+        emoji = '📚';
+        scoreElement.style.background = 'linear-gradient(135deg, #fee2e2, #ef4444)';
+      }
+      
+      scoreElement.innerHTML = `
+        <h3>Quiz Complete! ${emoji}</h3>
+        <p>Your score: <strong>${score}/${currentQuestions.length}</strong> (${percentage}%)</p>
+        <p>${message}</p>
+        <p><small>Questions were randomly selected from our pool of 25 cybersecurity scenarios.</small></p>
       `;
+      
+      // Update stats
+      document.getElementById('stat-score').textContent = score;
+      document.getElementById('stat-percentage').textContent = `${percentage}%`;
+      document.getElementById('stat-total').textContent = totalAttempts;
+      
+      document.querySelector('.question-box').style.display = 'none';
+      document.getElementById('next-btn').style.display = 'none';
+      document.getElementById('progress-fill').style.width = '100%';
     }
 
-    // Initialize
-    updateQuestion();
+    function restartQuiz() {
+      initializeQuiz();
+      document.querySelectorAll('.buttons button').forEach(btn => {
+        btn.disabled = false;
+      });
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', initializeQuiz);
   </script>
 </body>
 </html>
