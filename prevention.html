@@ -17,8 +17,6 @@
     /* ==== CSS VARIABLES ==== */
     :root {
       --primary: #1e3a8a;
-      --primary-dark: #1e40af;
-      --primary-light: #dbeafe;
       --secondary: #3b82f6;
       --success: #10b981;
       --success-dark: #059669;
@@ -27,17 +25,13 @@
       --warning: #f59e0b;
       --warning-dark: #d97706;
       --bg-light: #f0f9ff;
-      --bg-dark: #0f172a;
       --card-bg: #ffffff;
-      --card-bg-dark: #1e293b;
       --text-dark: #1e293b;
-      --text-light: #f8fafc;
       --text-medium: #475569;
       --border: #e2e8f0;
-      --border-dark: #334155;
     }
 
-    /* ==== RESETS ==== */
+    /* ==== RESET ==== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -51,10 +45,9 @@
       line-height: 1.6;
     }
 
-    /* ==== MAIN CONTENT ==== */
     main {
       max-width: 1200px;
-      margin: 0 auto;
+      margin: auto;
       padding: 2rem 1.5rem;
     }
 
@@ -63,141 +56,120 @@
       padding: 2.5rem;
       border-radius: 20px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      margin-bottom: 3rem;
       border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     h2 {
       color: var(--primary);
-      margin-bottom: 1.5rem;
       font-size: 2rem;
       display: flex;
       align-items: center;
       gap: 15px;
+      margin-bottom: 1rem;
     }
 
-    /* ==== TIP CARDS - CORRECTED LAYOUT ==== */
+    .intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 1.5rem auto 2rem;
+      color: var(--text-medium);
+      font-size: 1.1rem;
+    }
+
     .tips-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
     }
 
+    /* ==== CARD ==== */
     .tip-card {
-      padding: 2rem;
+      position: relative;
+      padding: 3rem 2rem 2rem;
       border-radius: 16px;
       border: 3px solid;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
 
     .tip-card:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-6px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 
-    /* Red Alert Cards (Bad Practices) */
-    .tip-card.bad {
-      border-color: var(--danger);
-      background: linear-gradient(135deg, rgba(254, 226, 226, 0.8), rgba(254, 202, 202, 0.9));
-      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.2);
-    }
-
-    /* Good Practice Cards */
     .tip-card.good {
       border-color: var(--success);
-      background: linear-gradient(135deg, rgba(209, 250, 229, 0.8), rgba(167, 243, 208, 0.9));
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
+      background: linear-gradient(135deg, rgba(209,250,229,0.85), rgba(167,243,208,0.9));
     }
 
+    .tip-card.bad {
+      border-color: var(--danger);
+      background: linear-gradient(135deg, rgba(254,226,226,0.85), rgba(254,202,202,0.9));
+    }
+
+    /* ==== HEADER ==== */
     .tip-header {
       display: flex;
+      gap: 18px;
       align-items: flex-start;
-      gap: 20px;
-      margin-bottom: 1.5rem;
     }
 
     .tip-icon {
-      font-size: 1.8rem;
       width: 60px;
       height: 60px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
+      font-size: 1.6rem;
       color: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       flex-shrink: 0;
-    }
-
-    .tip-card.bad .tip-icon {
-      background: linear-gradient(135deg, var(--danger), var(--danger-dark));
     }
 
     .tip-card.good .tip-icon {
       background: linear-gradient(135deg, var(--success), var(--success-dark));
     }
 
-    .tip-content {
-      flex: 1;
+    .tip-card.bad .tip-icon {
+      background: linear-gradient(135deg, var(--danger), var(--danger-dark));
     }
 
     .tip-content h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      color: #000;
+      font-size: 1.35rem;
       font-weight: 700;
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
+      padding-right: 90px;
     }
 
     .tip-content p {
+      margin-top: 0.5rem;
       color: #000;
       font-size: 1rem;
-      line-height: 1.6;
     }
 
-    /* ==== BADGE STYLES - FIXED POSITION ==== */
+    /* ==== BADGES ==== */
     .badge {
       background: linear-gradient(135deg, var(--danger), var(--danger-dark));
       color: white;
       padding: 0.35rem 0.75rem;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      display: inline-block;
-      animation: badgePulse 2s infinite;
-      box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
-      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    @keyframes badgePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* ==== DANGER LEVEL STYLES - FIXED POSITION ==== */
     .danger-level {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(135deg, var(--danger), var(--danger-dark));
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      font-size: 0.8rem;
+      top: 12px;
+      right: 12px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.75rem;
       font-weight: 600;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-      z-index: 2;
+      border-radius: 25px;
+      color: white;
       white-space: nowrap;
+      pointer-events: none;
     }
 
     .danger-level.high {
@@ -210,139 +182,103 @@
 
     .danger-level.critical {
       background: linear-gradient(135deg, #dc2626, #b91c1c);
-      animation: criticalPulse 1.5s infinite;
+      animation: pulse 1.5s infinite;
     }
 
-    @keyframes criticalPulse {
-      0%, 100% { box-shadow: 0 0 0 rgba(220, 38, 38, 0.4); }
-      50% { box-shadow: 0 0 20px rgba(220, 38, 38, 0.6); }
+    @keyframes pulse {
+      50% { box-shadow: 0 0 18px rgba(220,38,38,0.6); }
     }
 
-    /* ==== UTILITY CLASSES ==== */
-    .accent-border {
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
-      width: 80px;
-      margin: 1.5rem auto;
-      border-radius: 2px;
-    }
-
-    .intro {
-      text-align: center;
-      color: var(--text-medium);
-      margin-bottom: 2rem;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .glowing-text {
-      text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-    }
-
-    /* ==== RESPONSIVE ==== */
+    /* ==== MOBILE ==== */
     @media (max-width: 768px) {
       .tips-container {
         grid-template-columns: 1fr;
       }
-      
-      .tip-content h3 {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+
+      .tip-card {
+        padding-top: 3.4rem;
       }
-      
-      .danger-level {
-        font-size: 0.7rem;
-        padding: 0.4rem 0.8rem;
+
+      .tip-content h3 {
+        padding-right: 0;
       }
     }
   </style>
 </head>
+
 <body>
-  <main>
-    <!-- ==== SECURITY PROTOCOL FRAMEWORK - CORRECTED LAYOUT ==== -->
-    <section>
-      <h2><i class="fas fa-shield-alt"></i> Security Protocol Framework</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Implement these enterprise-level security measures to protect organizational assets. <span class="glowing-text">Red alerts indicate high-risk behaviors requiring immediate attention.</span></p>
+<main>
+  <section>
+    <h2><i class="fas fa-shield-alt"></i> Security Protocol Framework</h2>
+    <p class="intro">Red alerts indicate high-risk behaviors requiring immediate attention.</p>
 
-      <div class="tips-container">
-        <!-- GOOD PRACTICE 1 - CORRECT -->
-        <div class="tip-card good">
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-lock"></i></div>
-            <div class="tip-content">
-              <h3>Multi-Factor Authentication</h3>
-              <p>Implement MFA across all systems to add critical verification layers beyond passwords. Use biometric authentication where possible.</p>
-            </div>
-          </div>
-        </div>
+    <div class="tips-container">
 
-        <!-- RED ALERT 1 - FIXED: Badge inline with heading -->
-        <div class="tip-card bad">
-          <span class="danger-level critical">HIGH RISK</span>
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-exclamation-triangle"></i></div>
-            <div class="tip-content">
-              <h3>Public Wi-Fi for Banking <span class="badge">CRITICAL</span></h3>
-              <p>Accessing financial accounts over unsecured public networks exposes credentials to interception by attackers on same network.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- GOOD PRACTICE 2 - CORRECT -->
-        <div class="tip-card good">
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-link"></i></div>
-            <div class="tip-content">
-              <h3>URL Verification Protocol</h3>
-              <p>Always verify link destinations and sender authenticity before interaction. Hover over links to preview actual URLs.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- RED ALERT 2 - FIXED: Badge inline with heading -->
-        <div class="tip-card bad">
-          <span class="danger-level medium">MEDIUM RISK</span>
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-redo"></i></div>
-            <div class="tip-content">
-              <h3>Password Reuse Across Sites <span class="badge">DANGER</span></h3>
-              <p>Using same passwords for multiple accounts creates systemic vulnerability exposure. One breach compromises all accounts.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- RED ALERT 3 - EXAMPLE ADDED FOR COMPLETENESS -->
-        <div class="tip-card bad">
-          <span class="danger-level high">HIGH RISK</span>
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-mobile-alt"></i></div>
-            <div class="tip-content">
-              <h3>Installing Apps from Untrusted Sources <span class="badge">ALERT</span></h3>
-              <p>Third-party app stores often distribute malware disguised as legitimate applications. Only use official app stores.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- GOOD PRACTICE 3 - CORRECT -->
-        <div class="tip-card good">
-          <div class="tip-header">
-            <div class="tip-icon"><i class="fas fa-key"></i></div>
-            <div class="tip-content">
-              <h3>Credential Management</h3>
-              <p>Utilize complex, unique passwords and enterprise password management solutions with automatic rotation policies.</p>
-            </div>
+      <div class="tip-card good">
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-lock"></i></div>
+          <div class="tip-content">
+            <h3>Multi-Factor Authentication</h3>
+            <p>Implement MFA across systems to add verification layers beyond passwords.</p>
           </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <!-- ==== ICONS SCRIPT ==== -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+      <div class="tip-card bad">
+        <span class="danger-level critical">HIGH RISK</span>
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="tip-content">
+            <h3>Public Wi-Fi for Banking <span class="badge">CRITICAL</span></h3>
+            <p>Public networks expose credentials to interception by attackers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card good">
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-link"></i></div>
+          <div class="tip-content">
+            <h3>URL Verification Protocol</h3>
+            <p>Always verify links and sender authenticity before interaction.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card bad">
+        <span class="danger-level medium">MEDIUM RISK</span>
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-redo"></i></div>
+          <div class="tip-content">
+            <h3>Password Reuse <span class="badge">DANGER</span></h3>
+            <p>One breached password can compromise multiple accounts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card bad">
+        <span class="danger-level high">HIGH RISK</span>
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="tip-content">
+            <h3>Untrusted App Sources <span class="badge">ALERT</span></h3>
+            <p>Third-party apps often carry hidden malware.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-card good">
+        <div class="tip-header">
+          <div class="tip-icon"><i class="fas fa-key"></i></div>
+          <div class="tip-content">
+            <h3>Credential Management</h3>
+            <p>Use unique passwords with enterprise password managers.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
 </body>
 </html>
