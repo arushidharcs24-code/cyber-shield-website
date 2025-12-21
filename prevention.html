@@ -1815,21 +1815,25 @@
         setTimeout(() => confetti.remove(), 3000);
       }
     }
-async function loadLeaderboard() {
+async function submitToGoogleSheet(payload) {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbz98SEaE-9D9VmMZd2_mO7zBQqyvvykUlbK6IGsjVpqHx3-jEHcfIrzMhbuyp0LIwp8/exec';
-    const response = await fetch(scriptURL);
-    const data = await response.json();
-    
-    const tableBody = document.querySelector('.leaderboard-body');
-    tableBody.innerHTML = data.map((row, index) => `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${row[1]}</td>
-            <td>${row[2]}</td>
-            <td>${new Date(row[3]).toLocaleDateString()}</td>
-            <td>${row[4]}%</td>
-        </tr>
-    `).join('');
+
+    try {
+        await fetch(scriptURL, {
+            method: 'POST',
+            // Using text/plain prevents the 'TypeError' and CORS blocks
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
+            body: JSON.stringify(payload)
+        });
+        
+        // Because of how Google handles redirects, the data often arrives 
+        // even if the response looks 'empty' in the console.
+        console.log("Data sent to script.");
+        return true;
+    } catch (error) {
+        console.error("Submission error:", error);
+        return false;
+    }
 }
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
@@ -1862,4 +1866,5 @@ async function loadLeaderboard() {
   </script>
 </body>
 </html>
+
 
