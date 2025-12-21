@@ -2,185 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Reporting Portal | CyberShield</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Header Styling */
-        header {
-            background-color: #003399;
-            width: 100%;
-            padding: 15px 0;
-            color: white;
-            text-align: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Form Container */
-        .container {
-            background: white;
-            width: 90%;
-            max-width: 600px;
-            margin: 30px 0;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        h2 { color: #003399; text-align: center; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: #666; font-size: 13px; margin-bottom: 25px; }
-
-        .form-section {
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .info-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #003399;
-            padding: 10px;
-            font-size: 12px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        input[type="text"], input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        textarea { height: 100px; resize: vertical; }
-
-        .checkbox-group {
-            font-size: 12px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background-color: #003399;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #status {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        footer { font-size: 11px; color: #888; text-align: center; margin-top: 20px; padding-bottom: 20px; }
-    </style>
+    <title>Report Fraud | CyberShield</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <div class="logo">🛡️ CyberShield</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="prevention.html">Prevention</a>
+            <a href="report.html" class="active">Report Fraud</a>
+        </nav>
+    </header>
 
-<header>
-    <div style="font-weight: bold; font-size: 20px;">CyberShield</div>
-    <div class="nav-links">
-        <a href="#">Home</a> <a href="#">Awareness</a> <a href="#">Prevention</a> <strong>Report Fraud</strong> <a href="#">Contact</a>
-    </div>
-</header>
-
-<div class="container">
-    <h2>🚨 Report Fraud</h2>
-    <p class="subtitle">Help us stop cyber fraud. Submit details securely and anonymously if preferred.</p>
-
-    <div class="form-section">
+    <div class="container">
+        <h2>🚨 Fraud Incident Report</h2>
+        <p>Your report helps us track and block malicious actors. Please be as detailed as possible.</p>
+        
         <form id="fraud-form" action="https://formspree.io/f/mwvebpnb" method="POST">
-            
-            <div class="info-box">
-                <strong>Before You Submit</strong><br>
-                Please provide as much detail as possible. Your report will be handled confidentially.
-            </div>
+            <label>Your Contact Email (To receive confirmation)</label>
+            <input type="email" name="email" required placeholder="name@example.com">
 
-            <label>Your Name (optional)</label>
-            <input type="text" name="name" placeholder="Enter your full name">
+            <label>Type of Fraud</label>
+            <select name="fraud_type" style="width:100%; padding:10px; margin-bottom:20px;">
+                <option>Phishing Email</option>
+                <option>Tech Support Scam</option>
+                <option>Identity Theft</option>
+                <option>Other</option>
+            </select>
 
-            <label>Email Address (optional)</label>
-            <input type="email" name="email" placeholder="you@example.com">
+            <label>Details of the incident *</label>
+            <textarea name="message" required placeholder="Include dates, links, and any phone numbers involved..."></textarea>
 
-            <label>Description of Fraudulent Activity *</label>
-            <textarea name="message" required placeholder="Provide a detailed description..."></textarea>
-
-            <div class="checkbox-group">
-                <input type="checkbox" required name="consent">
-                <span>I confirm that the information provided is accurate and I consent to the Privacy Policy. *</span>
-            </div>
-
-            <button type="submit" id="submit-btn">Submit Report</button>
-            <p id="status"></p>
+            <button type="submit" id="btn">Submit Secure Report</button>
+            <p id="status" style="text-align:center; margin-top:15px; font-weight:bold;"></p>
         </form>
     </div>
-</div>
 
-<footer>
-    This portal is secure and confidential. Reports are reviewed within 24-48 hours.
-</footer>
+    <script>
+        const form = document.getElementById("fraud-form");
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const status = document.getElementById("status");
+            const btn = document.getElementById("btn");
+            btn.disabled = true;
+            btn.innerText = "Sending...";
 
-<script>
-    const form = document.getElementById("fraud-form");
-    
-    async function handleSubmit(event) {
-      event.preventDefault();
-      const status = document.getElementById("status");
-      const data = new FormData(event.target);
-      
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "✅ Success! Your report has been submitted.";
-          status.style.color = "green";
-          form.reset();
-        } else {
-          status.innerHTML = "❌ Oops! There was a problem submitting your form.";
-          status.style.color = "red";
-        }
-      }).catch(error => {
-        status.innerHTML = "❌ Connection error. Please try again later.";
-        status.style.color = "red";
-      });
-    }
-    form.addEventListener("submit", handleSubmit)
-</script>
-
+            const data = new FormData(e.target);
+            fetch(e.target.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(res => {
+                if (res.ok) {
+                    status.innerHTML = "✅ Report received. Thank you for your contribution!";
+                    status.style.color = "green";
+                    form.reset();
+                } else {
+                    status.innerHTML = "❌ Submission failed. Please try again.";
+                    status.style.color = "red";
+                }
+                btn.disabled = false;
+                btn.innerText = "Submit Secure Report";
+            });
+        });
+    </script>
 </body>
 </html>
