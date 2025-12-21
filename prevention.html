@@ -1815,7 +1815,22 @@
         setTimeout(() => confetti.remove(), 3000);
       }
     }
-
+async function loadLeaderboard() {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbz98SEaE-9D9VmMZd2_mO7zBQqyvvykUlbK6IGsjVpqHx3-jEHcfIrzMhbuyp0LIwp8/exec';
+    const response = await fetch(scriptURL);
+    const data = await response.json();
+    
+    const tableBody = document.querySelector('.leaderboard-body');
+    tableBody.innerHTML = data.map((row, index) => `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${row[1]}</td>
+            <td>${row[2]}</td>
+            <td>${new Date(row[3]).toLocaleDateString()}</td>
+            <td>${row[4]}%</td>
+        </tr>
+    `).join('');
+}
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', () => {
       initializeQuiz();
@@ -1847,3 +1862,4 @@
   </script>
 </body>
 </html>
+
