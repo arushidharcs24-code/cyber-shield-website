@@ -346,7 +346,29 @@
       min-width: 20px;
     }
 
-   
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-family: 'Source Sans Pro', sans-serif;
+      margin-top: 1rem;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+    }
 
     /* Emergency Contact Section */
     .emergency-grid {
@@ -412,6 +434,11 @@
       border-radius: 8px;
       display: inline-block;
       margin-top: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .emergency-card:hover .emergency-number {
+      transform: scale(1.05);
     }
 
     /* Office Hours */
@@ -450,254 +477,276 @@
     }
 
     /* Modern Chatbot Styles */
+    .modern-chatbot-container {
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      margin-top: 1.5rem;
+    }
 
+    .modern-chatbot-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        /* Main Layout */
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
+    .modern-chatbot-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; }
-        }
+    .modern-chatbot-status {
+      font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
 
-        /* Form and Chatbot Cards */
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
+    .modern-chatbot-status::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+    }
 
-        h2 { color: var(--primary); margin-top: 0; }
+    .modern-chat-messages {
+      flex-grow: 1;
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #f8fafc;
+    }
 
-        /* Chatbot Styles */
-        .modern-chatbot-container {
-            height: 550px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            background: white;
-        }
+    .modern-message {
+      max-width: 85%;
+      padding: 0.8rem 1rem;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
 
-        .modern-chatbot-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .modern-user-message {
+      align-self: flex-end;
+      background: var(--primary);
+      color: white;
+      border-bottom-right-radius: 2px;
+    }
 
-        .modern-chat-messages {
-            flex-grow: 1;
-            padding: 1.5rem;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            background: #f8fafc;
-        }
+    .modern-bot-message {
+      align-self: flex-start;
+      background: white;
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 2px;
+    }
 
-        .modern-message {
-            max-width: 85%;
-            padding: 0.8rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
+    .modern-welcome-message {
+      align-self: center;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      max-width: 90%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
 
-        .modern-user-message {
-            align-self: flex-end;
-            background: var(--primary);
-            color: white;
-            border-bottom-right-radius: 2px;
-        }
+    .modern-welcome-subtitle {
+      color: var(--text-medium);
+      margin: 1rem 0;
+      font-weight: 600;
+    }
 
-        .modern-bot-message {
-            align-self: flex-start;
-            background: white;
-            border: 1px solid var(--border);
-            border-bottom-left-radius: 2px;
-        }
+    .modern-topic-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      justify-content: center;
+    }
 
-        .modern-topic-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
+    .modern-topic-button {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-        .modern-topic-button {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            border: 1px solid var(--primary);
-            border-radius: 8px;
-            padding: 6px 12px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+    .modern-topic-button:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
 
-        .modern-topic-button:hover {
-            background: var(--primary);
-            color: white;
-        }
+    .modern-chat-input-container {
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+      background: white;
+    }
 
-        /* Contact Form Styles */
-        .info-box {
-            background-color: var(--danger-light);
-            border-left: 4px solid var(--danger);
-            padding: 15px;
-            margin-bottom: 20px;
-            font-size: 13px;
-        }
+    .modern-chat-input-wrapper {
+      display: flex;
+      gap: 10px;
+    }
 
-        label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+    .modern-chat-input {
+      flex-grow: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 0.9rem;
+    }
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    .modern-chat-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
 
-        .btn-submit {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    .modern-send-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-        .btn-submit:hover { background-color: var(--primary-dark); }
-    </style>
+    .modern-send-button:hover {
+      background: var(--primary-dark);
+    }
+
+    .modern-language-selector {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .modern-language-selector option {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Info Box */
+    .info-box {
+      background-color: var(--danger-light);
+      border-left: 4px solid var(--danger);
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .info-box h4 {
+      margin-bottom: 0.5rem;
+      color: var(--danger);
+      font-size: 1rem;
+    }
+
+    .info-box ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .info-box li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .footer-content span {
+      font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      section {
+        padding: 1.5rem;
+      }
+      
+      .modern-chatbot-container {
+        height: 500px;
+      }
+      
+      .brand-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .site-title {
+        font-size: 2rem;
+      }
+      
+      .modern-language-selector {
+        padding: 4px 6px;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <h1>CyberShield</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="awareness.html">Awareness</a>
-        <a href="prevention.html">Prevention</a>
-        <a href="report.html">Report Fraud</a>
-        <a href="resourcecontact.html" class="active">Contact</a>
-    </nav>
-</header>
-
-<div class="container">
-    <div class="card">
-        <h2>📩 Send a Message</h2>
-        <div class="info-box">
-            <strong>Need urgent help?</strong><br>
-            For financial cyber fraud, call 1930 immediately.
-        </div>
-        <form action="https://formspree.io/f/mwvebpnb" method="POST">
-            <label>Full Name</label>
-            <input type="text" name="name" required placeholder="John Doe">
-            
-            <label>Email Address</label>
-            <input type="email" name="email" required placeholder="email@example.com">
-            
-            <label>How can we help?</label>
-            <textarea name="message" required placeholder="Describe your inquiry..."></textarea>
-            
-            <button type="submit" class="btn-submit">Send Inquiry</button>
-        </form>
-    </div>
-
-    <div class="card">
-        <h2>🤖 Cyber Assistant</h2>
-        <div class="modern-chatbot-container">
-            <div class="modern-chatbot-header">
-                <span>ShieldBot Active</span>
-                <span style="font-size: 10px;">● Online</span>
-            </div>
-            <div class="modern-chat-messages" id="chat-box">
-                <div class="modern-message modern-bot-message">
-                    Hello! I'm your CyberShield assistant. Click a topic below to learn more:
-                    <div class="modern-topic-buttons">
-                        <button class="modern-topic-button" onclick="askBot('report')">🚩 Report Fraud</button>
-                        <button class="modern-topic-button" onclick="askBot('types')">🔍 Common Scams</button>
-                        <button class="modern-topic-button" onclick="askBot('protect')">🛡️ Protect Data</button>
-                        <button class="modern-topic-button" onclick="askBot('recovery')">🔄 Recovery</button>
-                        <button class="modern-topic-button" onclick="askBot('password')">🔑 Passwords</button>
-                        <button class="modern-topic-button" onclick="askBot('emergency')">🚨 Emergency</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    const chatBox = document.getElementById('chat-box');
-
-    const responses = {
-        'report': {
-            q: "How do I report fraud?",
-            a: "Go to our 'Report Fraud' page or use the National Cyber Crime portal at cybercrime.gov.in."
-        },
-        'types': {
-            q: "What are common scams?",
-            a: "Watch out for Phishing (fake links), Vishing (fraud calls), and UPI payment request scams."
-        },
-        'protect': {
-            q: "How to protect my data?",
-            a: "Enable Two-Factor Authentication (2FA) on all accounts and never click links from unknown senders."
-        },
-        'recovery': {
-            q: "What if I'm a victim?",
-            a: "1. Block your bank cards. 2. Change passwords. 3. Call 1930. 4. File a report with us."
-        },
-        'password': {
-            q: "Password safety tips?",
-            a: "Use at least 12 characters including symbols. Never use the same password for two different sites."
-        },
-        'emergency': {
-            q: "Who to call in an emergency?",
-            a: "Call the National Cyber Fraud Helpline at 1930 immediately if money has been stolen."
-        }
-    };
-
-    function askBot(key) {
-        const item = responses[key];
-        
-        // Add User Message
-        const userDiv = document.createElement('div');
-        userDiv.className = 'modern-message modern-user-message';
-        userDiv.innerText = item.q;
-        chatBox.appendChild(userDiv);
-
-        // Add Bot Message
-        setTimeout(() => {
-            const botDiv = document.createElement('div');
-            botDiv.className = 'modern-message modern-bot-message';
-            botDiv.innerText = item.a;
-            chatBox.appendChild(botDiv);
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }, 500);
-    }
-</script>
-
-</body>
-</html>
-
-
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">
@@ -761,7 +810,7 @@
               <span>Available: 24/7 for emergencies</span>
             </div>
           </div>
-          <a href="tel:+180029374357" class="btn" style="margin-top: 1rem;">
+          <a href="tel:+180029374357" class="btn">
             <i class="fas fa-phone"></i> Call Now
           </a>
         </div>
@@ -786,8 +835,8 @@
               <span>Response Time: Within 2 hours</span>
             </div>
           </div>
-          <a href="mailto:support@cybershield.com" class="btn" style="margin-top: 1rem;">
-            <i class="fas fa-envelope"></i> Send Email
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@cybershield.com&su=Cybersecurity%20Inquiry&body=Hello%20CyberShield%20Team,%0A%0AI%20would%20like%20to%20inquire%20about:%0A%0A" target="_blank" class="btn">
+            <i class="fas fa-envelope"></i> Send Email via Gmail
           </a>
         </div>
         
@@ -811,8 +860,8 @@
               <span>Noida, Uttar Pradesh 201309</span>
             </div>
           </div>
-          <a href="#" class="btn btn-outline" style="margin-top: 1rem;">
-            <i class="fas fa-directions"></i> Get Directions
+          <a href="https://www.google.com/maps/place/Cyber+Security+Park,+Sector+62,+Noida,+Uttar+Pradesh+201309/@28.626085,77.357702,17z/data=!3m1!4b1!4m6!3m5!1s0x390ce5a5e8e3c4c9:0x5c2c6e5a5e8e3c4c!8m2!3d28.626085!4d77.3602769!16s%2Fg%2F11b8z8q9v1?entry=ttu" target="_blank" class="btn" style="background: var(--secondary);">
+            <i class="fas fa-directions"></i> Get Directions on Maps
           </a>
         </div>
       </div>
@@ -862,79 +911,11 @@
       </div>
     </section>
 
-    <!-- Contact Form Section -->
-    <section id="contact-form">
-      <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Fill out the form below and our cybersecurity team will get back to you within 24 hours.</p>
-      
-      <div class="contact-form-container">
-        <form id="contactForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName">Full Name *</label>
-              <input type="text" id="fullName" placeholder="Enter your full name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" placeholder="Enter your email address" required>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="organization">Organization</label>
-              <input type="text" id="organization" placeholder="Your company or organization">
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="Your contact number">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="queryType">Type of Query *</label>
-            <select id="queryType" required>
-              <option value="">Select query type</option>
-              <option value="general">General Inquiry</option>
-              <option value="incident">Security Incident</option>
-              <option value="training">Training Request</option>
-              <option value="consultation">Consultation</option>
-              <option value="partnership">Partnership</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="subject">Subject *</label>
-            <input type="text" id="subject" placeholder="Brief subject of your message" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" rows="6" placeholder="Describe your cybersecurity concern or inquiry in detail..." required></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
-              <input type="checkbox" required style="margin-top: 3px;">
-              <span>I agree to the <a href="#" style="color: var(--primary); text-decoration: underline;">privacy policy</a> and understand this information will be handled securely</span>
-            </label>
-          </div>
-          
-          <div class="form-group">
-            <button type="submit" class="btn" style="width: 100%; padding: 1rem;">
-              <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
     <!-- Office Hours Section -->
     <section id="hours">
       <h2><i class="fas fa-clock"></i> Office Hours</h2>
       <div class="accent-border"></div>
+      <p class="intro">Our team is available during these hours for non-emergency consultations and support.</p>
       
       <div class="hours-container">
         <div class="hours-card">
@@ -962,29 +943,28 @@
 
     <!-- Modern Chatbot Section -->
     <section id="modern-chatbot">
-      <h2><i class="fas fa-robot"></i> Modern Cybersecurity Assistant</h2>
+      <h2><i class="fas fa-robot"></i> Multi-Language Cybersecurity Assistant</h2>
       <div class="accent-border"></div>
-      <p class="intro">Our intelligent assistant provides real-time cybersecurity guidance in multiple languages.</p>
+      <p class="intro">Need quick answers? Our AI assistant can help with common cybersecurity questions in multiple languages.</p>
       
-      <div class="modern-chatbot-container" id="modern-chatbot-container">
+      <div class="modern-chatbot-container">
         <div class="modern-chatbot-header">
           <div class="modern-header-left">
-            <div class="modern-chatbot-icon">
-              <i class="fas fa-shield-alt" style="color: var(--primary); font-size: 1.2rem;"></i>
-            </div>
-            <h3>Cyber Shield Assistant</h3>
+            <h3><i class="fas fa-shield-alt"></i> Cyber Shield Assistant</h3>
           </div>
-          <div class="modern-chatbot-status">Online</div>
-          <select class="modern-language-selector" id="modern-language-selector">
-            <option value="en">English</option>
-            <option value="hi">हिंदी (Hindi)</option>
-            <option value="te">తెలుగు (Telugu)</option>
-            <option value="kn">ಕನ್ನಡ (Kannada)</option>
-          </select>
+          <div>
+            <select class="modern-language-selector" id="modern-language-selector">
+              <option value="en">🌐 English</option>
+              <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+              <option value="kn">🇮🇳 ಕನ್ನಡ (Kannada)</option>
+              <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+            </select>
+            <span class="modern-chatbot-status">Online</span>
+          </div>
         </div>
         
         <div class="modern-chat-messages" id="modern-chat-messages">
-          <!-- Messages will be inserted here by JavaScript -->
+          <!-- Chat messages will be inserted here by JavaScript -->
         </div>
         
         <div class="modern-chat-input-container">
@@ -993,7 +973,7 @@
               type="text" 
               class="modern-chat-input" 
               id="modern-chat-input" 
-              placeholder="Type your message here..."
+              placeholder="Type your cybersecurity question here..."
             >
             <button class="modern-send-button" id="modern-send-button">
               <i class="fas fa-paper-plane"></i>
@@ -1013,7 +993,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Modern Chatbot State Management
+      // Chatbot State Management
       const chatbotState = {
         messages: [],
         input: '',
@@ -1021,64 +1001,72 @@
         loading: false
       };
 
-      // Languages configuration
+      // Language configurations
       const languages = {
-        en: 'English',
-        hi: 'हिंदी',
-        te: 'తెలుగు',
-        kn: 'ಕನ್ನಡ'
-      };
-
-      // Welcome content for different languages
-      const welcomeContent = {
         en: {
-          greeting: "Hello! I'm your Cyber Shield Assistant. How can I help you with cybersecurity today?",
-          subtitle: "You can ask me about:",
-          topics: [
-            "Phishing attacks", 
-            "Password security", 
-            "Malware protection", 
-            "Report a cyber crime"
-          ]
+          name: 'English',
+          placeholder: 'Type your cybersecurity question here...',
+          welcome: {
+            greeting: "Hello! I'm your Cyber Shield Assistant. How can I help you with cybersecurity today?",
+            subtitle: "You can ask me about:",
+            topics: [
+              "Phishing attacks", 
+              "Password security", 
+              "Malware protection", 
+              "Report a cyber crime",
+              "Two-factor authentication",
+              "Secure browsing"
+            ]
+          }
         },
         hi: {
-          greeting: "नमस्ते! मैं आपका साइबर शील्ड असिस्टेंट हूं। मैं आज साइबर सुरक्षा में आपकी कैसे मदद कर सकता हूं?",
-          subtitle: "आप मुझसे पूछ सकते हैं:",
-          topics: [
-            "फ़िशिंग हमले", 
-            "पासवर्ड सुरक्षा", 
-            "मैलवेयर सुरक्षा", 
-            "साइबर अपराध की रिपोर्ट करें"
-          ]
-        },
-        te: {
-          greeting: "హలో! నేను మీ సైబర్ షీల్డ్ అసిస్టెంట్. ఈ రోజు సైబర్ భద్రతలో నేను మీకు ఎలా సహాయం చేయగలను?",
-          subtitle: "మీరు నన్ను అడగవచ్చు:",
-          topics: [
-            "ఫిషింగ్ దాడులు", 
-            "పాస్‌వర్డ్ భద్రత", 
-            "మాల్వేర్ రక్షణ", 
-            "సైబర్ నేరాన్ని నివేదించండి"
-          ]
+          name: 'हिंदी (Hindi)',
+          placeholder: 'अपना साइबर सुरक्षा प्रश्न यहाँ टाइप करें...',
+          welcome: {
+            greeting: "नमस्ते! मैं आपका साइबर शील्ड असिस्टेंट हूं। मैं आज साइबर सुरक्षा में आपकी कैसे मदद कर सकता हूं?",
+            subtitle: "आप मुझसे पूछ सकते हैं:",
+            topics: [
+              "फ़िशिंग हमले", 
+              "पासवर्ड सुरक्षा", 
+              "मैलवेयर सुरक्षा", 
+              "साइबर अपराध की रिपोर्ट करें",
+              "दो-कारक प्रमाणीकरण",
+              "सुरक्षित ब्राउज़िंग"
+            ]
+          }
         },
         kn: {
-          greeting: "ಹಲೋ! ನಾನು ನಿಮ್ಮ ಸೈಬರ್ ಶೀಲ್ಡ್ ಅಸಿಸ್ಟೆಂಟ್. ಇಂದು ಸೈಬರ್ ಸುರಕ್ಷತೆಯಲ್ಲಿ ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
-          subtitle: "ನೀವು ನನ್ನನ್ನು ಕೇಳಬಹುದು:",
-          topics: [
-            "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು", 
-            "ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ", 
-            "ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ", 
-            "ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಿ"
-          ]
+          name: 'ಕನ್ನಡ (Kannada)',
+          placeholder: 'ನಿಮ್ಮ ಸೈಬರ್ ಸುರಕ್ಷತಾ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...',
+          welcome: {
+            greeting: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಸೈಬರ್ ಶೀಲ್ಡ್ ಸಹಾಯಕ. ಇಂದು ಸೈಬರ್ ಸುರಕ್ಷತೆಯಲ್ಲಿ ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
+            subtitle: "ನೀವು ನನ್ನನ್ನು ಕೇಳಬಹುದು:",
+            topics: [
+              "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು", 
+              "ಪಾಸ್ವರ್ಡ್ ಸುರಕ್ಷತೆ", 
+              "ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ", 
+              "ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಿ",
+              "ದ್ವಿ-ಗುಣಕ ದೃಢೀಕರಣ",
+              "ಸುರಕ್ಷಿತ ಬ್ರೌಸಿಂಗ್"
+            ]
+          }
+        },
+        te: {
+          name: 'తెలుగు (Telugu)',
+          placeholder: 'మీ సైబర్ భద్రతా ప్రశ్నను ఇక్కడ టైప్ చేయండి...',
+          welcome: {
+            greeting: "నమస్కారం! నేను మీ సైబర్ షీల్డ్ అసిస్టెంట్. ఈ రోజు సైబర్ భద్రతలో నేను మీకు ఎలా సహాయం చేయగలను?",
+            subtitle: "మీరు నన్ను అడగవచ్చు:",
+            topics: [
+              "ఫిషింగ్ దాడులు", 
+              "పాస్వర్డ్ భద్రత", 
+              "మాల్వేర్ రక్షణ", 
+              "సైబర్ నేరాన్ని నివేదించండి",
+              "రెండు-కారకం ప్రమాణీకరణ",
+              "సురక్షిత బ్రౌసింగ్"
+            ]
+          }
         }
-      };
-
-      // Placeholders for input field
-      const placeholders = {
-        en: 'Type your message here...',
-        hi: 'अपना संदेश यहाँ टाइप करें...',
-        te: 'మీ సందేశాన్ని ఇక్కడ టైప్ చేయండి...',
-        kn: 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...'
       };
 
       // DOM Elements
@@ -1086,23 +1074,27 @@
       const chatInput = document.getElementById('modern-chat-input');
       const sendButton = document.getElementById('modern-send-button');
       const languageSelector = document.getElementById('modern-language-selector');
-      const contactForm = document.getElementById('contactForm');
 
       // Initialize chatbot
       initializeChat();
 
       // Initialize chat with welcome message
       function initializeChat() {
-        const content = welcomeContent[chatbotState.language];
+        const lang = languages[chatbotState.language];
         chatbotState.messages = [{
           role: 'assistant',
-          content: content.greeting,
+          content: lang.welcome.greeting,
           isWelcome: true,
-          topics: content.topics,
-          subtitle: content.subtitle
+          topics: lang.welcome.topics,
+          subtitle: lang.welcome.subtitle
         }];
         renderMessages();
         updateInputPlaceholder();
+      }
+
+      // Update input placeholder based on language
+      function updateInputPlaceholder() {
+        chatInput.placeholder = languages[chatbotState.language].placeholder;
       }
 
       // Render messages to the DOM
@@ -1137,11 +1129,6 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
 
-      // Update input placeholder based on language
-      function updateInputPlaceholder() {
-        chatInput.placeholder = placeholders[chatbotState.language];
-      }
-
       // Handle topic button click
       window.handleTopicClick = function(topic) {
         handleSubmit(topic);
@@ -1164,16 +1151,11 @@
         // Set loading state
         chatbotState.loading = true;
         sendButton.disabled = true;
-        sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         
         // Show loading indicator
         const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'modern-loading-indicator modern-bot-message';
-        loadingDiv.innerHTML = `
-          <div class="modern-loading-dot"></div>
-          <div class="modern-loading-dot"></div>
-          <div class="modern-loading-dot"></div>
-        `;
+        loadingDiv.className = 'modern-message modern-bot-message';
+        loadingDiv.innerHTML = getLoadingMessage();
         chatMessages.appendChild(loadingDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -1183,10 +1165,10 @@
         } catch (error) {
           console.error('Error:', error);
           const errorMessages = {
-            en: 'Sorry, I encountered an error. Please try again.',
-            hi: 'क्षमा करें, एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
-            te: 'క్షమించండి, ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.',
-            kn: 'ಕ್ಷಮಿಸಿ, ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.'
+            en: "Sorry, I encountered an error. Please try again.",
+            hi: "क्षमा करें, एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+            kn: "ಕ್ಷಮಿಸಿ, ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+            te: "క్షమించండి, ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి."
           };
           chatbotState.messages.push({
             role: 'assistant',
@@ -1195,51 +1177,77 @@
         } finally {
           chatbotState.loading = false;
           sendButton.disabled = false;
-          sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
           renderMessages();
         }
       }
 
-      // Simulate API response with predefined answers
+      // Get loading message based on language
+      function getLoadingMessage() {
+        const messages = {
+          en: "<i>Assistant is typing...</i>",
+          hi: "<i>सहायक टाइप कर रहा है...</i>",
+          kn: "<i>ಸಹಾಯಕ ಟೈಪ್ ಮಾಡುತ್ತಿದ್ದಾನೆ...</i>",
+          te: "<i>సహాయకుడు టైప్ చేస్తున్నాడు...</i>"
+        };
+        return messages[chatbotState.language] || messages.en;
+      }
+
+      // Simulate API response with predefined answers in multiple languages
       async function simulateAPIResponse(userMessage) {
         // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 500));
+        await new Promise(resolve => setTimeout(resolve, 800 + Math.random() * 500));
         
+        const lowerMessage = userMessage.toLowerCase();
+        const lang = chatbotState.language;
+        
+        // Define responses for each language
         const responses = {
           en: {
-            "phishing attacks": "Phishing attacks use deceptive emails to steal sensitive information. Always verify sender addresses, check for spelling errors, and never click suspicious links. Enable two-factor authentication for added security.",
-            "password security": "Use strong passwords with 12+ characters including uppercase, lowercase, numbers, and symbols. Never reuse passwords across accounts. Consider using a password manager for better security.",
-            "malware protection": "Keep all software updated, use reputable antivirus software, avoid suspicious downloads, and back up important data regularly. Be cautious with email attachments from unknown senders.",
-            "report a cyber crime": "In India, report cyber crimes to the National Cyber Crime Helpline at 1930 or visit https://cybercrime.gov.in. For financial fraud, contact your bank immediately.",
-            default: "I understand you're asking about cybersecurity. Could you please provide more details or ask about specific topics like phishing, password security, malware protection, or reporting cyber crimes?"
+            "phishing": "Phishing attacks use deceptive emails to steal sensitive information. Always verify sender addresses, check for spelling errors, and never click suspicious links. Enable two-factor authentication for added security.",
+            "password": "Use strong passwords with 12+ characters including uppercase, lowercase, numbers, and symbols. Never reuse passwords across accounts. Consider using a password manager for better security.",
+            "malware": "Keep all software updated, use reputable antivirus software, avoid suspicious downloads, and back up important data regularly. Be cautious with email attachments from unknown senders.",
+            "report": "In India, report cyber crimes to the National Cyber Crime Helpline at 1930 or visit https://cybercrime.gov.in. For financial fraud, contact your bank immediately.",
+            "two-factor": "Two-factor authentication adds an extra layer of security by requiring two forms of verification. Always enable 2FA on important accounts like email, banking, and social media.",
+            "secure browsing": "Use HTTPS websites, avoid public Wi-Fi for sensitive transactions, keep browsers updated, and use ad blockers to prevent malicious ads.",
+            "default": "I understand you're asking about cybersecurity. Could you please provide more details or ask about specific topics like phishing, password security, malware protection, or reporting cyber crimes?"
           },
           hi: {
-            "फ़िशिंग हमले": "फ़िशिंग हमले संवेदनशील जानकारी चुराने के लिए भ्रामक ईमेल का उपयोग करते हैं। हमेशा प्रेषक पते सत्यापित करें, वर्तनी त्रुटियों की जांच करें और संदिग्ध लिंक पर कभी क्लिक न करें। अतिरिक्त सुरक्षा के लिए दो-कारक प्रमाणीकरण सक्षम करें।",
-            "पासवर्ड सुरक्षा": "12+ अक्षरों वाले मजबूत पासवर्ड का उपयोग करें जिसमें अपरकेस, लोअरकेस, संख्याएं और प्रतीक शामिल हों। खातों में पासवर्ड का पुन: उपयोग कभी न करें। बेहतर सुरक्षा के लिए पासवर्ड मैनेजर का उपयोग करने पर विचार करें।",
-            "मैलवेयर सुरक्षा": "सभी सॉफ़्टवेयर को अपडेट रखें, प्रतिष्ठित एंटीवायरस सॉफ़्टवेयर का उपयोग करें, संदिग्ध डाउनलोड से बचें और महत्वपूर्ण डेटा का नियमित रूप से बैकअप लें। अज्ञात प्रेषकों से ईमेल अटैचमेंट के साथ सावधान रहें।",
-            "साइबर अपराध की रिपोर्ट करें": "भारत में, साइबर अपराधों की रिपोर्ट राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 पर करें या https://cybercrime.gov.in पर जाएं। वित्तीय धोखाधड़ी के लिए, तुरंत अपने बैंक से संपर्क करें।",
-            default: "मैं समझता हूं कि आप साइबर सुरक्षा के बारे में पूछ रहे हैं। क्या आप कृपया अधिक विवरण प्रदान कर सकते हैं या फ़िशिंग, पासवर्ड सुरक्षा, मालवेयर सुरक्षा, या साइबर अपराधों की रिपोर्टिंग जैसे विशिष्ट विषयों के बारे में पूछ सकते हैं?"
+            "फ़िशिंग": "फ़िशिंग हमले संवेदनशील जानकारी चुराने के लिए भ्रामक ईमेल का उपयोग करते हैं। हमेशा प्रेषक पते सत्यापित करें, वर्तनी त्रुटियों की जांच करें और संदिग्ध लिंक पर कभी क्लिक न करें। अतिरिक्त सुरक्षा के लिए दो-कारक प्रमाणीकरण सक्षम करें।",
+            "पासवर्ड": "12+ अक्षरों वाले मजबूत पासवर्ड का उपयोग करें जिसमें अपरकेस, लोअरकेस, संख्याएं और प्रतीक शामिल हों। खातों में पासवर्ड का पुन: उपयोग कभी न करें। बेहतर सुरक्षा के लिए पासवर्ड मैनेजर का उपयोग करने पर विचार करें।",
+            "मैलवेयर": "सभी सॉफ़्टवेयर को अपडेट रखें, प्रतिष्ठित एंटीवायरस सॉफ़्टवेयर का उपयोग करें, संदिग्ध डाउनलोड से बचें और महत्वपूर्ण डेटा का नियमित रूप से बैकअप लें। अज्ञात प्रेषकों से ईमेल अटैचमेंट के साथ सावधान रहें।",
+            "रिपोर्ट": "भारत में, साइबर अपराधों की रिपोर्ट राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 पर करें या https://cybercrime.gov.in पर जाएं। वित्तीय धोखाधड़ी के लिए, तुरंत अपने बैंक से संपर्क करें।",
+            "दो-कारक": "दो-कारक प्रमाणीकरण दो प्रकार के सत्यापन की आवश्यकता के द्वारा एक अतिरिक्त सुरक्षा परत जोड़ता है। ईमेल, बैंकिंग और सोशल मीडिया जैसे महत्वपूर्ण खातों पर हमेशा 2FA सक्षम करें।",
+            "सुरक्षित": "HTTPS वेबसाइटों का उपयोग करें, संवेदनशील लेनदेन के लिए सार्वजनिक वाई-फाई से बचें, ब्राउज़रों को अपडेट रखें और दुर्भावनापूर्ण विज्ञापनों को रोकने के लिए एड ब्लॉकर्स का उपयोग करें।",
+            "default": "मैं समझता हूं कि आप साइबर सुरक्षा के बारे में पूछ रहे हैं। क्या आप कृपया अधिक विवरण प्रदान कर सकते हैं या फ़िशिंग, पासवर्ड सुरक्षा, मालवेयर सुरक्षा, या साइबर अपराधों की रिपोर्टिंग जैसे विशिष्ट विषयों के बारे में पूछ सकते हैं?"
+          },
+          kn: {
+            "ಫಿಶಿಂಗ್": "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು ಸೂಕ್ಷ್ಮ ಮಾಹಿತಿಯನ್ನು ಕದಿಯಲು ಮೋಸದ ಇಮೇಲ್ಗಳನ್ನು ಬಳಸುತ್ತವೆ. ಯಾವಾಗಲೂ ಕಳುಹಿಸುವವರ ವಿಳಾಸಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಕಾಗುಣಿತದೋಷಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಶಂಕಾಸ್ಪದ ಲಿಂಕ್ಗಳನ್ನು ಎಂದಿಗೂ ಕ್ಲಿಕ್ ಮಾಡಬೇಡಿ. ಹೆಚ್ಚುವರಿ ಭದ್ರತೆಗಾಗಿ ಎರಡು-ಗುಣಕ ದೃಢೀಕರಣವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+            "ಪಾಸ್ವರ್ಡ್": "12+ ಅಕ್ಷರಗಳನ್ನು ಒಳಗೊಂಡಿರುವ ಬಲವಾದ ಪಾಸ್ವರ್ಡ್ಗಳನ್ನು ಬಳಸಿ, ಅದು ದೊಡ್ಡಕ್ಷರ, ಸಣ್ಣಕ್ಷರ, ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಚಿಹ್ನೆಗಳನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ. ಖಾತೆಗಳ ನಡುವೆ ಪಾಸ್ವರ್ಡ್ಗಳನ್ನು ಮತ್ತೆ ಬಳಸಬೇಡಿ. ಉತ್ತಮ ಭದ್ರತೆಗಾಗಿ ಪಾಸ್ವರ್ಡ್ ನಿರ್ವಾಹಕವನ್ನು ಬಳಸುವುದನ್ನು ಪರಿಗಣಿಸಿ.",
+            "ಮಾಲ್ವೇರ್": "ಎಲ್ಲಾ ಸಾಫ್ಟ್ವೇರ್ ಅನ್ನು ನವೀಕರಿಸಿ, ಪ್ರತಿಷ್ಠಿತ ಆಂಟಿವೈರಸ್ ಸಾಫ್ಟ್ವೇರ್ ಬಳಸಿ, ಶಂಕಾಸ್ಪದ ಡೌನ್ಲೋಡ್ಗಳನ್ನು ತಪ್ಪಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ಡೇಟಾವನ್ನು ನಿಯಮಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ. ಅಜ್ಞಾತ ಕಳುಹಿಸುವವರಿಂದ ಇಮೇಲ್ ಅಟ್ಯಾಚ್ಮೆಂಟ್ಗಳೊಂದಿಗೆ ಜಾಗರೂಕರಾಗಿರಿ.",
+            "ವರದಿ": "ಭಾರತದಲ್ಲಿ, 1930 ರ ರಾಷ್ಟ್ರೀಯ ಸೈಬರ್ ಅಪರಾಧ ಸಹಾಯಕ ರೇಖೆಗೆ ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ವರದಿ ಮಾಡಿ ಅಥವಾ https://cybercrime.gov.in ಗೆ ಭೇಟಿ ನೀಡಿ. ಹಣಕಾಸು ವಂಚನೆಗಾಗಿ, ತಕ್ಷಣ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಸಂಪರ್ಕಿಸಿ.",
+            "ದ್ವಿ-ಗುಣಕ": "ದ್ವಿ-ಗುಣಕ ದೃಢೀಕರಣವು ಎರಡು ರೀತಿಯ ದೃಢೀಕರಣದ ಅಗತ್ಯದಿಂದ ಹೆಚ್ಚುವರಿ ಭದ್ರತಾ ಪದರವನ್ನು ಸೇರಿಸುತ್ತದೆ. ಇಮೇಲ್, ಬ್ಯಾಂಕಿಂಗ್ ಮತ್ತು ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮದಂತಹ ಪ್ರಮುಖ ಖಾತೆಗಳಲ್ಲಿ ಯಾವಾಗಲೂ 2FA ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+            "ಸುರಕ್ಷಿತ": "HTTPS ವೆಬ್ಸೈಟ್ಗಳನ್ನು ಬಳಸಿ, ಸೂಕ್ಷ್ಮ ವಹಿವಾಟುಗಳಿಗೆ ಸಾರ್ವಜನಿಕ ವೈ-ಫೈ ತಪ್ಪಿಸಿ, ಬ್ರೌಸರ್ಗಳನ್ನು ನವೀಕರಿಸಿ ಮತ್ತು ದುರುದ್ದೇಶಪೂರಿತ ಜಾಹೀರಾತುಗಳನ್ನು ತಡೆಗಟ್ಟಲು ಜಾಹೀರಾತು ಬ್ಲಾಕರ್ಗಳನ್ನು ಬಳಸಿ.",
+            "default": "ನೀವು ಸೈಬರ್ ಭದ್ರತೆಯ ಬಗ್ಗೆ ಕೇಳುತ್ತಿದ್ದೀರಿ ಎಂದು ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು ನೀಡಬಹುದೇ ಅಥವಾ ಫಿಶಿಂಗ್, ಪಾಸ್ವರ್ಡ್ ಸುರಕ್ಷತೆ, ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ, ಅಥವಾ ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ವರದಿ ಮಾಡುವಂತಹ ನಿರ್ದಿಷ್ಟ ವಿಷಯಗಳ ಬಗ್ಗೆ ಕೇಳಬಹುದೇ?"
+          },
+          te: {
+            "ఫిషింగ్": "ఫిషింగ్ దాడులు సున్నితమైన సమాచారాన్ని దొంగిలించడానికి మోసపూరిత ఇమెయిల్లను ఉపయోగిస్తాయి. ఎల్లప్పుడూ పంపినవారి చిరునామాలను ధృవీకరించండి, స్పెల్లింగ్ లోపాలను తనిఖీ చేయండి మరియు అనుమానాస్పద లింక్లపై ఎప్పటికీ క్లిక్ చేయవద్దు. అదనపు భద్రత కోసం రెండు-కారకం ప్రమాణీకరణను ప్రారంభించండి.",
+            "పాస్వర్డ్": "పెద్ద అక్షరాలు, చిన్న అక్షరాలు, సంఖ్యలు మరియు చిహ్నలతో సహా 12+ అక్షరాలతో బలమైన పాస్వర్డ్లను ఉపయోగించండి. ఖాతాల మధ్య పాస్వర్డ్లను ఎప్పటికీ తిరిగి ఉపయోగించవద్దు. మెరుగైన భద్రత కోసం పాస్వర్డ్ మేనేజర్ని ఉపయోగించడం గురించి ఆలోచించండి.",
+            "మాల్వేర్": "అన్ని సాఫ్ట్వేర్ను నవీకరించండి, ప్రతిష్టాత్మక యాంటీవైరస్ సాఫ్ట్వేర్ను ఉపయోగించండి, అనుమానాస్పద డౌన్లోడ్లను నివారించండి మరియు ముఖ్యమైన డేటాను క్రమం తప్పకుండా బ్యాకప్ చేయండి. తెలియని పంపినవారి నుండి ఇమెయిల్ అటాచ్మెంట్లతో ఏమాత్రం జాగ్రత్తగా ఉండండి.",
+            "రిపోర్ట్": "భారతదేశంలో, సైబర్ నేరాలను 1930 వద్ద నేషనల్ సైబర్ క్రైమ్ హెల్ప్లైన్కు నివేదించండి లేదా https://cybercrime.gov.in కి సందర్శించండి. ఆర్థిక మోసం కోసం, వెంటనే మీ బ్యాంక్ను సంప్రదించండి.",
+            "రెండు-కారకం": "రెండు-కారకం ప్రమాణీకరణ రెండు రకాల ధృవీకరణ అవసరం ద్వారా అదనపు భద్రతా పొరను జోడిస్తుంది. ఇమెయిల్, బ్యాంకింగ్ మరియు సోషల్ మీడియా వంటి ముఖ్యమైన ఖాతాలపై ఎల్లప్పుడూ 2FA ను ప్రారంభించండి.",
+            "సురక్షిత": "HTTPS వెబ్సైట్లను ఉపయోగించండి, సున్నితమైన లావాదేవీల కోసం పబ్లిక్ వై-ఫైని తప్పించుకోండి, బ్రౌజర్లను నవీకరించండి మరియు హానికరమైన ప్రకటనలను నిరోధించడానికి ప్రకటన బ్లాకర్లను ఉపయోగించండి.",
+            "default": "మీరు సైబర్ భద్రత గురించి అడుగుతున్నారని నేను అర్థం చేసుకున్నాను. దయచేసి మరిన్ని వివరాలను అందించగలరా లేదా ఫిషింగ్, పాస్వర్డ్ భద్రత, మాల్వేర్ రక్షణ లేదా సైబర్ నేరాలను నివేదించడం వంటి నిర్దిష్ట విషయాల గురించి అడగవచ్చు?"
           }
         };
 
-        const lang = chatbotState.language;
-        const lowerMessage = userMessage.toLowerCase();
         let response = responses[lang]?.default || responses.en.default;
-
-        // Check for specific topics
-        if (lang === 'en') {
-          for (const [key, value] of Object.entries(responses.en)) {
-            if (lowerMessage.includes(key.toLowerCase())) {
-              response = value;
-              break;
-            }
-          }
-        } else if (lang === 'hi' && responses.hi) {
-          for (const [key, value] of Object.entries(responses.hi)) {
-            if (lowerMessage.includes(key.toLowerCase())) {
-              response = value;
-              break;
-            }
+        
+        // Check for keywords in the specific language
+        const langResponses = responses[lang] || responses.en;
+        for (const [key, value] of Object.entries(langResponses)) {
+          if (key !== "default" && lowerMessage.includes(key.toLowerCase())) {
+            response = value;
+            break;
           }
         }
 
@@ -1271,26 +1279,7 @@
           handleSubmit();
         }
       });
-
-      // Contact form submission
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const fullName = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
-        const queryType = document.getElementById('queryType').value;
-        const subject = document.getElementById('subject').value;
-        
-        // Show success message
-        alert(`Thank you ${fullName}! Your ${queryType} inquiry "${subject}" has been submitted. Our cybersecurity team will contact you at ${email} within 24 hours.`);
-        
-        // Reset form
-        contactForm.reset();
-      });
     });
   </script>
-
 </body>
 </html>
-
