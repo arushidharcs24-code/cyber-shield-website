@@ -346,103 +346,7 @@
       min-width: 20px;
     }
 
-    /* Contact Form */
-    .contact-form-container {
-      background: var(--bg-lighter);
-      padding: 2.5rem;
-      border-radius: 12px;
-      margin-top: 2rem;
-      border: 1px solid var(--border);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      transition: all 0.3s;
-      background: white;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-family: 'Source Sans Pro', sans-serif;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(30, 64, 175, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
-    }
+   
 
     /* Emergency Contact Section */
     .emergency-grid {
@@ -546,439 +450,253 @@
     }
 
     /* Modern Chatbot Styles */
-    .modern-chatbot-container {
-      margin-top: 2rem;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      height: 600px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      background: white;
-    }
 
-    .modern-chatbot-header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
 
-    .modern-header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
+        /* Main Layout */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
 
-    .modern-chatbot-icon {
-      background: white;
-      padding: 0.5rem;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+        }
 
-    .modern-chatbot-header h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
+        /* Form and Chatbot Cards */
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
 
-    .modern-language-selector {
-      background: rgba(255,255,255,0.2);
-      border: 2px solid rgba(255,255,255,0.3);
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
+        h2 { color: var(--primary); margin-top: 0; }
 
-    .modern-language-selector:hover {
-      background: rgba(255,255,255,0.3);
-    }
+        /* Chatbot Styles */
+        .modern-chatbot-container {
+            height: 550px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
 
-    .modern-language-selector option {
-      color: var(--text-dark);
-      background: white;
-    }
+        .modern-chatbot-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .modern-chat-messages {
-      flex-grow: 1;
-      padding: 1.5rem;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background: #f8fafc;
-    }
+        .modern-chat-messages {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #f8fafc;
+        }
 
-    .modern-message {
-      max-width: 80%;
-      padding: 1rem 1.25rem;
-      border-radius: 20px;
-      line-height: 1.5;
-      animation: fadeIn 0.3s ease;
-      font-size: 0.95rem;
-    }
+        .modern-message {
+            max-width: 85%;
+            padding: 0.8rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .modern-user-message {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
 
-    .modern-user-message {
-      align-self: flex-end;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-bottom-right-radius: 5px;
-      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
-    }
+        .modern-bot-message {
+            align-self: flex-start;
+            background: white;
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 2px;
+        }
 
-    .modern-bot-message {
-      align-self: flex-start;
-      background: white;
-      color: var(--text-dark);
-      border-bottom-left-radius: 5px;
-      border: 1px solid var(--border-light);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
+        .modern-topic-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
 
-    .modern-welcome-message {
-      max-width: 90%;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      text-align: left;
-    }
+        .modern-topic-button {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-    .modern-welcome-topics {
-      margin-top: 1rem;
-    }
+        .modern-topic-button:hover {
+            background: var(--primary);
+            color: white;
+        }
 
-    .modern-welcome-subtitle {
-      color: var(--text-medium);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
-    }
+        /* Contact Form Styles */
+        .info-box {
+            background-color: var(--danger-light);
+            border-left: 4px solid var(--danger);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
 
-    .modern-topic-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+        label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
 
-    .modern-topic-button {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid var(--primary);
-      border-radius: 10px;
-      padding: 0.6rem 1rem;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-weight: 500;
-    }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-    .modern-topic-button:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(30, 64, 175, 0.2);
-    }
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    .modern-chat-input-container {
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 1rem;
-    }
-
-    .modern-chat-input-wrapper {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .modern-chat-input {
-      flex: 1;
-      padding: 0.9rem 1.2rem;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 0.95rem;
-      transition: all 0.3s;
-      outline: none;
-      background: white;
-    }
-
-    .modern-chat-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-    }
-
-    .modern-send-button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .modern-send-button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-    }
-
-    .modern-send-button:disabled {
-      background: var(--text-light);
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .modern-loading-indicator {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 1rem;
-      background: white;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      max-width: 60px;
-    }
-
-    .modern-loading-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      animation: loadingBounce 1.4s infinite ease-in-out;
-    }
-
-    .modern-loading-dot:nth-child(1) { animation-delay: -0.32s; }
-    .modern-loading-dot:nth-child(2) { animation-delay: -0.16s; }
-
-    @keyframes loadingBounce {
-      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-
-    .modern-chatbot-status {
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.75rem;
-      opacity: 0.9;
-      background: rgba(255,255,255,0.2);
-      padding: 0.25rem 0.5rem;
-      border-radius: 12px;
-    }
-
-    /* Scrollbar styling */
-    .modern-chat-messages::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 4px;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-thumb:hover {
-      background: var(--text-light);
-    }
-
-    /* Info Box */
-    .info-box {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: var(--danger-light);
-      border-radius: 8px;
-      border-left: 4px solid var(--danger);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
-      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-
-    .info-box h4 {
-      color: var(--danger);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .info-box ul {
-      color: var(--text-medium);
-      padding-left: 1.5rem;
-    }
-
-    .info-box li {
-      margin-bottom: 0.5rem;
-      position: relative;
-    }
-
-    .info-box li::before {
-      content: '•';
-      color: var(--danger);
-      font-weight: bold;
-      position: absolute;
-      left: -1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2.5rem;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-      background: var(--bg-lighter);
-    }
-
-    .footer-content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .footer-content p {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-content span {
-      font-weight: 600;
-      color: var(--primary);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px 20px;
-      }
-      
-      .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .site-title {
-        font-size: 2.2rem;
-      }
-      
-      .logo-icon {
-        font-size: 3rem;
-      }
-      
-      section {
-        padding: 1.75rem;
-      }
-      
-      .contact-grid,
-      .emergency-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-      
-      .modern-chatbot-container {
-        height: 550px;
-      }
-      
-      .modern-chatbot-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
-      }
-      
-      .modern-chatbot-status {
-        position: static;
-        transform: none;
-        text-align: center;
-        margin-top: 0.5rem;
-      }
-      
-      .modern-chat-input-wrapper {
-        flex-direction: column;
-      }
-      
-      .modern-send-button {
-        width: 100%;
-        height: 48px;
-        border-radius: 10px;
-      }
-      
-      .modern-message {
-        max-width: 90%;
-      }
-      
-      .modern-topic-buttons {
-        justify-content: center;
-      }
-      
-      .contact-form-container {
-        padding: 1.5rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 10px;
-      }
-      
-      .nav-links {
-        gap: 10px;
-      }
-      
-      .modern-chatbot-container {
-        height: 500px;
-      }
-      
-      .modern-topic-button {
-        font-size: 0.8rem;
-        padding: 0.5rem 0.8rem;
-      }
-      
-      .contact-card {
-        padding: 1.5rem;
-      }
-      
-      h2 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+        .btn-submit:hover { background-color: var(--primary-dark); }
+    </style>
 </head>
 <body>
+
+<header>
+    <h1>CyberShield</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="prevention.html">Prevention</a>
+        <a href="report.html">Report Fraud</a>
+        <a href="resourcecontact.html" class="active">Contact</a>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="card">
+        <h2>📩 Send a Message</h2>
+        <div class="info-box">
+            <strong>Need urgent help?</strong><br>
+            For financial cyber fraud, call 1930 immediately.
+        </div>
+        <form action="https://formspree.io/f/mwvebpnb" method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" required placeholder="John Doe">
+            
+            <label>Email Address</label>
+            <input type="email" name="email" required placeholder="email@example.com">
+            
+            <label>How can we help?</label>
+            <textarea name="message" required placeholder="Describe your inquiry..."></textarea>
+            
+            <button type="submit" class="btn-submit">Send Inquiry</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>🤖 Cyber Assistant</h2>
+        <div class="modern-chatbot-container">
+            <div class="modern-chatbot-header">
+                <span>ShieldBot Active</span>
+                <span style="font-size: 10px;">● Online</span>
+            </div>
+            <div class="modern-chat-messages" id="chat-box">
+                <div class="modern-message modern-bot-message">
+                    Hello! I'm your CyberShield assistant. Click a topic below to learn more:
+                    <div class="modern-topic-buttons">
+                        <button class="modern-topic-button" onclick="askBot('report')">🚩 Report Fraud</button>
+                        <button class="modern-topic-button" onclick="askBot('types')">🔍 Common Scams</button>
+                        <button class="modern-topic-button" onclick="askBot('protect')">🛡️ Protect Data</button>
+                        <button class="modern-topic-button" onclick="askBot('recovery')">🔄 Recovery</button>
+                        <button class="modern-topic-button" onclick="askBot('password')">🔑 Passwords</button>
+                        <button class="modern-topic-button" onclick="askBot('emergency')">🚨 Emergency</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chatBox = document.getElementById('chat-box');
+
+    const responses = {
+        'report': {
+            q: "How do I report fraud?",
+            a: "Go to our 'Report Fraud' page or use the National Cyber Crime portal at cybercrime.gov.in."
+        },
+        'types': {
+            q: "What are common scams?",
+            a: "Watch out for Phishing (fake links), Vishing (fraud calls), and UPI payment request scams."
+        },
+        'protect': {
+            q: "How to protect my data?",
+            a: "Enable Two-Factor Authentication (2FA) on all accounts and never click links from unknown senders."
+        },
+        'recovery': {
+            q: "What if I'm a victim?",
+            a: "1. Block your bank cards. 2. Change passwords. 3. Call 1930. 4. File a report with us."
+        },
+        'password': {
+            q: "Password safety tips?",
+            a: "Use at least 12 characters including symbols. Never use the same password for two different sites."
+        },
+        'emergency': {
+            q: "Who to call in an emergency?",
+            a: "Call the National Cyber Fraud Helpline at 1930 immediately if money has been stolen."
+        }
+    };
+
+    function askBot(key) {
+        const item = responses[key];
+        
+        // Add User Message
+        const userDiv = document.createElement('div');
+        userDiv.className = 'modern-message modern-user-message';
+        userDiv.innerText = item.q;
+        chatBox.appendChild(userDiv);
+
+        // Add Bot Message
+        setTimeout(() => {
+            const botDiv = document.createElement('div');
+            botDiv.className = 'modern-message modern-bot-message';
+            botDiv.innerText = item.a;
+            chatBox.appendChild(botDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 500);
+    }
+</script>
+
+</body>
+</html>
+
 
   <!-- Navigation Bar -->
   <nav class="navbar">
@@ -1575,3 +1293,4 @@
 
 </body>
 </html>
+
