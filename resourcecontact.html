@@ -7,60 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Navbar Styles */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cyber Shield | Contact & Support</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Navbar Styles */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #0b3d91;
-      color: white;
-      padding: 15px 30px;
-      z-index: 1000;
-      position: sticky;
-      top: 0;
-    }
-
-    .navbar .logo {
-      font-size: 22px;
-      font-weight: bold;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      text-decoration: underline;
-      color: #dbeafe;
-    }
-
+    /* CSS Variables */
     :root {
       --primary: #1e3a8a;
       --primary-dark: #1e40af;
@@ -96,6 +43,7 @@
       background: var(--bg-light);
       color: var(--text-dark);
       line-height: 1.6;
+      min-height: 100vh;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -104,9 +52,75 @@
       letter-spacing: -0.01em;
     }
 
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 15px 30px;
+      z-index: 1000;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar .logo {
+      font-size: 22px;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar .logo i {
+      color: var(--primary-light);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-family: 'Source Sans Pro', sans-serif;
+      padding: 5px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary-light);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-light);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
     /* Alert Banner */
     .alert-banner {
-      background: var(--danger);
+      background: linear-gradient(90deg, var(--danger), #dc2626);
       color: white;
       padding: 12px 0;
       overflow: hidden;
@@ -120,6 +134,12 @@
       white-space: nowrap;
       animation: scrollText 25s linear infinite;
       padding-left: 100%;
+      font-size: 0.95rem;
+    }
+
+    .alert-content i {
+      margin-right: 10px;
+      color: var(--warning-light);
     }
 
     @keyframes scrollText {
@@ -161,12 +181,16 @@
       justify-content: center;
       gap: 1.5rem;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
 
     .logo-icon {
       font-size: 3.5rem;
       color: white;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 50%;
     }
 
     .site-title {
@@ -199,6 +223,12 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.04);
       margin-bottom: 2.5rem;
       border: 1px solid var(--border-light);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     }
 
     h2 {
@@ -214,6 +244,9 @@
 
     h2 i {
       color: var(--primary);
+      background: var(--primary-light);
+      padding: 10px;
+      border-radius: 10px;
     }
 
     .intro {
@@ -253,11 +286,13 @@
       text-align: center;
       transition: all 0.3s ease;
       border: 1px solid var(--border);
+      height: 100%;
     }
 
     .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: var(--primary);
     }
 
     .contact-icon {
@@ -271,6 +306,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .contact-card h3 {
@@ -283,10 +323,12 @@
       color: var(--text-medium);
       margin-bottom: 1rem;
       line-height: 1.6;
+      flex-grow: 1;
     }
 
     .contact-details {
       margin-top: 1rem;
+      width: 100%;
     }
 
     .contact-detail {
@@ -295,6 +337,13 @@
       gap: 0.75rem;
       margin-bottom: 0.75rem;
       color: var(--text-dark);
+      text-align: left;
+      justify-content: center;
+    }
+
+    .contact-detail i {
+      color: var(--primary);
+      min-width: 20px;
     }
 
     /* Contact Form */
@@ -303,6 +352,7 @@
       padding: 2.5rem;
       border-radius: 12px;
       margin-top: 2rem;
+      border: 1px solid var(--border);
     }
 
     .form-group {
@@ -325,7 +375,8 @@
       border-radius: 8px;
       font-family: 'Source Sans Pro', sans-serif;
       font-size: 1rem;
-      transition: border-color 0.3s;
+      transition: all 0.3s;
+      background: white;
     }
 
     .form-group input:focus,
@@ -334,6 +385,7 @@
       outline: none;
       border-color: var(--primary);
       box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+      transform: translateY(-2px);
     }
 
     .form-row {
@@ -345,41 +397,51 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       padding: 0.8rem 1.5rem;
-      background: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
       border: none;
       cursor: pointer;
       font-family: 'Source Sans Pro', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
-      background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3);
+      box-shadow: 0 6px 15px rgba(30, 64, 175, 0.3);
     }
 
     .btn-outline {
       background: transparent;
-      border: 1px solid var(--primary);
+      border: 2px solid var(--primary);
       color: var(--primary);
     }
 
     .btn-outline:hover {
-      background: var(--primary-light);
-    }
-
-    .btn-success {
-      background: var(--success);
-    }
-
-    .btn-success:hover {
-      background: #0da271;
+      background: var(--primary);
+      color: white;
     }
 
     /* Emergency Contact Section */
@@ -391,39 +453,61 @@
     }
 
     .emergency-card {
-      background: var(--bg-lighter);
+      background: linear-gradient(145deg, white, var(--bg-lighter));
       border-radius: 12px;
       padding: 1.75rem;
       text-align: center;
       border: 1px solid var(--border);
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .emergency-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--danger), #dc2626);
     }
 
     .emergency-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
     }
 
     .emergency-card i {
       font-size: 2.5rem;
       color: var(--danger);
       margin-bottom: 1rem;
+      background: var(--danger-light);
+      padding: 15px;
+      border-radius: 50%;
     }
 
     .emergency-card h3 {
       margin-bottom: 0.5rem;
       color: var(--text-dark);
+      font-size: 1.2rem;
     }
 
     .emergency-card p {
       color: var(--text-medium);
       margin-bottom: 1rem;
+      font-size: 0.9rem;
     }
 
     .emergency-number {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--danger);
+      background: var(--danger-light);
+      padding: 8px 15px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 0.5rem;
     }
 
     /* Office Hours */
@@ -440,19 +524,28 @@
       border-radius: 8px;
       text-align: center;
       border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .hours-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border-color: var(--primary);
     }
 
     .hours-day {
       font-weight: 600;
       color: var(--primary);
       margin-bottom: 0.5rem;
+      font-size: 1.1rem;
     }
 
     .hours-time {
       color: var(--text-medium);
+      font-size: 1rem;
     }
 
-    /* Modern Chatbot Styles (React-inspired) */
+    /* Modern Chatbot Styles */
     .modern-chatbot-container {
       margin-top: 2rem;
       border: 1px solid var(--border);
@@ -462,6 +555,7 @@
       display: flex;
       flex-direction: column;
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      background: white;
     }
 
     .modern-chatbot-header {
@@ -622,6 +716,7 @@
       font-size: 0.95rem;
       transition: all 0.3s;
       outline: none;
+      background: white;
     }
 
     .modern-chat-input:focus {
@@ -698,7 +793,7 @@
 
     /* Scrollbar styling */
     .modern-chat-messages::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
     }
 
     .modern-chat-messages::-webkit-scrollbar-track {
@@ -707,1541 +802,53 @@
 
     .modern-chat-messages::-webkit-scrollbar-thumb {
       background: var(--border);
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     .modern-chat-messages::-webkit-scrollbar-thumb:hover {
       background: var(--text-light);
     }
 
-    footer {
-      text-align: center;
-      padding: 2.5rem;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-      background: var(--bg-lighter);
+    /* Info Box */
+    .info-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--danger-light);
+      border-radius: 8px;
+      border-left: 4px solid var(--danger);
+      animation: pulse 2s infinite;
     }
 
-    .footer-content {
-      max-width: 900px;
-      margin: 0 auto;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      section {
-        padding: 1.75rem;
-      }
-      
-      .contact-grid,
-      .emergency-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .brand-container {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .logo-icon {
-        font-size: 3rem;
-      }
-
-      .site-title {
-        font-size: 2.2rem;
-      }
-
-      .navbar {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .modern-chatbot-container {
-        height: 550px;
-      }
-      
-      .modern-topic-buttons {
-        justify-content: center;
-      }
-      
-      .modern-chat-input-wrapper {
-        flex-direction: column;
-      }
-      
-      .modern-send-button {
-        width: 100%;
-        height: 48px;
-        border-radius: 10px;
-      }
-      
-      .modern-message {
-        max-width: 90%;
-      }
-      
-      .modern-chatbot-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
-      }
-      
-      .modern-chatbot-status {
-        position: static;
-        transform: none;
-        text-align: center;
-        margin-top: 0.5rem;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+    .info-box h4 {
+      color: var(--danger);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-      .navbar {
-        padding: 10px;
-      }
-      
-      .nav-links {
-        gap: 10px;
-      }
-      
-      .modern-chatbot-container {
-        height: 500px;
-      }
-      
-      .modern-topic-button {
-        font-size: 0.8rem;
-        padding: 0.5rem 0.8rem;
-      }
-      
-      .contact-form-container {
-        padding: 1.5rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <div class="logo">CyberShield</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="awareness.html">Awareness</a></li>
-      <li><a href="prevention.html">Prevention</a></li>
-      <li><a href="fraud.html">Report Fraud</a></li>
-
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Scrolling Alert Banner -->
-  <div class="alert-banner">
-    <div class="alert-content">
-      <i class="fas fa-exclamation-triangle"></i> ALERT: For immediate cybercrime assistance, call 1930 (National Cyber Crime Helpline) 
-    </div>
-  </div>
-
-  <header>
-    <div class="header-content">
-      <div class="brand-container">
-        <div class="logo-icon">
-          <i class="fas fa-headset"></i>
-        </div>
-        <h1 class="site-title">Contact & Support</h1>
-      </div>
-      <div class="accent-border" style="margin: 0.5rem auto 1rem;"></div>
-      <p class="subtitle">Get in touch with our cybersecurity experts. We're here to help protect your digital assets.</p>
-    </div>
-  </header>
-
-  <main>
-    <!-- Contact Information Section -->
-    <section id="contact-info">
-      <h2><i class="fas fa-address-card"></i> Contact Information</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Reach out to our cybersecurity team through any of the following channels. We're available 24/7 for emergency incidents.</p>
-      
-      <div class="contact-grid">
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
-          <h3>Phone Support</h3>
-          <p>Speak directly with our cybersecurity experts for immediate assistance.</p>
-          <div class="contact-details">
-            <div class="contact-detail">
-              <i class="fas fa-phone"></i>
-              <span>General Inquiries: <strong>1-800-CYBER-HELP</strong></span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-mobile-alt"></i>
-              <span>Emergency: <strong>+91-9876543210</strong></span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-clock"></i>
-              <span>Available: 24/7 for emergencies</span>
-            </div>
-          </div>
-          <a href="tel:+180029374357" class="btn" style="margin-top: 1rem;">
-            <i class="fas fa-phone"></i> Call Now
-          </a>
-        </div>
-        
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <h3>Email Support</h3>
-          <p>Send us detailed information about your cybersecurity concerns.</p>
-          <div class="contact-details">
-            <div class="contact-detail">
-              <i class="fas fa-envelope"></i>
-              <span>General: <strong>support@cybershield.com</strong></span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-shield-alt"></i>
-              <span>Security Incidents: <strong>incident@cybershield.com</strong></span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-business-time"></i>
-              <span>Response Time: Within 2 hours</span>
-            </div>
-          </div>
-          <a href="mailto:support@cybershield.com" class="btn" style="margin-top: 1rem;">
-            <i class="fas fa-envelope"></i> Send Email
-          </a>
-        </div>
-        
-        <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h3>Office Location</h3>
-          <p>Visit our headquarters for in-person consultations and training sessions.</p>
-          <div class="contact-details">
-            <div class="contact-detail">
-              <i class="fas fa-building"></i>
-              <span>CyberShield Headquarters</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-map-pin"></i>
-              <span>Cyber Security Park, Sector 62</span>
-            </div>
-            <div class="contact-detail">
-              <i class="fas fa-city"></i>
-              <span>Noida, Uttar Pradesh 201309</span>
-            </div>
-          </div>
-          <a href="#" class="btn btn-outline" style="margin-top: 1rem;">
-            <i class="fas fa-directions"></i> Get Directions
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Emergency Contacts Section -->
-    <section id="emergency">
-      <h2><i class="fas fa-exclamation-triangle"></i> Emergency Cyber Contacts</h2>
-      <div class="accent-border"></div>
-      <p class="intro">For immediate cybercrime reporting and emergency assistance, contact these official helplines.</p>
-      
-      <div class="emergency-grid">
-        <div class="emergency-card">
-          <i class="fas fa-phone-alt"></i>
-          <h3>National Cyber Crime Helpline</h3>
-          <p>24/7 toll-free number for reporting cyber crimes across India</p>
-          <div class="emergency-number">1930</div>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Toll-free | Available 24/7</p>
-        </div>
-        
-        <div class="emergency-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Police Cyber Cells</h3>
-          <p>Specialized police units for cyber crime investigation</p>
-          <div class="emergency-number">100</div>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Emergency Police Number</p>
-        </div>
-        
-        <div class="emergency-card">
-          <i class="fas fa-laptop-medical"></i>
-          <h3>CERT-In Helpline</h3>
-          <p>Indian Computer Emergency Response Team</p>
-          <div class="emergency-number">+91-11-24368572</div>
-          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Government Cyber Security</p>
-        </div>
-      </div>
-      
-      <div style="margin-top: 2rem; padding: 1.5rem; background: var(--danger-light); border-radius: 8px; border-left: 4px solid var(--danger);">
-        <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
-          <i class="fas fa-lightbulb"></i> When to Use Emergency Contacts
-        </h4>
-        <ul style="color: var(--text-medium); padding-left: 1.5rem;">
-          <li>Financial fraud or online banking theft</li>
-          <li>Data breach affecting personal information</li>
-          <li>Cyber bullying or online harassment</li>
-          <li>Ransomware attacks on critical systems</li>
-          <li>Suspected nation-state cyber attacks</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section id="contact-form">
-      <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Fill out the form below and our cybersecurity team will get back to you within 24 hours.</p>
-      
-      <div class="contact-form-container">
-        <form id="contactForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName">Full Name *</label>
-              <input type="text" id="fullName" placeholder="Enter your full name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" placeholder="Enter your email address" required>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="organization">Organization</label>
-              <input type="text" id="organization" placeholder="Your company or organization">
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" placeholder="Your contact number">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="queryType">Type of Query *</label>
-            <select id="queryType" required>
-              <option value="">Select query type</option>
-              <option value="general">General Inquiry</option>
-              <option value="incident">Security Incident</option>
-              <option value="training">Training Request</option>
-              <option value="consultation">Consultation</option>
-              <option value="partnership">Partnership</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="subject">Subject *</label>
-            <input type="text" id="subject" placeholder="Brief subject of your message" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" rows="6" placeholder="Describe your cybersecurity concern or inquiry in detail..." required></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label>
-              <input type="checkbox" required>
-              I agree to the <a href="#" style="color: var(--primary);">privacy policy</a> and understand this information will be handled securely
-            </label>
-          </div>
-          
-          <div class="form-group">
-            <button type="submit" class="btn" style="width: 100%; padding: 1rem;">
-              <i class="fas fa-paper-plane"></i> Send Message
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- Office Hours Section -->
-    <section id="hours">
-      <h2><i class="fas fa-clock"></i> Office Hours</h2>
-      <div class="accent-border"></div>
-      
-      <div class="hours-container">
-        <div class="hours-card">
-          <div class="hours-day">Monday - Friday</div>
-          <div class="hours-time">9:00 AM - 7:00 PM</div>
-          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">General Inquiries</div>
-        </div>
-        <div class="hours-card">
-          <div class="hours-day">Saturday</div>
-          <div class="hours-time">10:00 AM - 4:00 PM</div>
-          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Training & Workshops</div>
-        </div>
-        <div class="hours-card">
-          <div class="hours-day">Sunday</div>
-          <div class="hours-time">Emergency Only</div>
-          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Critical Incidents</div>
-        </div>
-        <div class="hours-card">
-          <div class="hours-day">24/7 Support</div>
-          <div class="hours-time">Always Available</div>
-          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Emergency Helpline</div>
-        </div>
-      </div>
-    </section>
-
-  .modern-chatbot-container {
-
-            max-width: 600px;
-
-            margin: 40px auto;
-
-            background: white;
-
-            border-radius: 12px;
-
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-
-            overflow: hidden;
-
-            display: flex;
-
-            flex-direction: column;
-
-            height: 600px;
-
-        }
-
-
-
-        .modern-chatbot-header {
-
-            background: var(--primary);
-
-            color: white;
-
-            padding: 15px 20px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-        }
-
-
-
-        .modern-header-left { display: flex; align-items: center; gap: 10px; }
-
-        .modern-chatbot-icon { background: white; padding: 8px; border-radius: 50%; display: flex; }
-
-        .modern-chatbot-header h3 { margin: 0; font-size: 16px; }
-
-
-
-        .modern-language-selector {
-
-            background: rgba(255,255,255,0.2);
-
-            color: white;
-
-            border: none;
-
-            padding: 5px;
-
-            border-radius: 4px;
-
-            font-size: 12px;
-
-        }
-
-
-
-        /* Messages Area */
-
-        .modern-chat-messages {
-
-            flex: 1;
-
-            padding: 20px;
-
-            overflow-y: auto;
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 15px;
-
-            background: #f9f9f9;
-
-        }
-
-
-
-        .modern-message {
-
-            max-width: 80% ;
-
-            padding: 12px 16px;
-
-            border-radius: 15px;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-
-        }
-
-
-
-        .modern-bot-message {
-
-            align-self: flex-start;
-
-            background: white;
-
-            color: var(--text-dark);
-
-            border: 1px solid #eee;
-
-            border-bottom-left-radius: 2px;
-
-        }
-
-
-
-        .modern-user-message {
-
-            align-self: flex-end;
-
-            background: var(--primary);
-
-            color: white;
-
-            border-bottom-right-radius: 2px;
-
-        }
-
-
-
-        /* Welcome/Topics Styling */
-
-        .modern-welcome-message { background: var(--primary-light); padding: 15px; border-radius: 10px; }
-
-        .modern-topic-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-
-        .modern-topic-button {
-
-            background: white;
-
-            border: 1px solid var(--primary);
-
-            color: var(--primary);
-
-            padding: 6px 12px;
-
-            border-radius: 20px;
-
-            font-size: 12px;
-
-            cursor: pointer;
-
-            transition: 0.3s;
-
-        }
-
-        .modern-topic-button:hover { background: var(--primary); color: white; }
-
-
-
-        /* Input Area */
-
-        .modern-chat-input-container { padding: 15px; background: white; border-top: 1px solid #eee; }
-
-        .modern-chat-input-wrapper { display: flex; gap: 10px; }
-
-        .modern-chat-input {
-
-            flex: 1;
-
-            padding: 12px;
-
-            border: 1px solid #ddd;
-
-            border-radius: 25px;
-
-            outline: none;
-
-        }
-
-        .modern-send-button {
-
-            background: var(--primary);
-
-            color: white;
-
-            border: none;
-
-            width: 45px;
-
-            height: 45px;
-
-            border-radius: 50%;
-
-            cursor: pointer;
-
-        }
-
-
-
-        /* Loading Dots */
-
-        .modern-loading-dot {
-
-            display: inline-block;
-
-            width: 6px;
-
-            height: 6px;
-
-            background: #aaa;
-
-            border-radius: 50%;
-
-            margin-right: 3px;
-
-            animation: bounce 1.4s infinite ease-in-out both;
-
-        }
-
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-
-    </style></head><body><section id="modern-chatbot">
-
-    <div class="modern-chatbot-container">
-
-        <div class="modern-chatbot-header">
-
-            <div class="modern-header-left">
-
-                <div class="modern-chatbot-icon"><i class="fas fa-shield-alt" style="color: #003399;"></i></div>
-
-                <h3>Cyber Shield Assistant</h3>
-
-            </div>
-
-            <select class="modern-language-selector" id="modern-language-selector">
-
-                <option value="en">English</option>
-
-                <option value="hi">हिंदी (Hindi)</option>
-
-                <option value="te">తెలుగు (Telugu)</option>
-
-                <option value="kn">ಕನ್ನಡ (Kannada)</option>
-
-            </select>
-
-        </div>
-
-        
-
-        <div class="modern-chat-messages" id="modern-chat-messages"></div>
-
-        
-
-        <div class="modern-chat-input-container">
-
-            <div class="modern-chat-input-wrapper">
-
-                <input type="text" class="modern-chat-input" id="modern-chat-input" placeholder="Type your message here...">
-
-                <button class="modern-send-button" id="modern-send-button"><i class="fas fa-paper-plane"></i></button>
-
-            </div>
-
-        </div>
-
-    </div></section><script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-
-        const chatbotState = { messages: [], input: '', language: 'en', loading: false };
-
-
-
-        const welcomeContent = {
-
-            en: { greeting: "Hello! I'm your Cyber Shield Assistant. How can I help you?", topics: ["Phishing attacks", "Password security", "Report a crime"] },
-
-            hi: { greeting: "नमस्ते! मैं आपका साइबर शील्ड असिस्टेंट हूं। मैं आपकी कैसे मदद कर सकता हूं?", topics: ["फ़िशिंग हमले", "पासवर्ड सुरक्षा", "अपराध की रिपोर्ट"] }
-
-            // Add other languages here...
-
-        };
-
-
-
-        const chatMessages = document.getElementById('modern-chat-messages');
-
-        const chatInput = document.getElementById('modern-chat-input');
-
-        const sendButton = document.getElementById('modern-send-button');
-
-
-
-        function initializeChat() {
-
-            const content = welcomeContent[chatbotState.language] || welcomeContent.en;
-
-            chatbotState.messages = [{ role: 'assistant', content: content.greeting, isWelcome: true, topics: content.topics }];
-
-            renderMessages();
-
-        }
-
-
-
-        function renderMessages() {
-
-            chatMessages.innerHTML = '';
-
-            chatbotState.messages.forEach(msg => {
-
-                const messageDiv = document.createElement('div');
-
-                if (msg.isWelcome) {
-
-                    messageDiv.className = 'modern-welcome-message';
-
-                    messageDiv.innerHTML = `<p>${msg.content}</p><div class="modern-topic-buttons">` + 
-
-                        msg.topics.map(t => `<button class="modern-topic-button" onclick="handleTopicClick('${t}')">${t}</button>`).join('') + `</div>`;
-
-                } else {
-
-                    messageDiv.className = `modern-message ${msg.role === 'user' ? 'modern-user-message' : 'modern-bot-message'}`;
-
-                    messageDiv.textContent = msg.content;
-
-                }
-
-                chatMessages.appendChild(messageDiv);
-
-            });
-
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        }
-
-
-
-        window.handleTopicClick = function(topic) { handleSubmit(topic); };
-
-
-
-        async function handleSubmit(customText = null) {
-
-            const text = customText || chatInput.value.trim();
-
-            if (!text || chatbotState.loading) return;
-
-
-
-            chatbotState.messages.push({ role: 'user', content: text });
-
-            chatInput.value = '';
-
-            renderMessages();
-
-
-
-            // Show Loading
-
-            chatbotState.loading = true;
-
-            const loadingDiv = document.createElement('div');
-
-            loadingDiv.className = 'modern-message modern-bot-message';
-
-            loadingDiv.innerHTML = '<div class="modern-loading-dot"></div><div class="modern-loading-dot"></div><div class="modern-loading-dot"></div>';
-
-            chatMessages.appendChild(loadingDiv);
-
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-
-
-            // Logic to handle Custom Input
-
-            setTimeout(() => {
-
-                chatMessages.removeChild(loadingDiv);
-
-                let response = getCustomResponse(text, chatbotState.language);
-
-                chatbotState.messages.push({ role: 'assistant', content: response });
-
-                chatbotState.loading = false;
-
-                renderMessages();
-
-            }, 1000);
-
-        }
-
-
-
-        // KEYWORD DETECTION LOGIC
-
-        function getCustomResponse(input, lang) {
-
-            const str = input.toLowerCase();
-
-            
-
-            if (str.includes("password")) return "Always use 12+ characters and a mix of symbols. Never reuse passwords!";
-
-            if (str.includes("phish") || str.includes("email")) return "Phishing emails often have urgent language. Don't click suspicious links!";
-
-            if (str.includes("scam") || str.includes("bank") || str.includes("money")) return "If you lost money, contact your bank immediately and report it at 1930.";
-
-            if (str.includes("hello") || str.includes("hi")) return "Hello! I am ready to answer your cybersecurity questions.";
-
-            
-
-            return "That's an interesting question. While I'm still learning about that specific topic, I recommend checking our 'Prevention' page for general safety tips.";
-
-        }
-
-
-
-        sendButton.addEventListener('click', () => handleSubmit());
-
-        chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleSubmit(); });
-
-        initializeChat();
-
-    }); 
-
-      // Contact form submission
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const fullName = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
-        const queryType = document.getElementById('queryType').value;
-        const subject = document.getElementById('subject').value;
-        
-        // Show success message
-        alert(`Thank you ${fullName}! Your ${queryType} inquiry "${subject}" has been submitted. Our cybersecurity team will contact you at ${email} within 24 hours.`);
-        
-        // Reset form
-        contactForm.reset();
-      });
-    });
-  </script>
-
-</body>
-</html>
-
-      background-color: #0b3d91;
-      color: white;
-      padding: 15px 30px;
-      z-index: 1000;
-      position: sticky;
-      top: 0;
+    .info-box ul {
+      color: var(--text-medium);
+      padding-left: 1.5rem;
     }
 
-    .navbar .logo {
-      font-size: 22px;
+    .info-box li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .info-box li::before {
+      content: '•';
+      color: var(--danger);
       font-weight: bold;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-weight: 500;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      text-decoration: underline;
-      color: #dbeafe;
-    }
-
-    :root {
-      --primary: #1e3a8a;
-      --primary-dark: #1e40af;
-      --primary-light: #dbeafe;
-      --secondary: #3b82f6;
-      --secondary-dark: #2563eb;
-      --success: #10b981;
-      --success-light: #d1fae5;
-      --danger: #ef4444;
-      --danger-light: #fee2e2;
-      --warning: #f59e0b;
-      --warning-light: #fef3c7;
-      --info: #3b82f6;
-      --info-light: #dbeafe;
-      --bg-light: #f0f9ff;
-      --bg-lighter: #f8fafc;
-      --text-dark: #1e293b;
-      --text-medium: #475569;
-      --text-light: #64748b;
-      --card-bg: #ffffff;
-      --border: #e2e8f0;
-      --border-light: #f1f5f9;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Source Sans Pro', 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.6;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    /* Alert Banner */
-    .alert-banner {
-      background: var(--danger);
-      color: white;
-      padding: 12px 0;
-      overflow: hidden;
-      position: relative;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .alert-content {
-      display: inline-block;
-      white-space: nowrap;
-      animation: scrollText 25s linear infinite;
-      padding-left: 100%;
-    }
-
-    @keyframes scrollText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 3.5rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
-
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .brand-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .logo-icon {
-      font-size: 3.5rem;
-      color: white;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-    }
-
-    .site-title {
-      font-size: 2.75rem;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      font-style: italic;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .subtitle {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      font-weight: 400;
-      max-width: 600px;
-      margin: 0 auto;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem;
-    }
-
-    section {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      margin-bottom: 2.5rem;
-      border: 1px solid var(--border-light);
-    }
-
-    h2 {
-      color: var(--primary-dark);
-      margin-bottom: 1.5rem;
-      font-size: 1.9rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      letter-spacing: -0.015em;
-    }
-
-    h2 i {
-      color: var(--primary);
-    }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--text-medium);
-      font-size: 1.15rem;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .accent-border {
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      width: 80px;
-      margin: 0.5rem 0 1.5rem;
-      border-radius: 2px;
-    }
-
-    /* Contact Information Grid */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .contact-card {
-      background: var(--bg-lighter);
-      border-radius: 12px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border);
-    }
-
-    .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .contact-icon {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      background: var(--primary-light);
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
-      color: var(--primary-dark);
-    }
-
-    .contact-card p {
-      color: var(--text-medium);
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-
-    .contact-details {
-      margin-top: 1rem;
-    }
-
-    .contact-detail {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-dark);
-    }
-
-    /* Contact Form */
-    .contact-form-container {
-      background: var(--bg-lighter);
-      padding: 2.5rem;
-      border-radius: 12px;
-      margin-top: 2rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--primary);
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.2s;
-      border: none;
-      cursor: pointer;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-
-    .btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(30, 64, 175, 0.3);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--primary);
-      color: var(--primary);
-    }
-
-    .btn-outline:hover {
-      background: var(--primary-light);
-    }
-
-    .btn-success {
-      background: var(--success);
-    }
-
-    .btn-success:hover {
-      background: #0da271;
-    }
-
-    /* Emergency Contact Section */
-    .emergency-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .emergency-card {
-      background: var(--bg-lighter);
-      border-radius: 12px;
-      padding: 1.75rem;
-      text-align: center;
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-    }
-
-    .emergency-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-    }
-
-    .emergency-card i {
-      font-size: 2.5rem;
-      color: var(--danger);
-      margin-bottom: 1rem;
-    }
-
-    .emergency-card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--text-dark);
-    }
-
-    .emergency-card p {
-      color: var(--text-medium);
-      margin-bottom: 1rem;
-    }
-
-    .emergency-number {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--danger);
-    }
-
-    /* Office Hours */
-    .hours-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .hours-card {
-      background: var(--bg-lighter);
-      padding: 1.5rem;
-      border-radius: 8px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-
-    .hours-day {
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-
-    .hours-time {
-      color: var(--text-medium);
-    }
-
-    /* Modern Chatbot Styles (React-inspired) */
-    .modern-chatbot-container {
-      margin-top: 2rem;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      height: 600px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    }
-
-    .modern-chatbot-header {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
-
-    .modern-header-left {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .modern-chatbot-icon {
-      background: white;
-      padding: 0.5rem;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modern-chatbot-header h3 {
-      margin: 0;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    .modern-language-selector {
-      background: rgba(255,255,255,0.2);
-      border: 2px solid rgba(255,255,255,0.3);
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .modern-language-selector:hover {
-      background: rgba(255,255,255,0.3);
-    }
-
-    .modern-language-selector option {
-      color: var(--text-dark);
-      background: white;
-    }
-
-    .modern-chat-messages {
-      flex-grow: 1;
-      padding: 1.5rem;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      background: #f8fafc;
-    }
-
-    .modern-message {
-      max-width: 80%;
-      padding: 1rem 1.25rem;
-      border-radius: 20px;
-      line-height: 1.5;
-      animation: fadeIn 0.3s ease;
-      font-size: 0.95rem;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .modern-user-message {
-      align-self: flex-end;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-bottom-right-radius: 5px;
-      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
-    }
-
-    .modern-bot-message {
-      align-self: flex-start;
-      background: white;
-      color: var(--text-dark);
-      border-bottom-left-radius: 5px;
-      border: 1px solid var(--border-light);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-
-    .modern-welcome-message {
-      max-width: 90%;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      text-align: left;
-    }
-
-    .modern-welcome-topics {
-      margin-top: 1rem;
-    }
-
-    .modern-welcome-subtitle {
-      color: var(--text-medium);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-      font-size: 0.95rem;
-    }
-
-    .modern-topic-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .modern-topic-button {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: 1px solid var(--primary);
-      border-radius: 10px;
-      padding: 0.6rem 1rem;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-weight: 500;
-    }
-
-    .modern-topic-button:hover {
-      background: var(--primary);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(30, 64, 175, 0.2);
-    }
-
-    .modern-chat-input-container {
-      background: white;
-      border-top: 1px solid var(--border);
-      padding: 1rem;
-    }
-
-    .modern-chat-input-wrapper {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .modern-chat-input {
-      flex: 1;
-      padding: 0.9rem 1.2rem;
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 0.95rem;
-      transition: all 0.3s;
-      outline: none;
-    }
-
-    .modern-chat-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-    }
-
-    .modern-send-button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      width: 56px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .modern-send-button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-    }
-
-    .modern-send-button:disabled {
-      background: var(--text-light);
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .modern-loading-indicator {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 1rem;
-      background: white;
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-      max-width: 60px;
-    }
-
-    .modern-loading-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      animation: loadingBounce 1.4s infinite ease-in-out;
-    }
-
-    .modern-loading-dot:nth-child(1) { animation-delay: -0.32s; }
-    .modern-loading-dot:nth-child(2) { animation-delay: -0.16s; }
-
-    @keyframes loadingBounce {
-      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-
-    .modern-chatbot-status {
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.75rem;
-      opacity: 0.9;
-      background: rgba(255,255,255,0.2);
-      padding: 0.25rem 0.5rem;
-      border-radius: 12px;
-    }
-
-    /* Scrollbar styling */
-    .modern-chat-messages::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-thumb {
-      background: var(--border);
-      border-radius: 3px;
-    }
-
-    .modern-chat-messages::-webkit-scrollbar-thumb:hover {
-      background: var(--text-light);
+      left: -1rem;
     }
 
     footer {
@@ -2259,10 +866,35 @@
       margin: 0 auto;
     }
 
+    .footer-content p {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-content span {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      h1 {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+      }
+      
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .site-title {
         font-size: 2.2rem;
+      }
+      
+      .logo-icon {
+        font-size: 3rem;
       }
       
       section {
@@ -2274,37 +906,25 @@
         grid-template-columns: 1fr;
       }
       
-      .brand-container {
-        flex-direction: column;
-        gap: 1rem;
+      .form-row {
+        grid-template-columns: 1fr;
       }
-
-      .logo-icon {
-        font-size: 3rem;
-      }
-
-      .site-title {
-        font-size: 2.2rem;
-      }
-
-      .navbar {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
+      
       .modern-chatbot-container {
         height: 550px;
       }
       
-      .modern-topic-buttons {
-        justify-content: center;
+      .modern-chatbot-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+      
+      .modern-chatbot-status {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-top: 0.5rem;
       }
       
       .modern-chat-input-wrapper {
@@ -2321,21 +941,12 @@
         max-width: 90%;
       }
       
-      .modern-chatbot-header {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: stretch;
+      .modern-topic-buttons {
+        justify-content: center;
       }
       
-      .modern-chatbot-status {
-        position: static;
-        transform: none;
-        text-align: center;
-        margin-top: 0.5rem;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
+      .contact-form-container {
+        padding: 1.5rem;
       }
     }
 
@@ -2357,8 +968,12 @@
         padding: 0.5rem 0.8rem;
       }
       
-      .contact-form-container {
+      .contact-card {
         padding: 1.5rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
       }
     }
   </style>
@@ -2367,13 +982,15 @@
 
   <!-- Navigation Bar -->
   <nav class="navbar">
-    <div class="logo">CyberShield</div>
+    <div class="logo">
+      <i class="fas fa-shield-alt"></i>
+      <span>CyberShield</span>
+    </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="awareness.html">Awareness</a></li>
       <li><a href="prevention.html">Prevention</a></li>
       <li><a href="fraud.html">Report Fraud</a></li>
-
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
@@ -2381,7 +998,7 @@
   <!-- Scrolling Alert Banner -->
   <div class="alert-banner">
     <div class="alert-content">
-      <i class="fas fa-exclamation-triangle"></i> ALERT: For immediate cybercrime assistance, call 1930 (National Cyber Crime Helpline) 
+      <i class="fas fa-exclamation-triangle"></i> ALERT: For immediate cybercrime assistance, call 1930 (National Cyber Crime Helpline) | Report online at cybercrime.gov.in
     </div>
   </div>
 
@@ -2394,7 +1011,7 @@
         <h1 class="site-title">Contact & Support</h1>
       </div>
       <div class="accent-border" style="margin: 0.5rem auto 1rem;"></div>
-      <p class="subtitle">Get in touch with our cybersecurity experts. We're here to help protect your digital assets.</p>
+      <p class="subtitle">Get in touch with our cybersecurity experts. We're here to help protect your digital assets 24/7.</p>
     </div>
   </header>
 
@@ -2515,11 +1132,9 @@
         </div>
       </div>
       
-      <div style="margin-top: 2rem; padding: 1.5rem; background: var(--danger-light); border-radius: 8px; border-left: 4px solid var(--danger);">
-        <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
-          <i class="fas fa-lightbulb"></i> When to Use Emergency Contacts
-        </h4>
-        <ul style="color: var(--text-medium); padding-left: 1.5rem;">
+      <div class="info-box">
+        <h4><i class="fas fa-lightbulb"></i> When to Use Emergency Contacts</h4>
+        <ul>
           <li>Financial fraud or online banking theft</li>
           <li>Data breach affecting personal information</li>
           <li>Cyber bullying or online harassment</li>
@@ -2583,9 +1198,9 @@
           </div>
           
           <div class="form-group">
-            <label>
-              <input type="checkbox" required>
-              I agree to the <a href="#" style="color: var(--primary);">privacy policy</a> and understand this information will be handled securely
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+              <input type="checkbox" required style="margin-top: 3px;">
+              <span>I agree to the <a href="#" style="color: var(--primary); text-decoration: underline;">privacy policy</a> and understand this information will be handled securely</span>
             </label>
           </div>
           
@@ -2673,14 +1288,14 @@
 
   <footer>
     <div class="footer-content">
-      <p>© 2023 <span style="font-style: italic;">Cyber Shield</span> Enterprise Security Initiative. All rights reserved.</p>
+      <p>© 2023 <span>Cyber Shield</span> Enterprise Security Initiative. All rights reserved.</p>
       <p>Contact us: support@cybershield.com | 1-800-CYBER-HELP | Emergency: 1930</p>
     </div>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Modern Chatbot State Management (Vanilla JS equivalent of React state)
+      // Modern Chatbot State Management
       const chatbotState = {
         messages: [],
         input: '',
@@ -2753,8 +1368,6 @@
       const chatInput = document.getElementById('modern-chat-input');
       const sendButton = document.getElementById('modern-send-button');
       const languageSelector = document.getElementById('modern-language-selector');
-
-      // Contact form elements
       const contactForm = document.getElementById('contactForm');
 
       // Initialize chatbot
@@ -2888,20 +1501,6 @@
             "मैलवेयर सुरक्षा": "सभी सॉफ़्टवेयर को अपडेट रखें, प्रतिष्ठित एंटीवायरस सॉफ़्टवेयर का उपयोग करें, संदिग्ध डाउनलोड से बचें और महत्वपूर्ण डेटा का नियमित रूप से बैकअप लें। अज्ञात प्रेषकों से ईमेल अटैचमेंट के साथ सावधान रहें।",
             "साइबर अपराध की रिपोर्ट करें": "भारत में, साइबर अपराधों की रिपोर्ट राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 पर करें या https://cybercrime.gov.in पर जाएं। वित्तीय धोखाधड़ी के लिए, तुरंत अपने बैंक से संपर्क करें।",
             default: "मैं समझता हूं कि आप साइबर सुरक्षा के बारे में पूछ रहे हैं। क्या आप कृपया अधिक विवरण प्रदान कर सकते हैं या फ़िशिंग, पासवर्ड सुरक्षा, मालवेयर सुरक्षा, या साइबर अपराधों की रिपोर्टिंग जैसे विशिष्ट विषयों के बारे में पूछ सकते हैं?"
-          },
-          te: {
-            "ఫిషింగ్ దాడులు": "ఫిషింగ్ దాడులు సున్నితమైన సమాచారాన్ని దొంగిలించడానికి మోసపూరిత ఈమెయిల్‌లను ఉపయోగిస్తాయి. ఎల్లప్పుడూ పంపినవారి చిరునామాలను ధృవీకరించండి, స్పెల్లింగ్ లోపాలను తనిఖీ చేయండి మరియు అనుమానాస్పద లింక్‌లపై ఎప్పుడూ క్లిక్ చేయవద్దు. అదనపు భద్రత కోసం రెండు-కారకం ప్రమాణీకరణను ప్రారంభించండి.",
-            "పాస్‌వర్డ్ భద్రత": "12+ అక్షరాలతో బలమైన పాస్‌వర్డ్‌లను ఉపయోగించండి, వీటిలో పెద్ద అక్షరాలు, చిన్న అక్షరాలు, సంఖ్యలు మరియు చిహ్నాలు ఉంటాయి. ఖాతాలలో పాస్‌వర్డ్‌లను మళ్లీ ఉపయోగించవద్దు. మెరుగైన భద్రత కోసం పాస్‌వర్డ్ మేనేజర్‌ను ఉపయోగించడం గురించి ఆలోచించండి.",
-            "మాల్వేర్ రక్షణ": "అన్ని సాఫ్ట్‌వేర్‌లను నవీకరించబడి ఉంచండి, ప్రతిష్టాత్మక యాంటీవైరస్ సాఫ్ట్‌వేర్ ఉపయోగించండి, అనుమానాస్పద డౌన్‌లోడ్‌లను నివారించండి మరియు ముఖ్యమైన డేటాను నియమితంగా బ్యాకప్ చేయండి. తెలియని పంపినవారి నుండి ఈమెయిల్ అటాచ్‌మెంట్‌లతో జాగ్రత్తగా ఉండండి.",
-            "సైబర్ నేరాన్ని నివేదించండి": "భారతదేశంలో, సైబర్ నేరాలను నేషనల్ సైబర్ క్రైమ్ హెల్ప్‌లైన్ 1930కి నివేదించండి లేదా https://cybercrime.gov.in ను సందర్శించండి. ఆర్థిక మోసం కోసం, వెంటనే మీ బ్యాంక్‌ను సంప్రదించండి.",
-            default: "మీరు సైబర్ భద్రత గురించి అడుగుతున్నారని నేను అర్థం చేసుకున్నాను. దయచేసి మరింత వివరాలు అందించగలరా లేదా ఫిషింగ్, పాస్‌వర్డ్ భద్రత, మాల్వేర్ రక్షణ లేదా సైబర్ నేరాలను నివేదించడం వంటి నిర్దిష్ట విషయాల గురించి అడగగలరా?"
-          },
-          kn: {
-            "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು": "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು ಸೂಕ್ಷ್ಮ ಮಾಹಿತಿಯನ್ನು ಕದಿಯಲು ಮೋಸದ ಇಮೇಲ್‌ಗಳನ್ನು ಬಳಸುತ್ತವೆ. ಯಾವಾಗಲೂ ಕಳುಹಿಸುವವರ ವಿಳಾಸಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಕಾಗುಣಿತ ದೋಷಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಅನುಮಾನಾಸ್ಪದ ಲಿಂಕ್‌ಗಳ ಮೇಲೆ ಎಂದಿಗೂ ಕ್ಲಿಕ್ ಮಾಡಬೇಡಿ. ಹೆಚ್ಚುವರಿ ಭದ್ರತೆಗಾಗಿ ಎರಡು-ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
-            "ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ": "12+ ಅಕ್ಷರಗಳೊಂದಿಗೆ ಬಲವಾದ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಬಳಸಿ, ಇದರಲ್ಲಿ ದೊಡ್ಡಕ್ಷರಗಳು, ಸಣ್ಣಕ್ಷರಗಳು, ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಚಿಹ್ನೆಗಳು ಸೇರಿವೆ. ಖಾತೆಗಳಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಮತ್ತೆ ಬಳಸಬೇಡಿ. ಉತ್ತಮ ಭದ್ರತೆಗಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಅನ್ನು ಬಳಸುವುದನ್ನು ಪರಿಗಣಿಸಿ.",
-            "ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ": "ಎಲ್ಲಾ ಸಾಫ್ಟ್‌ವೇರ್‌ಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ, ಪ್ರತಿಷ್ಠಿತ ಆಂಟಿವೈರಸ್ ಸಾಫ್ಟ್‌ವೇರ್ ಬಳಸಿ, ಅನುಮಾನಾಸ್ಪದ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ತಪ್ಪಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ಡೇಟಾವನ್ನು ನಿಯಮಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ. ಅಜ್ಞಾತ ಕಳುಹಿಸುವವರಿಂದ ಇಮೇಲ್ ಅಟ್ಯಾಚ್ಮೆಂಟ್‌ಗಳೊಂದಿಗೆ ಜಾಗರೂಕರಾಗಿರಿ.",
-            "ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಿ": "ಭಾರತದಲ್ಲಿ, ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ನೇಷನಲ್ ಸೈಬರ್ ಕ್ರೈಮ್ ಹೆಲ್ಪ್‌ಲೈನ್ 1930 ಗೆ ವರದಿ ಮಾಡಿ ಅಥವಾ https://cybercrime.gov.in ಗೆ ಭೇಟಿ ನೀಡಿ. ಹಣಕಾಸಿನ ಮೋಸಕ್ಕಾಗಿ, ತಕ್ಷಣ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.",
-            default: "ನೀವು ಸೈಬರ್ ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ ಕೇಳುತ್ತಿದ್ದೀರಿ ಎಂದು ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು ಒದಗಿಸಬಹುದೇ ಅಥವಾ ಫಿಶಿಂಗ್, ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ, ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ ಅಥವಾ ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ವರದಿ ಮಾಡುವಂತಹ ನಿರ್ದಿಷ್ಟ ವಿಷಯಗಳ ಬಗ್ಗೆ ಕೇಳಬಹುದೇ?"
           }
         };
 
@@ -2910,10 +1509,19 @@
         let response = responses[lang]?.default || responses.en.default;
 
         // Check for specific topics
-        for (const [key, value] of Object.entries(responses[lang])) {
-          if (lowerMessage.includes(key.toLowerCase())) {
-            response = value;
-            break;
+        if (lang === 'en') {
+          for (const [key, value] of Object.entries(responses.en)) {
+            if (lowerMessage.includes(key.toLowerCase())) {
+              response = value;
+              break;
+            }
+          }
+        } else if (lang === 'hi' && responses.hi) {
+          for (const [key, value] of Object.entries(responses.hi)) {
+            if (lowerMessage.includes(key.toLowerCase())) {
+              response = value;
+              break;
+            }
           }
         }
 
@@ -2967,5 +1575,3 @@
 
 </body>
 </html>
-
-
