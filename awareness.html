@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CyberShield | Cyber Safety Awareness</title>
+<title>Awareness - CyberShield</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -66,71 +66,27 @@ body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behav
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">CyberShield</div>
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#awareness">Awareness</a></li>
-    <li><a href="#prevention">Prevention</a></li>
-    <li><a href="#report">Report Fraud</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="awareness.html">Awareness</a></li>
+    <li><a href="prevention.html">Prevention</a></li>
+    <li><a href="fraud.html">Report Fraud</a></li>
+    <li><a href="resourcecontact.html">Contact</a></li>
   </ul>
   <div class="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <h1>Stay Safe in the Digital World</h1>
-  <p>CyberShield educates all age groups about cyber threats, safe browsing habits, and digital responsibility.</p>
+<section class="hero">
+  <h1>Cyber Awareness</h1>
+  <p>Learn about different types of cybercrimes and how to stay safe online.</p>
   <button onclick="openSearch('Cybersecurity awareness')">Watch Video</button>
 </section>
 
-<!-- AWARENESS SECTION -->
-<h2 class="section-title" id="awareness">Cyber Awareness</h2>
-<div class="cards-container">
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1556155092-8707de31f9c4" alt="Phishing">
-    <div class="card-content">
-      <h2>Phishing Attacks</h2>
-      <ul>
-        <li>Fake emails & messages</li>
-        <li>Steal login credentials</li>
-        <li>Impersonate trusted brands</li>
-      </ul>
-      <button onclick="openSearch('What is phishing cyber security')">Learn More</button>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa" alt="Malware">
-    <div class="card-content">
-      <h2>Malware & Viruses</h2>
-      <ul>
-        <li>Damages devices</li>
-        <li>Steals private data</li>
-        <li>Spreads via unsafe downloads</li>
-      </ul>
-      <button onclick="openSearch('Malware explained cyber security')">Learn More</button>
-    </div>
-  </div>
-  <div class="card">
-    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7" alt="Password Security">
-    <div class="card-content">
-      <h2>Strong Passwords</h2>
-      <ul>
-        <li>Use long & unique passwords</li>
-        <li>Avoid personal info</li>
-        <li>Enable 2FA</li>
-      </ul>
-      <button onclick="openSearch('How to create strong passwords')">Learn More</button>
-    </div>
-  </div>
-</div>
-
-<!-- PREVENTION SECTION -->
-<h2 class="section-title" id="prevention">Prevention</h2>
+<h2 class="section-title">Sections of Society</h2>
 <div class="cards-container">
   <div class="card">
     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="Children Safety">
@@ -168,8 +124,9 @@ body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behav
       <button onclick="openSearch('Phishing awareness training')">Watch Video</button>
     </div>
   </div>
+ 
   <div class="card">
-    <img src="https://cdn.pixabay.com/photo/2016/11/29/06/15/elderly-1867831_1280.jpg" alt="Senior Citizens Safety">
+    <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=600&q=80" alt="Senior Citizens Talking">
     <div class="card-content">
       <h2>Senior Citizens</h2>
       <ul>
@@ -182,27 +139,14 @@ body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behav
   </div>
 </div>
 
-<!-- REPORT FRAUD SECTION -->
-<h2 class="section-title" id="report">Report Fraud</h2>
-<div style="text-align:center;padding:40px">
-  <p>If you encounter a cybercrime or fraud attempt, report it immediately to local authorities or online platforms. Keep screenshots and logs as proof.</p>
-  <button onclick="openSearch('How to report online fraud')">Learn How</button>
-</div>
-
-<!-- FOOTER / CONTACT -->
-<div class="footer" id="contact">
-  <p>Contact us at: <a href="mailto:cybershield@example.com">cybershield@example.com</a></p>
+<div class="footer">
   © 2025 CyberShield | Cyber Safety Awareness Project
 </div>
 
 <script>
-/* MOBILE NAVBAR TOGGLE */
 function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show');}
-
-/* SAFE YOUTUBE SEARCH */
 function openSearch(query){window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(query), "_blank");}
 
-/* SCROLL REVEAL */
 const cards=document.querySelectorAll('.card');
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
