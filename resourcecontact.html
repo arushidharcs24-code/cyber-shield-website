@@ -1,36 +1,13 @@
-[02:24, 21/12/2025] Arushi Dhar: <!-- <!DOCTYPE html>
-    <!-- ==== LEADERBOARD ==== -->
-    <section class="fade-in-up">
-      <h2><i class="fas fa-trophy"></i> Cybersecurity Champions</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Top performers in the cybersecurity quiz. Save your score to compete for the top spot!</p>
-
-      <div class="leaderboard-container">
-        <table class="leaderboard-table">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Score</th>
-              <th>Date</th>
-              <th>Performance</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboard-body">
-            <!-- Leaderboard will be populated here -->
-          </tbody>
-        </table>
-        <div clas…
-[04:18, 21/12/2025] Arushi Dhar: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cyber Shield | Resources & Support</title>
+  <title>Cyber Shield | Contact & Support</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Navbar Styles (added for consistency) */
+    /* Navbar Styles */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -39,11 +16,14 @@
       color: white;
       padding: 15px 30px;
       z-index: 1000;
+      position: sticky;
+      top: 0;
     }
 
     .navbar .logo {
       font-size: 22px;
       font-weight: bold;
+      font-family: 'Playfair Display', serif;
     }
 
     .nav-links {
@@ -59,11 +39,13 @@
       color: white;
       font-weight: 500;
       transition: color 0.3s ease, text-decoration 0.3s ease;
+      font-family: 'Source Sans Pro', sans-serif;
     }
 
     .nav-links a:hover,
     .nav-links a.active {
       text-decoration: underline;
+      color: #dbeafe;
     }
 
     :root {
@@ -78,6 +60,8 @@
       --danger-light: #fee2e2;
       --warning: #f59e0b;
       --warning-light: #fef3c7;
+      --info: #3b82f6;
+      --info-light: #dbeafe;
       --bg-light: #f0f9ff;
       --bg-lighter: #f8fafc;
       --text-dark: #1e293b;
@@ -166,7 +150,7 @@
       margin-bottom: 1rem;
     }
 
-    .logo {
+    .logo-icon {
       font-size: 3.5rem;
       color: white;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
@@ -230,43 +214,119 @@
       line-height: 1.7;
     }
 
-    .resources-grid {
+    .accent-border {
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 80px;
+      margin: 0.5rem 0 1.5rem;
+      border-radius: 2px;
+    }
+
+    /* Contact Information Grid */
+    .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      gap: 2rem;
       margin-top: 2rem;
     }
 
-    .resource-card {
+    .contact-card {
       background: var(--bg-lighter);
       border-radius: 12px;
-      padding: 1.75rem;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       transition: all 0.3s ease;
       border: 1px solid var(--border);
     }
 
-    .resource-card:hover {
+    .contact-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
 
-    .resource-icon {
+    .contact-icon {
       font-size: 2.5rem;
       color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .resource-card h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.3rem;
-    }
-
-    .resource-card p {
-      color: var(--text-medium);
       margin-bottom: 1.5rem;
-      flex-grow: 1;
+      background: var(--primary-light);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: var(--primary-dark);
+    }
+
+    .contact-card p {
+      color: var(--text-medium);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-details {
+      margin-top: 1rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-dark);
+    }
+
+    /* Contact Form */
+    .contact-form-container {
+      background: var(--bg-lighter);
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
     }
 
     .btn {
@@ -301,200 +361,344 @@
       background: var(--primary-light);
     }
 
-    .faq-container {
-      margin-top: 2rem;
+    .btn-success {
+      background: var(--success);
     }
 
-    .faq-item {
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
+    .btn-success:hover {
+      background: #0da271;
     }
 
-    .faq-question {
-      padding: 1.25rem;
-      background: var(--bg-lighter);
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      padding: 0 1.25rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .faq-answer.show {
-      padding: 1.25rem;
-      max-height: 500px;
-    }
-
-    .helpline-grid {
+    /* Emergency Contact Section */
+    .emergency-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
 
-    .helpline-card {
+    .emergency-card {
       background: var(--bg-lighter);
       border-radius: 12px;
       padding: 1.75rem;
       text-align: center;
       border: 1px solid var(--border);
+      transition: all 0.3s ease;
     }
 
-    .helpline-card i {
+    .emergency-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+    }
+
+    .emergency-card i {
       font-size: 2.5rem;
-      color: var(--primary);
+      color: var(--danger);
       margin-bottom: 1rem;
     }
 
-    .helpline-card h3 {
+    .emergency-card h3 {
       margin-bottom: 0.5rem;
+      color: var(--text-dark);
     }
 
-    .helpline-card p {
+    .emergency-card p {
       color: var(--text-medium);
       margin-bottom: 1rem;
     }
 
-    .helpline-number {
+    .emergency-number {
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--danger);
     }
 
-    /* Chatbot Styles */
-    .chatbot-container {
+    /* Office Hours */
+    .hours-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .hours-card {
+      background: var(--bg-lighter);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .hours-day {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .hours-time {
+      color: var(--text-medium);
+    }
+
+    /* Modern Chatbot Styles (React-inspired) */
+    .modern-chatbot-container {
       margin-top: 2rem;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      height: 500px;
+      height: 600px;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     }
 
-    .chatbot-header {
-      background: var(--primary);
+    .modern-chatbot-header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: white;
-      padding: 1rem 1.5rem;
+      padding: 1.5rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      justify-content: space-between;
+      position: relative;
     }
 
-    .chatbot-header h3 {
+    .modern-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .modern-chatbot-icon {
+      background: white;
+      padding: 0.5rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modern-chatbot-header h3 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 700;
     }
 
-    .language-selector {
-      margin-left: auto;
+    .modern-language-selector {
       background: rgba(255,255,255,0.2);
-      border: none;
+      border: 2px solid rgba(255,255,255,0.3);
       color: white;
-      padding: 0.4rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
     }
 
-    .language-selector option {
+    .modern-language-selector:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    .modern-language-selector option {
       color: var(--text-dark);
+      background: white;
     }
 
-    .chat-messages {
+    .modern-chat-messages {
       flex-grow: 1;
       padding: 1.5rem;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      background: #f8fafc;
     }
 
-    .message {
+    .modern-message {
       max-width: 80%;
-      padding: 0.75rem 1rem;
-      border-radius: 18px;
-      line-height: 1.4;
+      padding: 1rem 1.25rem;
+      border-radius: 20px;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+      font-size: 0.95rem;
     }
 
-    .user-message {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modern-user-message {
       align-self: flex-end;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+    }
+
+    .modern-bot-message {
+      align-self: flex-start;
+      background: white;
+      color: var(--text-dark);
+      border-bottom-left-radius: 5px;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .modern-welcome-message {
+      max-width: 90%;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+
+    .modern-welcome-topics {
+      margin-top: 1rem;
+    }
+
+    .modern-welcome-subtitle {
+      color: var(--text-medium);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    .modern-topic-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .modern-topic-button {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary);
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .modern-topic-button:hover {
       background: var(--primary);
       color: white;
-      border-bottom-right-radius: 4px;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(30, 64, 175, 0.2);
     }
 
-    .bot-message {
-      align-self: flex-start;
-      background: var(--bg-lighter);
-      color: var(--text-dark);
-      border-bottom-left-radius: 4px;
-    }
-
-    .chat-input {
-      display: flex;
-      padding: 1rem;
-      border-top: 1px solid var(--border);
+    .modern-chat-input-container {
       background: white;
+      border-top: 1px solid var(--border);
+      padding: 1rem;
     }
 
-    .chat-input input {
-      flex-grow: 1;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      outline: none;
+    .modern-chat-input-wrapper {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .modern-chat-input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
       font-family: 'Source Sans Pro', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+      outline: none;
     }
 
-    .chat-input button {
-      margin-left: 0.5rem;
+    .modern-chat-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    .modern-send-button {
       background: var(--primary);
       color: white;
       border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .chat-input button:hover {
-      background: var(--primary-dark);
-    }
-
-    .quick-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .quick-action {
-      background: var(--primary-light);
-      color: var(--primary-dark);
-      border: none;
-      border-radius: 16px;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      cursor: pointer;
       transition: all 0.2s;
     }
 
-    .quick-action:hover {
-      background: var(--primary);
-      color: white;
+    .modern-send-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+    }
+
+    .modern-send-button:disabled {
+      background: var(--text-light);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .modern-loading-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 1rem;
+      background: white;
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      max-width: 60px;
+    }
+
+    .modern-loading-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      animation: loadingBounce 1.4s infinite ease-in-out;
+    }
+
+    .modern-loading-dot:nth-child(1) { animation-delay: -0.32s; }
+    .modern-loading-dot:nth-child(2) { animation-delay: -0.16s; }
+
+    @keyframes loadingBounce {
+      0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .modern-chatbot-status {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      opacity: 0.9;
+      background: rgba(255,255,255,0.2);
+      padding: 0.25rem 0.5rem;
+      border-radius: 12px;
+    }
+
+    /* Scrollbar styling */
+    .modern-chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .modern-chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .modern-chat-messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    .modern-chat-messages::-webkit-scrollbar-thumb:hover {
+      background: var(--text-light);
     }
 
     footer {
@@ -512,14 +716,7 @@
       margin: 0 auto;
     }
 
-    .accent-border {
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      width: 80px;
-      margin: 0.5rem 0 1.5rem;
-      border-radius: 2px;
-    }
-
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -529,7 +726,8 @@
         padding: 1.75rem;
       }
       
-      .resources-grid, .helpline-grid {
+      .contact-grid,
+      .emergency-grid {
         grid-template-columns: 1fr;
       }
       
@@ -538,16 +736,12 @@
         gap: 1rem;
       }
 
-      .logo {
+      .logo-icon {
         font-size: 3rem;
       }
 
       .site-title {
         font-size: 2.2rem;
-      }
-
-      .message {
-        max-width: 90%;
       }
 
       .navbar {
@@ -558,13 +752,77 @@
 
       .nav-links {
         gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .modern-chatbot-container {
+        height: 550px;
+      }
+      
+      .modern-topic-buttons {
+        justify-content: center;
+      }
+      
+      .modern-chat-input-wrapper {
+        flex-direction: column;
+      }
+      
+      .modern-send-button {
+        width: 100%;
+        height: 48px;
+        border-radius: 10px;
+      }
+      
+      .modern-message {
+        max-width: 90%;
+      }
+      
+      .modern-chatbot-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+      
+      .modern-chatbot-status {
+        position: static;
+        transform: none;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 10px;
+      }
+      
+      .nav-links {
+        gap: 10px;
+      }
+      
+      .modern-chatbot-container {
+        height: 500px;
+      }
+      
+      .modern-topic-button {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+      }
+      
+      .contact-form-container {
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation Bar (added) -->
+  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">CyberShield</div>
     <ul class="nav-links">
@@ -572,219 +830,299 @@
       <li><a href="awareness.html">Awareness</a></li>
       <li><a href="prevention.html">Prevention</a></li>
       <li><a href="fraud.html">Report Fraud</a></li>
-      <li><a href="resourcecontact.html" class="active">Contact</a></li>
+      <li><a href="leaderboard.html">Champions</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
 
   <!-- Scrolling Alert Banner -->
   <div class="alert-banner">
     <div class="alert-content">
-      <i class="fas fa-exclamation-triangle"></i> ALERT: Phishing attacks increased by 45% this quarter. Always verify sender addresses and never click suspicious links. 
-      <i class="fas fa-exclamation-triangle"></i> ALERT: Phishing attacks increased by 45% this quarter. Always verify sender addresses and never click suspicious links.
+      <i class="fas fa-exclamation-triangle"></i> ALERT: For immediate cybercrime assistance, call 1930 (National Cyber Crime Helpline) 
     </div>
   </div>
 
   <header>
     <div class="header-content">
       <div class="brand-container">
-        <div class="logo">
-          <i class="fas fa-shield-alt"></i>
+        <div class="logo-icon">
+          <i class="fas fa-headset"></i>
         </div>
-        <h1 class="site-title">Cyber Shield</h1>
+        <h1 class="site-title">Contact & Support</h1>
       </div>
       <div class="accent-border" style="margin: 0.5rem auto 1rem;"></div>
-      <p class="subtitle">Resources, Support & Multilingual Assistance</p>
+      <p class="subtitle">Get in touch with our cybersecurity experts. We're here to help protect your digital assets.</p>
     </div>
   </header>
 
   <main>
-    <!-- Resources Section -->
-    <section id="resources">
-      <h2><i class="fas fa-download"></i> Security Resources</h2>
+    <!-- Contact Information Section -->
+    <section id="contact-info">
+      <h2><i class="fas fa-address-card"></i> Contact Information</h2>
       <div class="accent-border"></div>
-      <p class="intro">Access our comprehensive collection of cybersecurity resources, guidelines, and educational materials to enhance your organization's security posture.</p>
+      <p class="intro">Reach out to our cybersecurity team through any of the following channels. We're available 24/7 for emergency incidents.</p>
       
-      <div class="resources-grid">
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-file-pdf"></i>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
           </div>
-          <h3>Phishing Prevention Guide</h3>
-          <p>Comprehensive guide to identifying and preventing phishing attacks with real-world examples and best practices.</p>
-          <a href="#" class="btn"><i class="fas fa-download"></i> Download PDF</a>
+          <h3>Phone Support</h3>
+          <p>Speak directly with our cybersecurity experts for immediate assistance.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <i class="fas fa-phone"></i>
+              <span>General Inquiries: <strong>1-800-CYBER-HELP</strong></span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Emergency: <strong>+91-9876543210</strong></span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-clock"></i>
+              <span>Available: 24/7 for emergencies</span>
+            </div>
+          </div>
+          <a href="tel:+180029374357" class="btn" style="margin-top: 1rem;">
+            <i class="fas fa-phone"></i> Call Now
+          </a>
         </div>
         
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-chart-pie"></i>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
           </div>
-          <h3>Security Awareness Infographic</h3>
-          <p>Visual guide to common cyber threats and protective measures for quick reference and team training.</p>
-          <a href="#" class="btn"><i class="fas fa-download"></i> Download Infographic</a>
+          <h3>Email Support</h3>
+          <p>Send us detailed information about your cybersecurity concerns.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <i class="fas fa-envelope"></i>
+              <span>General: <strong>support@cybershield.com</strong></span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-shield-alt"></i>
+              <span>Security Incidents: <strong>incident@cybershield.com</strong></span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-business-time"></i>
+              <span>Response Time: Within 2 hours</span>
+            </div>
+          </div>
+          <a href="mailto:support@cybershield.com" class="btn" style="margin-top: 1rem;">
+            <i class="fas fa-envelope"></i> Send Email
+          </a>
         </div>
         
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-list-check"></i>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
           </div>
-          <h3>Security Compliance Checklist</h3>
-          <p>Step-by-step checklist to ensure your organization meets essential cybersecurity compliance requirements.</p>
-          <a href="#" class="btn"><i class="fas fa-download"></i> Download Checklist</a>
-        </div>
-      </div>
-      
-      <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Trusted External Resources</h3>
-      <div class="resources-grid">
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-shield-alt"></i>
+          <h3>Office Location</h3>
+          <p>Visit our headquarters for in-person consultations and training sessions.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <i class="fas fa-building"></i>
+              <span>CyberShield Headquarters</span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-map-pin"></i>
+              <span>Cyber Security Park, Sector 62</span>
+            </div>
+            <div class="contact-detail">
+              <i class="fas fa-city"></i>
+              <span>Noida, Uttar Pradesh 201309</span>
+            </div>
           </div>
-          <h3>CERT-In Guidelines</h3>
-          <p>Indian Computer Emergency Response Team's official cybersecurity guidelines and advisories.</p>
-          <a href="https://www.cert-in.org.in" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
-        </div>
-        
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-landmark"></i>
-          </div>
-          <h3>RBI Cyber Security Framework</h3>
-          <p>Reserve Bank of India's comprehensive framework for cybersecurity in the banking sector.</p>
-          <a href="https://www.rbi.org.in" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
-        </div>
-        
-        <div class="resource-card">
-          <div class="resource-icon">
-            <i class="fas fa-user-shield"></i>
-          </div>
-          <h3>Cyber Dost</h3>
-          <p>Government of India initiative for creating awareness about cybersecurity crimes and precautions.</p>
-          <a href="https://www.meity.gov.in/ministry/our-groups/details/cyber-security-division-gNxIDOtQWa" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Website</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-      <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-      <div class="accent-border"></div>
-      <p class="intro">Find quick answers to common cybersecurity questions and concerns.</p>
-      
-      <div class="faq-container">
-        <div class="faq-item">
-          <div class="faq-question">
-            What should I do if I suspect a phishing email?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Do not click any links or download attachments. Report it to your IT security team immediately. If you've already clicked a link, change your passwords and run a security scan on your device.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            How often should I change my passwords?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>It's recommended to change passwords every 60-90 days for critical accounts. Use a password manager to generate and store strong, unique passwords for each account.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            What is multi-factor authentication and why is it important?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Multi-factor authentication adds an extra layer of security by requiring two or more verification methods. This significantly reduces the risk of unauthorized access even if passwords are compromised.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            How can I identify a secure website?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Look for HTTPS in the URL and a padlock icon in the address bar. Verify the website's security certificate and be cautious of sites with spelling errors or unusual domain names.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <div class="faq-question">
-            What should I do if my device is infected with malware?
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="faq-answer">
-            <p>Disconnect from the internet immediately. Run a full system scan with updated antivirus software. If the infection persists, seek professional IT support and consider restoring from a clean backup.</p>
-          </div>
+          <a href="#" class="btn btn-outline" style="margin-top: 1rem;">
+            <i class="fas fa-directions"></i> Get Directions
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Contact & Help Section -->
-    <section id="contact">
-      <h2><i class="fas fa-headset"></i> Cyber Help & Support</h2>
+    <!-- Emergency Contacts Section -->
+    <section id="emergency">
+      <h2><i class="fas fa-exclamation-triangle"></i> Emergency Cyber Contacts</h2>
       <div class="accent-border"></div>
-      <p class="intro">Immediate assistance for cybersecurity incidents and multilingual support for all your queries.</p>
+      <p class="intro">For immediate cybercrime reporting and emergency assistance, contact these official helplines.</p>
       
-      <div class="helpline-grid">
-        <div class="helpline-card">
+      <div class="emergency-grid">
+        <div class="emergency-card">
           <i class="fas fa-phone-alt"></i>
           <h3>National Cyber Crime Helpline</h3>
-          <p>24/7 toll-free number for reporting cyber crimes</p>
-          <div class="helpline-number">1930</div>
+          <p>24/7 toll-free number for reporting cyber crimes across India</p>
+          <div class="emergency-number">1930</div>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Toll-free | Available 24/7</p>
         </div>
         
-        <div class="helpline-card">
+        <div class="emergency-card">
           <i class="fas fa-shield-alt"></i>
           <h3>Police Cyber Cells</h3>
           <p>Specialized police units for cyber crime investigation</p>
-          <div class="helpline-number">100</div>
+          <div class="emergency-number">100</div>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Emergency Police Number</p>
         </div>
         
-        <div class="helpline-card">
+        <div class="emergency-card">
           <i class="fas fa-laptop-medical"></i>
-          <h3>Cyber Shield Support</h3>
-          <p>Enterprise cybersecurity incident response</p>
-          <div class="helpline-number">1-800-CYBER-HELP</div>
+          <h3>CERT-In Helpline</h3>
+          <p>Indian Computer Emergency Response Team</p>
+          <div class="emergency-number">+91-11-24368572</div>
+          <p style="font-size: 0.9rem; margin-top: 0.5rem;">Government Cyber Security</p>
         </div>
       </div>
       
-      <h3 style="margin-top: 3rem; margin-bottom: 1rem;">Multilingual Chat Assistance</h3>
-      <div class="chatbot-container">
-        <div class="chatbot-header">
-          <i class="fas fa-robot"></i>
-          <h3>Cyber Shield Assistant</h3>
-          <select class="language-selector" id="language-selector">
+      <div style="margin-top: 2rem; padding: 1.5rem; background: var(--danger-light); border-radius: 8px; border-left: 4px solid var(--danger);">
+        <h4 style="color: var(--danger); margin-bottom: 0.5rem;">
+          <i class="fas fa-lightbulb"></i> When to Use Emergency Contacts
+        </h4>
+        <ul style="color: var(--text-medium); padding-left: 1.5rem;">
+          <li>Financial fraud or online banking theft</li>
+          <li>Data breach affecting personal information</li>
+          <li>Cyber bullying or online harassment</li>
+          <li>Ransomware attacks on critical systems</li>
+          <li>Suspected nation-state cyber attacks</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form">
+      <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
+      <div class="accent-border"></div>
+      <p class="intro">Fill out the form below and our cybersecurity team will get back to you within 24 hours.</p>
+      
+      <div class="contact-form-container">
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" placeholder="Enter your email address" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input type="text" id="organization" placeholder="Your company or organization">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="Your contact number">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="queryType">Type of Query *</label>
+            <select id="queryType" required>
+              <option value="">Select query type</option>
+              <option value="general">General Inquiry</option>
+              <option value="incident">Security Incident</option>
+              <option value="training">Training Request</option>
+              <option value="consultation">Consultation</option>
+              <option value="partnership">Partnership</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <input type="text" id="subject" placeholder="Brief subject of your message" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" rows="6" placeholder="Describe your cybersecurity concern or inquiry in detail..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label>
+              <input type="checkbox" required>
+              I agree to the <a href="#" style="color: var(--primary);">privacy policy</a> and understand this information will be handled securely
+            </label>
+          </div>
+          
+          <div class="form-group">
+            <button type="submit" class="btn" style="width: 100%; padding: 1rem;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Office Hours Section -->
+    <section id="hours">
+      <h2><i class="fas fa-clock"></i> Office Hours</h2>
+      <div class="accent-border"></div>
+      
+      <div class="hours-container">
+        <div class="hours-card">
+          <div class="hours-day">Monday - Friday</div>
+          <div class="hours-time">9:00 AM - 7:00 PM</div>
+          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">General Inquiries</div>
+        </div>
+        <div class="hours-card">
+          <div class="hours-day">Saturday</div>
+          <div class="hours-time">10:00 AM - 4:00 PM</div>
+          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Training & Workshops</div>
+        </div>
+        <div class="hours-card">
+          <div class="hours-day">Sunday</div>
+          <div class="hours-time">Emergency Only</div>
+          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Critical Incidents</div>
+        </div>
+        <div class="hours-card">
+          <div class="hours-day">24/7 Support</div>
+          <div class="hours-time">Always Available</div>
+          <div style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">Emergency Helpline</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Chatbot Section -->
+    <section id="modern-chatbot">
+      <h2><i class="fas fa-robot"></i> Modern Cybersecurity Assistant</h2>
+      <div class="accent-border"></div>
+      <p class="intro">Our intelligent assistant provides real-time cybersecurity guidance in multiple languages.</p>
+      
+      <div class="modern-chatbot-container" id="modern-chatbot-container">
+        <div class="modern-chatbot-header">
+          <div class="modern-header-left">
+            <div class="modern-chatbot-icon">
+              <i class="fas fa-shield-alt" style="color: var(--primary); font-size: 1.2rem;"></i>
+            </div>
+            <h3>Cyber Shield Assistant</h3>
+          </div>
+          <div class="modern-chatbot-status">Online</div>
+          <select class="modern-language-selector" id="modern-language-selector">
             <option value="en">English</option>
-            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="hi">हिंदी (Hindi)</option>
             <option value="te">తెలుగు (Telugu)</option>
             <option value="kn">ಕನ್ನಡ (Kannada)</option>
           </select>
         </div>
         
-        <div class="chat-messages" id="chat-messages">
-          <div class="message bot-message">
-            Hello! I'm your Cyber Shield Assistant. How can I help you with cybersecurity today?
-          </div>
-          <div class="message bot-message">
-            You can ask me about:
-            <div class="quick-actions">
-              <button class="quick-action" data-question="phishing">Phishing attacks</button>
-              <button class="quick-action" data-question="passwords">Password security</button>
-              <button class="quick-action" data-question="malware">Malware protection</button>
-              <button class="quick-action" data-question="report">Report a cyber crime</button>
-            </div>
-          </div>
+        <div class="modern-chat-messages" id="modern-chat-messages">
+          <!-- Messages will be inserted here by JavaScript -->
         </div>
         
-        <div class="chat-input">
-          <input type="text" id="chat-input" placeholder="Type your message here...">
-          <button id="send-button">
-            <i class="fas fa-paper-plane"></i>
-          </button>
+        <div class="modern-chat-input-container">
+          <div class="modern-chat-input-wrapper">
+            <input 
+              type="text" 
+              class="modern-chat-input" 
+              id="modern-chat-input" 
+              placeholder="Type your message here..."
+            >
+            <button class="modern-send-button" id="modern-send-button">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -793,164 +1131,293 @@
   <footer>
     <div class="footer-content">
       <p>© 2023 <span style="font-style: italic;">Cyber Shield</span> Enterprise Security Initiative. All rights reserved.</p>
-      <p>This training material is classified for internal organizational use only.</p>
+      <p>Contact us: support@cybershield.com | 1-800-CYBER-HELP | Emergency: 1930</p>
     </div>
   </footer>
 
   <script>
-    // FAQ functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const faqQuestions = document.querySelectorAll('.faq-question');
-     
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          const answer = this.nextElementSibling;
-          const isActive = answer.classList.contains('show');
-         
-          // Close all other answers
-          document.querySelectorAll('.faq-answer').forEach(ans => {
-            ans.classList.remove('show');
-          });
-         
-          // Toggle current answer
-          if (!isActive) {
-            answer.classList.add('show');
-            this.querySelector('i').className = 'fas fa-chevron-up';
-          } else {
-            answer.classList.remove('show');
-            this.querySelector('i').className = 'fas fa-chevron-down';
-          }
-        });
-      });
-     
-      // Chatbot functionality
-      const chatMessages = document.getElementById('chat-messages');
-      const chatInput = document.getElementById('chat-input');
-      const sendButton = document.getElementById('send-button');
-      const languageSelector = document.getElementById('language-selector');
-      const quickActions = document.querySelectorAll('.quick-action');
-     
-      // Multilingual responses for English, Hindi, Telugu, Kannada
-      const responses = {
+      // Modern Chatbot State Management (Vanilla JS equivalent of React state)
+      const chatbotState = {
+        messages: [],
+        input: '',
+        language: 'en',
+        loading: false
+      };
+
+      // Languages configuration
+      const languages = {
+        en: 'English',
+        hi: 'हिंदी',
+        te: 'తెలుగు',
+        kn: 'ಕನ್ನಡ'
+      };
+
+      // Welcome content for different languages
+      const welcomeContent = {
         en: {
           greeting: "Hello! I'm your Cyber Shield Assistant. How can I help you with cybersecurity today?",
-          phishing: "Phishing is a cyber attack that uses disguised email as a weapon. The goal is to trick the email recipient into believing that the message is something they want or need. To protect yourself: never click suspicious links, verify sender addresses, and use multi-factor authentication.",
-          passwords: "Strong passwords should be at least 12 characters long and include a mix of uppercase, lowercase, numbers, and symbols. Never reuse passwords across different accounts. Consider using a password manager to generate and store secure passwords.",
-          malware: "Malware is malicious software designed to harm or exploit devices. Protect yourself by: keeping software updated, using antivirus software, avoiding suspicious downloads, and backing up important data regularly.",
-          report: "To report a cyber crime in India, call the national helpline at 1930 or visit your local police cyber cell. Provide as much information as possible about the incident.",
-          default: "I understand you're asking about cybersecurity. For specific assistance, please contact our helpline at 1-800-CYBER-HELP or use the quick action buttons above."
+          subtitle: "You can ask me about:",
+          topics: [
+            "Phishing attacks", 
+            "Password security", 
+            "Malware protection", 
+            "Report a cyber crime"
+          ]
         },
         hi: {
-          greeting: "नमस्ते! मैं आपका साइबर शील्ड असिस्टेंट हूं। आज मैं साइबर सुरक्षा में आपकी कैसे मदद कर सकता हूं?",
-          phishing: "फिशिंग एक साइबर हमला है जो ईमेल को हथियार के रूप में इस्तेमाल करता है। इसका लक्ष्य ईमेल प्राप्तकर्ता को यह विश्वास दिलाना है कि संदेश कुछ ऐसा है जो उन्हें चाहिए। अपनी सुरक्षा के लिए: संदिग्ध लिंक पर कभी क्लिक न करें, प्रेषक पते सत्यापित करें, और मल्टी-फैक्टर प्रमाणीकरण का उपयोग करें।",
-          passwords: "मजबूत पासवर्ड कम से कम 12 वर्ण लंबे होने चाहिए और इसमें अपरकेस, लोअरकेस, संख्याओं और प्रतीकों का मिश्रण शामिल होना चाहिए। विभिन्न खातों में पासवर्ड का पुन: उपयोग कभी न करें। सुरक्षित पासवर्ड जेनरेट करने और संग्रहीत करने के लिए पासवर्ड मैनेजर का उपयोग करने पर विचार करें।",
-          malware: "मैलवेयर दुर्भावनापूर्ण सॉफ्टवेयर है जिसे उपकरणों को नुकसान पहुंचाने या उनका शोषण करने के लिए डिज़ाइन किया गया है। सॉफ़्टवेयर को अपडेट रखकर, एंटीवायरस सॉफ़्टवेयर का उपयोग करके, संदिग्ध डाउनलोड से बचकर और नियमित रूप से महत्वपूर्ण डेटा का बैकअप लेकर अपनी सुरक्षा करें।",
-          report: "भारत में साइबर अपराध की रिपोर्ट करने के लिए, राष्ट्रीय हेल्पलाइन 1930 पर कॉल करें या अपनी स्थानीय पुलिस साइबर सेल पर जाएं। घटना के बारे में यथासंभव अधिक जानकारी प्रदान करें।",
-          default: "मैं समझता हूं कि आप साइबर सुरक्षा के बारे में पूछ रहे हैं। विशिष्ट सहायता के लिए, कृपया हमारी हेल्पलाइन 1-800-CYBER-HELP पर संपर्क करें या ऊपर दिए गए त्वरित कार्य बटनों का उपयोग करें।"
+          greeting: "नमस्ते! मैं आपका साइबर शील्ड असिस्टेंट हूं। मैं आज साइबर सुरक्षा में आपकी कैसे मदद कर सकता हूं?",
+          subtitle: "आप मुझसे पूछ सकते हैं:",
+          topics: [
+            "फ़िशिंग हमले", 
+            "पासवर्ड सुरक्षा", 
+            "मैलवेयर सुरक्षा", 
+            "साइबर अपराध की रिपोर्ट करें"
+          ]
         },
         te: {
-          greeting: "హలో! నేను మీ సైబర్ షీల్డ్ అసిస్టెంట్. సైబర్ సెక్యూరిటీలో నేను ఈరోజు మీకు ఎలా సహాయపడగలను?",
-          phishing: "ఫిషింగ్ అనేది మారువేషంలో ఉన్న ఇమెయిల్ను ఆయుధంగా ఉపయోగించే సైబర్ దాడి. ఇమెయిల్ గ్రహీత సందేశం తమకు కావలసినది లేదా అవసరమైనదని నమ్మించడమే లక్ష్యం. మిమ్మల్ని రక్షించుకోవడానికి: అనుమానాస్పద లింక్లపై ఎప్పుడూ క్లిక్ చేయవద్దు, పంపినవారి చిరునామాలను ధృవీకరించండి మరియు బహుళ-కారకాల ప్రమాణీకరణను ఉపయోగించండి.",
-          passwords: "బలమైన పాస్వర్డ్లు కనీసం 12 అక్షరాలు పొడవు ఉండాలి మరియు పెద్ద అక్షరాలు, చిన్న అక్షరాలు, సంఖ్యలు మరియు చిహ్నాల మిశ్రమాన్ని కలిగి ఉండాలి. వివిధ ఖాతాలలో పాస్వర్డ్లను మళ్లీ ఉపయోగించవద్దు. సురక్షిత పాస్వర్డ్లను రూపొందించడానికి మరియు నిల్వ చేయడానికి పాస్వర్డ్ మేనేజర్ని ఉపయోగించడం గురించి ఆలోచించండి.",
-          malware: "మాల్వేర్ అనేది పరికరాలకు హాని చేయడానికి లేదా వినియోగించుకోవడానికి రూపొందించబడిన హానికరమైన సాఫ్ట్వేర్. సాఫ్ట్వేర్ను నవీకరించడం, యాంటీవైరస్ సాఫ్ట్వేర్ను ఉపయోగించడం, అనుమానాస్పద డౌన్లోడ్లను నివారించడం మరియు ముఖ్యమైన డేటాను క్రమం తప్పకుండా బ్యాకప్ చేయడం ద్వారా మిమ్మల్ని రక్షించుకోండి.",
-          report: "భారతదేశంలో సైబర్ నేరాన్ని నివేదించడానికి, జాతీయ హెల్ప్‌లైన్ 1930 కి కాల్ చేయండి లేదా మీ స్థానిక పోలీసు సైబర్ సెల్ను సందర్శించండి. సంఘటన గురించి వీలైనంత ఎక్కువ సమాచారాన్ని అందించండి.",
-          default: "మీరు సైబర్ భద్రత గురించి అడుగుతున్నారని నేను అర్థం చేసుకున్నాను. నిర్దిష్ట సహాయం కోసం, దయచేసి మా హెల్ప్‌లైన్ 1-800-CYBER-HELP కి సంప్రదించండి లేదా పైన ఉన్న త్వరిత చర్య బటన్లను ఉపయోగించండి."
+          greeting: "హలో! నేను మీ సైబర్ షీల్డ్ అసిస్టెంట్. ఈ రోజు సైబర్ భద్రతలో నేను మీకు ఎలా సహాయం చేయగలను?",
+          subtitle: "మీరు నన్ను అడగవచ్చు:",
+          topics: [
+            "ఫిషింగ్ దాడులు", 
+            "పాస్‌వర్డ్ భద్రత", 
+            "మాల్వేర్ రక్షణ", 
+            "సైబర్ నేరాన్ని నివేదించండి"
+          ]
         },
         kn: {
-          greeting: "ನಮಸ್ಕಾರ! ನಾನು ನಿಮ್ಮ ಸೈಬರ್ ಶೀಲ್ಡ್ ಸಹಾಯಕ. ಸೈಬರ್ ಸುರಕ್ಷತೆಯಲ್ಲಿ ನಾನು ಇಂದು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
-          phishing: "ಫಿಶಿಂಗ್ ಎಂಬುದು ವೇಷಧಾರಿತ ಇಮೇಲ್ ಅನ್ನು ಆಯುಧವಾಗಿ ಬಳಸುವ ಸೈಬರ್ ದಾಳಿ. ಇಮೇಲ್ ಸ್ವೀಕರಿಸುವವರು ಸಂದೇಶವು ಅವರು ಬಯಸಿದ ಅಥವಾ ಅಗತ್ಯವಿರುವ ವಿಷಯವೆಂದು ನಂಬುವಂತೆ ಮಾಡುವುದೇ ಗುರಿ. ನಿಮ್ಮನ್ನು ರಕ್ಷಿಸಿಕೊಳ್ಳಲು: ಅನುಮಾನಾಸ್ಪದ ಲಿಂಕ್‌ಗಳ ಮೇಲೆ ಎಂದಿಗೂ ಕ್ಲಿಕ್ ಮಾಡಬೇಡಿ, ಕಳುಹಿಸುವವರ ವಿಳಾಸಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಬಹು-ಅಂಶಗಳ ಪ್ರಮಾಣೀಕರಣವನ್ನು ಬಳಸಿ.",
-          passwords: "ಪ್ರಬಲ ಪಾಸ್‌ವರ್ಡ್‌ಗಳು ಕನಿಷ್ಠ 12 ಅಕ್ಷರಗಳ ಉದ್ದವಿರಬೇಕು ಮತ್ತು ದೊಡ್ಡಕ್ಷರ, ಸಣ್ಣಕ್ಷರ, ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಚಿಹ್ನೆಗಳ ಮಿಶ್ರಣವನ್ನು ಒಳಗೊಂಡಿರಬೇಕು. ವಿವಿಧ ಖಾತೆಗಳ ನಡುವೆ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಎಂದಿಗೂ ಮರುಬಳಕೆ ಮಾಡಬೇಡಿ. ಸುರಕ್ಷಿತ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ರಚಿಸಲು ಮತ್ತು ಸಂಗ್ರಹಿಸಲು ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಬಳಸುವುದನ್ನು ಪರಿಗಣಿಸಿ.",
-          malware: "ಮಾಲ್ವೇರ್ ಎಂಬುದು ಸಾಧನಗಳಿಗೆ ಹಾನಿ ಮಾಡಲು ಅಥವಾ ಶೋಷಣೆ ಮಾಡಲು ವಿನ್ಯಾಸಗೊಳಿಸಿದ ದುರುದ್ದೇಶಪೂರಿತ ಸಾಫ್ಟ್‌ವೇರ್. ಸಾಫ್ಟ್‌ವೇರ್ ಅನ್ನು ನವೀಕರಿಸಿಡುವುದು, ಆಂಟಿವೈರಸ್ ಸಾಫ್ಟ್‌ವೇರ್ ಬಳಸುವುದು, ಅನುಮಾನಾಸ್ಪದ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ತಪ್ಪಿಸುವುದು ಮತ್ತು ಮುಖ್ಯವಾದ ಡೇಟಾವನ್ನು ನಿಯಮಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡುವುದರಿಂದ ನಿಮ್ಮನ್ನು ರಕ್ಷಿಸಿಕೊಳ್ಳಿ.",
-          report: "ಭಾರತದಲ್ಲಿ ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಲು, ರಾಷ್ಟ್ರೀಯ ಸಹಾಯ ಸಾಲು 1930 ಗೆ ಕರೆ ಮಾಡಿ ಅಥವಾ ನಿಮ್ಮ ಸ್ಥಳೀಯ ಪೊಲೀಸ್ ಸೈಬರ್ ಸೆಲ್ ಅನ್ನು ಭೇಟಿ ಮಾಡಿ. ಘಟನೆಯ ಬಗ್ಗೆ ಸಾಧ್ಯವಾದಷ್ಟು ಹೆಚ್ಚು ಮಾಹಿತಿಯನ್ನು ಒದಗಿಸಿ.",
-          default: "ನೀವು ಸೈಬರ್ ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ ಕೇಳುತ್ತಿದ್ದೀರಿ ಎಂದು ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ. ನಿರ್ದಿಷ್ಟ ಸಹಾಯಕ್ಕಾಗಿ, ದಯವಿಟ್ಟು ನಮ್ಮ ಸಹಾಯ ಸಾಲು 1-800-CYBER-HELP ಗೆ ಸಂಪರ್ಕಿಸಿ ಅಥವಾ ಮೇಲಿನ ತ್ವರಿತ ಕ್ರಿಯೆ ಬಟನ್‌ಗಳನ್ನು ಬಳಸಿ."
+          greeting: "ಹಲೋ! ನಾನು ನಿಮ್ಮ ಸೈಬರ್ ಶೀಲ್ಡ್ ಅಸಿಸ್ಟೆಂಟ್. ಇಂದು ಸೈಬರ್ ಸುರಕ್ಷತೆಯಲ್ಲಿ ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?",
+          subtitle: "ನೀವು ನನ್ನನ್ನು ಕೇಳಬಹುದು:",
+          topics: [
+            "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು", 
+            "ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ", 
+            "ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ", 
+            "ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಿ"
+          ]
         }
       };
-     
-      // Function to add message to chat
-      function addMessage(text, isUser = false) {
-        const messageDiv = document.createElement('div');
-        messageDiv.className = message ${isUser ? 'user-message' : 'bot-message'};
-        messageDiv.textContent = text;
-        chatMessages.appendChild(messageDiv);
+
+      // Placeholders for input field
+      const placeholders = {
+        en: 'Type your message here...',
+        hi: 'अपना संदेश यहाँ टाइप करें...',
+        te: 'మీ సందేశాన్ని ఇక్కడ టైప్ చేయండి...',
+        kn: 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...'
+      };
+
+      // DOM Elements
+      const chatMessages = document.getElementById('modern-chat-messages');
+      const chatInput = document.getElementById('modern-chat-input');
+      const sendButton = document.getElementById('modern-send-button');
+      const languageSelector = document.getElementById('modern-language-selector');
+
+      // Contact form elements
+      const contactForm = document.getElementById('contactForm');
+
+      // Initialize chatbot
+      initializeChat();
+
+      // Initialize chat with welcome message
+      function initializeChat() {
+        const content = welcomeContent[chatbotState.language];
+        chatbotState.messages = [{
+          role: 'assistant',
+          content: content.greeting,
+          isWelcome: true,
+          topics: content.topics,
+          subtitle: content.subtitle
+        }];
+        renderMessages();
+        updateInputPlaceholder();
+      }
+
+      // Render messages to the DOM
+      function renderMessages() {
+        chatMessages.innerHTML = '';
+        
+        chatbotState.messages.forEach((msg, idx) => {
+          if (msg.isWelcome) {
+            const welcomeDiv = document.createElement('div');
+            welcomeDiv.className = 'modern-welcome-message';
+            welcomeDiv.innerHTML = `
+              <p style="color: var(--text-dark); margin-bottom: 1rem;">${msg.content}</p>
+              <p class="modern-welcome-subtitle">${msg.subtitle}</p>
+              <div class="modern-welcome-topics">
+                <div class="modern-topic-buttons">
+                  ${msg.topics.map(topic => 
+                    `<button class="modern-topic-button" onclick="handleTopicClick('${topic}')">${topic}</button>`
+                  ).join('')}
+                </div>
+              </div>
+            `;
+            chatMessages.appendChild(welcomeDiv);
+          } else {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `modern-message ${msg.role === 'user' ? 'modern-user-message' : 'modern-bot-message'}`;
+            messageDiv.textContent = msg.content;
+            chatMessages.appendChild(messageDiv);
+          }
+        });
+        
+        // Scroll to bottom
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
-     
-      // Function to handle user message
-      function handleUserMessage(message) {
-        const lang = languageSelector.value;
-        addMessage(message, true);
-       
-        let response = responses[lang]?.default || responses.en.default;
-       
-        if (message.toLowerCase().includes('phishing') || message.toLowerCase().includes('fish')) {
-          response = responses[lang]?.phishing || responses.en.phishing;
-        } else if (message.toLowerCase().includes('password')) {
-          response = responses[lang]?.passwords || responses.en.passwords;
-        } else if (message.toLowerCase().includes('malware') || message.toLowerCase().includes('virus')) {
-          response = responses[lang]?.malware || responses.en.malware;
-        } else if (message.toLowerCase().includes('report') || message.toLowerCase().includes('crime')) {
-          response = responses[lang]?.report || responses.en.report;
-        }
-       
-        setTimeout(() => addMessage(response), 1000);
+
+      // Update input placeholder based on language
+      function updateInputPlaceholder() {
+        chatInput.placeholder = placeholders[chatbotState.language];
       }
-     
-      // Send button click event
-      sendButton.addEventListener('click', function() {
-        const message = chatInput.value.trim();
-        if (message) {
-          handleUserMessage(message);
-          chatInput.value = '';
-        }
-      });
-     
-      // Enter key event
-      chatInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          sendButton.click();
-        }
-      });
-     
-      // Quick action buttons for all four languages
-      quickActions.forEach(button => {
-        button.addEventListener('click', function() {
-          const question = this.getAttribute('data-question');
-          const lang = languageSelector.value;
-          let questionText = '';
-         
-          switch(question) {
-            case 'phishing':
-              questionText = lang === 'en' ? 'Tell me about phishing attacks' :
-                            lang === 'hi' ? 'फिशिंग हमलों के बारे में बताएं' :
-                            lang === 'te' ? 'ఫిషింగ్ దాడుల గురించి చెప్పండి' :
-                            lang === 'kn' ? 'ಫಿಶಿಂಗ್ ದಾಳಿಗಳ ಕುರಿತು ಹೇಳಿ' :
-                            'Tell me about phishing attacks';
-              break;
-            case 'passwords':
-              questionText = lang === 'en' ? 'How to create strong passwords?' :
-                            lang === 'hi' ? 'मजबूत पासवर्ड कैसे बनाएं?' :
-                            lang === 'te' ? 'బలమైన పాస్వర్డ్లను ఎలా సృష్టించాలి?' :
-                            lang === 'kn' ? 'ಪ್ರಬಲ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಹೇಗೆ ರಚಿಸುವುದು?' :
-                            'How to create strong passwords?';
-              break;
-            case 'malware':
-              questionText = lang === 'en' ? 'How to protect against malware?' :
-                            lang === 'hi' ? 'मैलवेयर से कैसे बचें?' :
-                            lang === 'te' ? 'మాల్వేర్ నుండి ఎలా రక్షించుకోవాలి?' :
-                            lang === 'kn' ? 'ಮಾಲ್ವೇರ್ನಿಂದ ಹೇಗೆ ರಕ್ಷಿಸಿಕೊಳ್ಳುವುದು?' :
-                            'How to protect against malware?';
-              break;
-            case 'report':
-              questionText = lang === 'en' ? 'How to report a cyber crime?' :
-                            lang === 'hi' ? 'साइबर अपराध की रिपोर्ट कैसे करें?' :
-                            lang === 'te' ? 'సైబర్ నేరాన్ని ఎలా నివేదించాలి?' :
-                            lang === 'kn' ? 'ಸೈಬರ್ ಅಪರಾಧವನ್ನು ಹೇಗೆ ವರದಿ ಮಾಡುವುದು?' :
-                            'How to report a cyber crime?';
-              break;
-          }
-         
-          handleUserMessage(questionText);
+
+      // Handle topic button click
+      window.handleTopicClick = function(topic) {
+        handleSubmit(topic);
+      };
+
+      // Handle message submission
+      async function handleSubmit(messageText = null) {
+        const text = messageText || chatbotState.input.trim();
+        if (!text || chatbotState.loading) return;
+
+        // Add user message
+        chatbotState.messages.push({
+          role: 'user',
+          content: text
         });
+        chatbotState.input = '';
+        chatInput.value = '';
+        renderMessages();
+        
+        // Set loading state
+        chatbotState.loading = true;
+        sendButton.disabled = true;
+        sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        
+        // Show loading indicator
+        const loadingDiv = document.createElement('div');
+        loadingDiv.className = 'modern-loading-indicator modern-bot-message';
+        loadingDiv.innerHTML = `
+          <div class="modern-loading-dot"></div>
+          <div class="modern-loading-dot"></div>
+          <div class="modern-loading-dot"></div>
+        `;
+        chatMessages.appendChild(loadingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+          // Simulate API call with local responses
+          await simulateAPIResponse(text);
+        } catch (error) {
+          console.error('Error:', error);
+          const errorMessages = {
+            en: 'Sorry, I encountered an error. Please try again.',
+            hi: 'क्षमा करें, एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
+            te: 'క్షమించండి, ఒక లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.',
+            kn: 'ಕ್ಷಮಿಸಿ, ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.'
+          };
+          chatbotState.messages.push({
+            role: 'assistant',
+            content: errorMessages[chatbotState.language]
+          });
+        } finally {
+          chatbotState.loading = false;
+          sendButton.disabled = false;
+          sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+          renderMessages();
+        }
+      }
+
+      // Simulate API response with predefined answers
+      async function simulateAPIResponse(userMessage) {
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 500));
+        
+        const responses = {
+          en: {
+            "phishing attacks": "Phishing attacks use deceptive emails to steal sensitive information. Always verify sender addresses, check for spelling errors, and never click suspicious links. Enable two-factor authentication for added security.",
+            "password security": "Use strong passwords with 12+ characters including uppercase, lowercase, numbers, and symbols. Never reuse passwords across accounts. Consider using a password manager for better security.",
+            "malware protection": "Keep all software updated, use reputable antivirus software, avoid suspicious downloads, and back up important data regularly. Be cautious with email attachments from unknown senders.",
+            "report a cyber crime": "In India, report cyber crimes to the National Cyber Crime Helpline at 1930 or visit https://cybercrime.gov.in. For financial fraud, contact your bank immediately.",
+            default: "I understand you're asking about cybersecurity. Could you please provide more details or ask about specific topics like phishing, password security, malware protection, or reporting cyber crimes?"
+          },
+          hi: {
+            "फ़िशिंग हमले": "फ़िशिंग हमले संवेदनशील जानकारी चुराने के लिए भ्रामक ईमेल का उपयोग करते हैं। हमेशा प्रेषक पते सत्यापित करें, वर्तनी त्रुटियों की जांच करें और संदिग्ध लिंक पर कभी क्लिक न करें। अतिरिक्त सुरक्षा के लिए दो-कारक प्रमाणीकरण सक्षम करें।",
+            "पासवर्ड सुरक्षा": "12+ अक्षरों वाले मजबूत पासवर्ड का उपयोग करें जिसमें अपरकेस, लोअरकेस, संख्याएं और प्रतीक शामिल हों। खातों में पासवर्ड का पुन: उपयोग कभी न करें। बेहतर सुरक्षा के लिए पासवर्ड मैनेजर का उपयोग करने पर विचार करें।",
+            "मैलवेयर सुरक्षा": "सभी सॉफ़्टवेयर को अपडेट रखें, प्रतिष्ठित एंटीवायरस सॉफ़्टवेयर का उपयोग करें, संदिग्ध डाउनलोड से बचें और महत्वपूर्ण डेटा का नियमित रूप से बैकअप लें। अज्ञात प्रेषकों से ईमेल अटैचमेंट के साथ सावधान रहें।",
+            "साइबर अपराध की रिपोर्ट करें": "भारत में, साइबर अपराधों की रिपोर्ट राष्ट्रीय साइबर अपराध हेल्पलाइन 1930 पर करें या https://cybercrime.gov.in पर जाएं। वित्तीय धोखाधड़ी के लिए, तुरंत अपने बैंक से संपर्क करें।",
+            default: "मैं समझता हूं कि आप साइबर सुरक्षा के बारे में पूछ रहे हैं। क्या आप कृपया अधिक विवरण प्रदान कर सकते हैं या फ़िशिंग, पासवर्ड सुरक्षा, मालवेयर सुरक्षा, या साइबर अपराधों की रिपोर्टिंग जैसे विशिष्ट विषयों के बारे में पूछ सकते हैं?"
+          },
+          te: {
+            "ఫిషింగ్ దాడులు": "ఫిషింగ్ దాడులు సున్నితమైన సమాచారాన్ని దొంగిలించడానికి మోసపూరిత ఈమెయిల్‌లను ఉపయోగిస్తాయి. ఎల్లప్పుడూ పంపినవారి చిరునామాలను ధృవీకరించండి, స్పెల్లింగ్ లోపాలను తనిఖీ చేయండి మరియు అనుమానాస్పద లింక్‌లపై ఎప్పుడూ క్లిక్ చేయవద్దు. అదనపు భద్రత కోసం రెండు-కారకం ప్రమాణీకరణను ప్రారంభించండి.",
+            "పాస్‌వర్డ్ భద్రత": "12+ అక్షరాలతో బలమైన పాస్‌వర్డ్‌లను ఉపయోగించండి, వీటిలో పెద్ద అక్షరాలు, చిన్న అక్షరాలు, సంఖ్యలు మరియు చిహ్నాలు ఉంటాయి. ఖాతాలలో పాస్‌వర్డ్‌లను మళ్లీ ఉపయోగించవద్దు. మెరుగైన భద్రత కోసం పాస్‌వర్డ్ మేనేజర్‌ను ఉపయోగించడం గురించి ఆలోచించండి.",
+            "మాల్వేర్ రక్షణ": "అన్ని సాఫ్ట్‌వేర్‌లను నవీకరించబడి ఉంచండి, ప్రతిష్టాత్మక యాంటీవైరస్ సాఫ్ట్‌వేర్ ఉపయోగించండి, అనుమానాస్పద డౌన్‌లోడ్‌లను నివారించండి మరియు ముఖ్యమైన డేటాను నియమితంగా బ్యాకప్ చేయండి. తెలియని పంపినవారి నుండి ఈమెయిల్ అటాచ్‌మెంట్‌లతో జాగ్రత్తగా ఉండండి.",
+            "సైబర్ నేరాన్ని నివేదించండి": "భారతదేశంలో, సైబర్ నేరాలను నేషనల్ సైబర్ క్రైమ్ హెల్ప్‌లైన్ 1930కి నివేదించండి లేదా https://cybercrime.gov.in ను సందర్శించండి. ఆర్థిక మోసం కోసం, వెంటనే మీ బ్యాంక్‌ను సంప్రదించండి.",
+            default: "మీరు సైబర్ భద్రత గురించి అడుగుతున్నారని నేను అర్థం చేసుకున్నాను. దయచేసి మరింత వివరాలు అందించగలరా లేదా ఫిషింగ్, పాస్‌వర్డ్ భద్రత, మాల్వేర్ రక్షణ లేదా సైబర్ నేరాలను నివేదించడం వంటి నిర్దిష్ట విషయాల గురించి అడగగలరా?"
+          },
+          kn: {
+            "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು": "ಫಿಶಿಂಗ್ ದಾಳಿಗಳು ಸೂಕ್ಷ್ಮ ಮಾಹಿತಿಯನ್ನು ಕದಿಯಲು ಮೋಸದ ಇಮೇಲ್‌ಗಳನ್ನು ಬಳಸುತ್ತವೆ. ಯಾವಾಗಲೂ ಕಳುಹಿಸುವವರ ವಿಳಾಸಗಳನ್ನು ಪರಿಶೀಲಿಸಿ, ಕಾಗುಣಿತ ದೋಷಗಳನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಅನುಮಾನಾಸ್ಪದ ಲಿಂಕ್‌ಗಳ ಮೇಲೆ ಎಂದಿಗೂ ಕ್ಲಿಕ್ ಮಾಡಬೇಡಿ. ಹೆಚ್ಚುವರಿ ಭದ್ರತೆಗಾಗಿ ಎರಡು-ಅಂಶ ದೃಢೀಕರಣವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+            "ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ": "12+ ಅಕ್ಷರಗಳೊಂದಿಗೆ ಬಲವಾದ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಬಳಸಿ, ಇದರಲ್ಲಿ ದೊಡ್ಡಕ್ಷರಗಳು, ಸಣ್ಣಕ್ಷರಗಳು, ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಚಿಹ್ನೆಗಳು ಸೇರಿವೆ. ಖಾತೆಗಳಲ್ಲಿ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು ಮತ್ತೆ ಬಳಸಬೇಡಿ. ಉತ್ತಮ ಭದ್ರತೆಗಾಗಿ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಅನ್ನು ಬಳಸುವುದನ್ನು ಪರಿಗಣಿಸಿ.",
+            "ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ": "ಎಲ್ಲಾ ಸಾಫ್ಟ್‌ವೇರ್‌ಗಳನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ, ಪ್ರತಿಷ್ಠಿತ ಆಂಟಿವೈರಸ್ ಸಾಫ್ಟ್‌ವೇರ್ ಬಳಸಿ, ಅನುಮಾನಾಸ್ಪದ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ತಪ್ಪಿಸಿ ಮತ್ತು ಪ್ರಮುಖ ಡೇಟಾವನ್ನು ನಿಯಮಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ. ಅಜ್ಞಾತ ಕಳುಹಿಸುವವರಿಂದ ಇಮೇಲ್ ಅಟ್ಯಾಚ್ಮೆಂಟ್‌ಗಳೊಂದಿಗೆ ಜಾಗರೂಕರಾಗಿರಿ.",
+            "ಸೈಬರ್ ಅಪರಾಧವನ್ನು ವರದಿ ಮಾಡಿ": "ಭಾರತದಲ್ಲಿ, ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ನೇಷನಲ್ ಸೈಬರ್ ಕ್ರೈಮ್ ಹೆಲ್ಪ್‌ಲೈನ್ 1930 ಗೆ ವರದಿ ಮಾಡಿ ಅಥವಾ https://cybercrime.gov.in ಗೆ ಭೇಟಿ ನೀಡಿ. ಹಣಕಾಸಿನ ಮೋಸಕ್ಕಾಗಿ, ತಕ್ಷಣ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+            default: "ನೀವು ಸೈಬರ್ ಸುರಕ್ಷತೆಯ ಬಗ್ಗೆ ಕೇಳುತ್ತಿದ್ದೀರಿ ಎಂದು ನಾನು ಅರ್ಥಮಾಡಿಕೊಂಡಿದ್ದೇನೆ. ದಯವಿಟ್ಟು ಹೆಚ್ಚಿನ ವಿವರಗಳನ್ನು ಒದಗಿಸಬಹುದೇ ಅಥವಾ ಫಿಶಿಂಗ್, ಪಾಸ್‌ವರ್ಡ್ ಸುರಕ್ಷತೆ, ಮಾಲ್ವೇರ್ ರಕ್ಷಣೆ ಅಥವಾ ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ವರದಿ ಮಾಡುವಂತಹ ನಿರ್ದಿಷ್ಟ ವಿಷಯಗಳ ಬಗ್ಗೆ ಕೇಳಬಹುದೇ?"
+          }
+        };
+
+        const lang = chatbotState.language;
+        const lowerMessage = userMessage.toLowerCase();
+        let response = responses[lang]?.default || responses.en.default;
+
+        // Check for specific topics
+        for (const [key, value] of Object.entries(responses[lang])) {
+          if (lowerMessage.includes(key.toLowerCase())) {
+            response = value;
+            break;
+          }
+        }
+
+        // Add bot response
+        chatbotState.messages.push({
+          role: 'assistant',
+          content: response
+        });
+      }
+
+      // Event Listeners for chatbot
+      languageSelector.addEventListener('change', function() {
+        chatbotState.language = this.value;
+        initializeChat();
+      });
+
+      sendButton.addEventListener('click', function() {
+        handleSubmit();
+      });
+
+      chatInput.addEventListener('input', function() {
+        chatbotState.input = this.value;
+        sendButton.disabled = !this.value.trim();
+      });
+
+      chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleSubmit();
+        }
+      });
+
+      // Contact form submission
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const queryType = document.getElementById('queryType').value;
+        const subject = document.getElementById('subject').value;
+        
+        // Show success message
+        alert(`Thank you ${fullName}! Your ${queryType} inquiry "${subject}" has been submitted. Our cybersecurity team will contact you at ${email} within 24 hours.`);
+        
+        // Reset form
+        contactForm.reset();
       });
     });
   </script>
