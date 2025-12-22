@@ -3,67 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Awareness - CyberShield</title>
+<title>Cyber Awareness | CyberShield</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behavior:smooth}
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#333;
+  --primary:#0b3d91;
+  --sub:#555;
+}
+
+body.dark{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#e5e7eb;
+  --primary:#60a5fa;
+  --sub:#cbd5e1;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+}
 
 /* NAVBAR */
 .navbar{
   display:flex;justify-content:space-between;align-items:center;
   padding:15px 40px;
-  background:#fff;
-  border-bottom:1px solid #e0e0e0;
+  background:var(--card);
   position:sticky;top:0;z-index:1000;
-  animation:slideDown .8s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
-.logo{font-size:24px;font-weight:600;color:#0b3d91}
-.nav-links{display:flex;list-style:none;gap:25px}
-.nav-links a{text-decoration:none;color:#333;font-weight:500;transition:0.3s}
-.nav-links a:hover{color:#0b3d91}
-.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px}
-.hamburger span{width:25px;height:3px;background:#0b3d91;border-radius:3px}
-
-@media (max-width:768px){
-  .nav-links{display:none;flex-direction:column;background:#fff;position:absolute;top:60px;right:0;width:200px;box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:15px}
-  .nav-links.show{display:flex}
-  .hamburger{display:flex}
+.logo{font-size:26px;font-weight:700;color:var(--primary)}
+.nav-links{list-style:none;display:flex;gap:25px}
+.nav-links a{text-decoration:none;color:var(--text);font-weight:500}
+.nav-links a:hover{color:var(--primary)}
+.theme-btn{
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  cursor:pointer;
 }
 
 /* HERO */
-.hero{background:linear-gradient(rgba(230,240,255,.9),rgba(230,240,255,.9)), url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1400&q=80'); background-size:cover; background-position:center; text-align:center; padding:100px 20px; animation:fadeIn 1.5s ease;}
-.hero h1{font-size:42px;color:#0b3d91;margin-bottom:10px}
-.hero p{max-width:750px;margin:0 auto 20px;font-size:18px;color:#444}
-.hero button{padding:12px 25px;background:#0b3d91;color:white;border:none;border-radius:25px;font-size:16px;font-weight:600;cursor:pointer;transition:.3s}
-.hero button:hover{background:#08337a}
+.hero{
+  background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+  url('https://images.unsplash.com/photo-1605902711622-cfb43c4437b5?auto=format&fit=crop&w=1400&q=80');
+  background-size:cover;
+  padding:110px 20px;
+  text-align:center;
+  color:white;
+}
+.hero h1{font-size:44px;margin-bottom:10px}
+.hero p{max-width:800px;margin:auto;font-size:18px}
+.hero button{
+  margin-top:25px;
+  padding:14px 30px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
 
-/* SECTION TITLES */
-.section-title{text-align:center;font-size:32px;margin:40px 0 10px;color:#0b3d91}
+/* TITLES */
+.section-title{
+  text-align:center;
+  font-size:34px;
+  margin:70px 0 15px;
+  color:var(--primary);
+}
+.section-desc{
+  text-align:center;
+  max-width:850px;
+  margin:auto;
+  color:var(--sub);
+}
 
 /* CARDS */
-.cards-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;padding:50px 40px}
-.card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);opacity:0;transform:translateY(30px);transition:.6s ease}
-.card.visible{opacity:1;transform:translateY(0)}
-.card:hover{transform:translateY(-8px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
-.card img{width:100%;height:180px;object-fit:cover;transition:transform .5s ease}
-.card:hover img{transform:scale(1.08)}
-.card-content{padding:20px}
-.card h2{color:#0b3d91;margin-bottom:10px}
-.card ul{margin-left:18px;line-height:1.6}
-.card button{margin-top:15px;padding:10px 18px;border:none;border-radius:8px;background:#0b3d91;color:#fff;cursor:pointer;transition:.3s}
-.card button:hover{background:#08337a}
+.cards-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  padding:50px 40px;
+}
+.card{
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+  transition:.4s;
+}
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:190px;object-fit:cover}
+.card-content{padding:22px}
+.card h2{color:var(--primary);margin-bottom:10px}
+.card ul{margin-left:18px}
+.card button{
+  margin-top:15px;
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  cursor:pointer;
+}
+
+/* INFO */
+.info-section{
+  background:var(--card);
+  padding:60px 40px;
+}
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
+.info-box{
+  background:rgba(0,0,0,.03);
+  border-left:6px solid var(--primary);
+  padding:25px;
+  border-radius:12px;
+}
+body.dark .info-box{background:#020617}
+.info-box h3{color:var(--primary)}
+.info-box button{
+  margin-top:10px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:8px 15px;
+  border-radius:6px;
+}
+
+/* DO & DONT */
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  padding:50px 40px;
+}
+.split div{
+  background:var(--card);
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+.split h3{color:var(--primary)}
+.split ul{margin-left:20px}
 
 /* FOOTER */
-.footer{text-align:center;padding:15px;border-top:1px solid #e0e0e0;background:#fff;font-size:14px}
-
-/* ANIMATIONS */
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideDown{from{transform:translateY(-20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.footer{
+  background:var(--card);
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+  border-top:1px solid rgba(0,0,0,.1);
+}
 </style>
 </head>
+
 <body>
 
 <nav class="navbar">
@@ -75,67 +183,115 @@ body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behav
     <li><a href="fraud.html">Report Fraud</a></li>
     <li><a href="resourcecontact.html">Contact</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <button class="theme-btn" onclick="toggleTheme()">🌙 Theme</button>
 </nav>
 
 <section class="hero">
   <h1>Cyber Awareness</h1>
-  <p>Learn about different types of cybercrimes and how to stay safe online.</p>
-  <button onclick="openSearch('Cybersecurity awareness')">Watch Video</button>
+  <p>Learn about cyber threats, real-life scams, and how to stay safe online.</p>
+  <button onclick="openSearch('Cybersecurity awareness explained')">Watch Intro Video</button>
 </section>
 
-<h2 class="section-title">Sections of Society</h2>
+<h2 class="section-title">Awareness for All Sections of Society</h2>
+<p class="section-desc">Cyber safety guidance tailored for every age group.</p>
+
 <div class="cards-container">
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" alt="Children Safety">
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c">
     <div class="card-content">
       <h2>Children & Teenagers</h2>
       <ul>
-        <li>Avoid talking to strangers online</li>
+        <li>Avoid online strangers</li>
         <li>Report cyberbullying</li>
-        <li>Do not share personal info</li>
+        <li>Protect personal info</li>
       </ul>
       <button onclick="openSearch('Internet safety for children')">Watch Video</button>
     </div>
   </div>
+
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b" alt="Students Safety">
+    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b">
     <div class="card-content">
       <h2>Students</h2>
       <ul>
-        <li>Beware of fake job offers</li>
-        <li>Protect academic accounts</li>
-        <li>Avoid online scams</li>
+        <li>Beware of fake jobs</li>
+        <li>Secure academic accounts</li>
+        <li>Avoid phishing</li>
       </ul>
       <button onclick="openSearch('Cyber safety for students')">Watch Video</button>
     </div>
   </div>
+
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df" alt="Professionals Safety">
+    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df">
     <div class="card-content">
       <h2>Working Professionals</h2>
       <ul>
-        <li>Identify phishing emails</li>
+        <li>Identify phishing</li>
         <li>Protect company data</li>
-        <li>Use secure networks</li>
+        <li>Secure networks</li>
       </ul>
       <button onclick="openSearch('Phishing awareness training')">Watch Video</button>
     </div>
   </div>
- 
+
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=600&q=80" alt="Senior Citizens Talking">
+    <img src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4">
     <div class="card-content">
       <h2>Senior Citizens</h2>
       <ul>
-        <li>Avoid banking frauds</li>
-        <li>Never share OTP or PIN</li>
-        <li>Verify before trusting calls</li>
+        <li>Avoid banking fraud</li>
+        <li>Never share OTP</li>
+        <li>Verify calls</li>
       </ul>
       <button onclick="openSearch('Online safety for senior citizens')">Watch Video</button>
     </div>
+  </div>
+</div>
+
+<section class="info-section">
+  <h2 class="section-title">Common Cyber Threats</h2>
+  <div class="info-grid">
+    <div class="info-box">
+      <h3>Phishing</h3>
+      <p>Fake messages designed to steal sensitive information.</p>
+      <button onclick="openSearch('Phishing explained')">Watch Video</button>
+    </div>
+    <div class="info-box">
+      <h3>Malware</h3>
+      <p>Malicious software that damages or steals data.</p>
+      <button onclick="openSearch('What is malware')">Watch Video</button>
+    </div>
+    <div class="info-box">
+      <h3>Ransomware</h3>
+      <p>Locks files and demands payment.</p>
+      <button onclick="openSearch('Ransomware attack explained')">Watch Video</button>
+    </div>
+    <div class="info-box">
+      <h3>Identity Theft</h3>
+      <p>Stealing personal details for fraud.</p>
+      <button onclick="openSearch('Identity theft explained')">Watch Video</button>
+    </div>
+  </div>
+</section>
+
+<h2 class="section-title">Cyber Safety Do’s & Don’ts</h2>
+<div class="split">
+  <div>
+    <h3>✔ Do’s</h3>
+    <ul>
+      <li>Use strong passwords</li>
+      <li>Enable 2FA</li>
+      <li>Update software</li>
+    </ul>
+  </div>
+  <div>
+    <h3>❌ Don’ts</h3>
+    <ul>
+      <li>Click unknown links</li>
+      <li>Share OTP/PIN</li>
+      <li>Use public Wi-Fi for banking</li>
+    </ul>
   </div>
 </div>
 
@@ -144,14 +300,13 @@ body{font-family:'Poppins',sans-serif;background:#f9fafc;color:#333;scroll-behav
 </div>
 
 <script>
-function toggleMenu(){document.querySelector('.nav-links').classList.toggle('show');}
-function openSearch(query){window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(query), "_blank");}
+function openSearch(q){
+  window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(q),"_blank");
+}
 
-const cards=document.querySelectorAll('.card');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});
-},{threshold:0.15});
-cards.forEach(card=>observer.observe(card));
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+}
 </script>
 
 </body>
