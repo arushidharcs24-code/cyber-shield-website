@@ -1366,7 +1366,6 @@
     navToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       navLinks.classList.toggle('open');
-      // Change icon when menu is open
       const icon = navToggle.querySelector('i');
       if (navLinks.classList.contains('open')) {
         icon.className = 'fas fa-times';
@@ -1381,14 +1380,12 @@
       icon.className = 'fas fa-bars';
     }
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
         closeMobileMenu();
       }
     });
 
-    // Close mobile menu when pressing Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('open')) {
         closeMobileMenu();
@@ -1409,14 +1406,16 @@
       }
     });
 
-    // Load saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark-mode');
       themeToggle.querySelector('i').className = 'fas fa-sun';
     }
 
-    // Quiz Logic with 25 Questions Pool
+    // ==== APPS SCRIPT CONFIGURATION ====
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-an4g6gB4Oei-z-9UkEnUJ6PEHjlj-CQXI6e4c975FGWI9vuEK4lw7N9KmVS01hla/exec';
+
+    // ==== QUIZ LOGIC WITH 25 QUESTIONS POOL ====
     const questionPool = [
       {
         question: "You receive an email from 'security@bank-official.com' asking to verify your account immediately due to 'suspicious activity'. The sender address looks official. What should you do?",
@@ -1549,327 +1548,448 @@
     let currentQuestionIndex = 0;
     let score = 0;
     const questionsPerQuiz = 5;
+    let leaderboard = [];
 
-    // Leaderboard data
-    let leaderboard = JSON.parse(localStorage.getItem('cyber-shield-leaderboard')) || [];
-
-    // Function to get random questions
-    function getRandomQuestions(count) {
-      const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, count);
+    // ==== GOOGLE APPS SCRIPT INTEGRATION FUNCTIONS ====
+    async function submitToGoogleSheets(scoreData) {
+        try {
+            const response = await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'no-cors', // Important for Google Apps Script
+                body: JSON.stringify({
+                    action: 'saveScore',
+                    name: scoreData.name,
+                    score: scoreData.score,
+                    total: scoreData.total,
+                    percentage: scoreData.percentage,
+                    date: scoreData.date,
+                    timestamp: scoreData.timestamp
+                })
+            });
+            
+            // With no-cors mode, we can't read the response but we assume it succeeded
+            console.log('Score submitted to Google Sheets');
+            return true;
+        } catch (error) {
+            console.error('Error submitting to Google Sheets:', error);
+            return false;
+        }
     }
 
-    // Initialize quiz with random questions
+    async function loadLeaderboardFromGoogleSheets() {
+        try {
+            // For GET requests, we need to use a different approach
+            // Add a timestamp to prevent caching
+            const response = await fetch(APPS_SCRIPT_URL + '?t=' + Date.now());
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            const text = await response.text();
+            
+            // Try to parse as JSON
+            try {
+                const data = JSON.parse(text);
+                if (Array.isArray(data)) {
+                    leaderboard = data;
+                    updateLeaderboard();
+                    console.log('Leaderboard loaded from Google Sheets:', data.length, 'entries');
+                    return true;
+                }
+            } catch (e) {
+                console.log('Response was not JSON, trying alternative parsing');
+            }
+            
+            return false;
+        } catch (error) {
+            console.error('Error loading from Google Sheets:', error);
+            return false;
+        }
+    }
+
+    async function clearGoogleSheetsLeaderboard() {
+        try {
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'no-cors',
+                body: JSON.stringify({
+                    action: 'clearLeaderboard'
+                })
+            });
+            
+            console.log('Google Sheets leaderboard cleared');
+            return true;
+        } catch (error) {
+            console.error('Error clearing Google Sheets:', error);
+            return false;
+        }
+    }
+
+    // Local storage fallback functions
+    function loadLeaderboardFromLocalStorage() {
+        const saved = localStorage.getItem('cyber-shield-leaderboard');
+        leaderboard = saved ? JSON.parse(saved) : [];
+        updateLeaderboard();
+        console.log('Leaderboard loaded from local storage:', leaderboard.length, 'entries');
+    }
+
+    function saveLeaderboardToLocalStorage() {
+        localStorage.setItem('cyber-shield-leaderboard', JSON.stringify(leaderboard.slice(0, 10)));
+    }
+
+    // ==== QUIZ FUNCTIONS ====
+    function getRandomQuestions(count) {
+        const shuffled = [...questionPool].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
     function initializeQuiz() {
-      currentQuestions = getRandomQuestions(questionsPerQuiz);
-      currentQuestionIndex = 0;
-      score = 0;
-      document.getElementById('final-score').style.display = 'none';
-      document.getElementById('save-btn').style.display = 'none';
-      document.querySelector('.question-box').style.display = 'block';
-      updateQuestionDisplay();
-      updateCounters();
-      updateProgressBar();
-      
-      // Re-enable buttons
-      document.querySelectorAll('.buttons button').forEach(btn => {
-        btn.disabled = false;
-      });
+        currentQuestions = getRandomQuestions(questionsPerQuiz);
+        currentQuestionIndex = 0;
+        score = 0;
+        document.getElementById('final-score').style.display = 'none';
+        document.getElementById('save-btn').style.display = 'none';
+        document.querySelector('.question-box').style.display = 'block';
+        updateQuestionDisplay();
+        updateCounters();
+        updateProgressBar();
+        
+        document.querySelectorAll('.buttons button').forEach(btn => {
+            btn.disabled = false;
+        });
+        
+        console.log('Quiz initialized with', currentQuestions.length, 'questions');
     }
 
     function updateQuestionDisplay() {
-      if (currentQuestionIndex < currentQuestions.length) {
-        const question = currentQuestions[currentQuestionIndex];
-        document.getElementById('question').textContent = question.question;
-        document.getElementById('feedback').textContent = '';
-        document.getElementById('feedback').style.background = 'transparent';
-      }
+        if (currentQuestionIndex < currentQuestions.length) {
+            const question = currentQuestions[currentQuestionIndex];
+            document.getElementById('question').textContent = question.question;
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('feedback').style.background = 'transparent';
+        }
     }
 
     function updateCounters() {
-      document.getElementById('question-counter').textContent = 
-        `${currentQuestionIndex + 1}/${currentQuestions.length}`;
-      document.getElementById('score-counter').textContent = score;
+        document.getElementById('question-counter').textContent = 
+            `${currentQuestionIndex + 1}/${currentQuestions.length}`;
+        document.getElementById('score-counter').textContent = score;
     }
 
     function updateProgressBar() {
-      const progressPercentage = (currentQuestionIndex / currentQuestions.length) * 100;
-      document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
+        const progressPercentage = (currentQuestionIndex / currentQuestions.length) * 100;
+        document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
     }
 
     function checkAnswer(userAnswer) {
-      const correctAnswer = currentQuestions[currentQuestionIndex].answer;
-      const feedbackElement = document.getElementById('feedback');
-      
-      if (userAnswer === correctAnswer) {
-        score++;
-        feedbackElement.innerHTML = `<i class="fas fa-check-circle"></i> ✅ Correct! ${currentQuestions[currentQuestionIndex].explanation}`;
-        feedbackElement.style.background = 'linear-gradient(135deg, rgba(209, 250, 229, 0.9), rgba(167, 243, 208, 0.95))';
-        feedbackElement.style.color = '#065f46';
-        feedbackElement.style.border = '2px solid #10b981';
-      } else {
-        feedbackElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> 🚨 Incorrect! ${currentQuestions[currentQuestionIndex].explanation}`;
-        feedbackElement.style.background = 'linear-gradient(135deg, rgba(254, 226, 226, 0.9), rgba(254, 202, 202, 0.95))';
-        feedbackElement.style.color = '#991b1b';
-        feedbackElement.style.border = '2px solid #ef4444';
-      }
-      
-      // Disable buttons after answering
-      document.querySelectorAll('.buttons button').forEach(btn => {
-        btn.disabled = true;
-      });
-      
-      updateCounters();
-      
-      // Auto-advance after 2 seconds
-      setTimeout(() => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < currentQuestions.length) {
-          updateQuestionDisplay();
-          updateCounters();
-          updateProgressBar();
-          document.querySelectorAll('.buttons button').forEach(btn => {
-            btn.disabled = false;
-          });
+        const correctAnswer = currentQuestions[currentQuestionIndex].answer;
+        const feedbackElement = document.getElementById('feedback');
+        
+        if (userAnswer === correctAnswer) {
+            score++;
+            feedbackElement.innerHTML = `<i class="fas fa-check-circle"></i> ✅ Correct! ${currentQuestions[currentQuestionIndex].explanation}`;
+            feedbackElement.style.background = 'linear-gradient(135deg, rgba(209, 250, 229, 0.9), rgba(167, 243, 208, 0.95))';
+            feedbackElement.style.color = '#065f46';
+            feedbackElement.style.border = '2px solid #10b981';
         } else {
-          showFinalScore();
+            feedbackElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> 🚨 Incorrect! ${currentQuestions[currentQuestionIndex].explanation}`;
+            feedbackElement.style.background = 'linear-gradient(135deg, rgba(254, 226, 226, 0.9), rgba(254, 202, 202, 0.95))';
+            feedbackElement.style.color = '#991b1b';
+            feedbackElement.style.border = '2px solid #ef4444';
         }
-      }, 2000);
+        
+        document.querySelectorAll('.buttons button').forEach(btn => {
+            btn.disabled = true;
+        });
+        
+        updateCounters();
+        
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                updateQuestionDisplay();
+                updateCounters();
+                updateProgressBar();
+                document.querySelectorAll('.buttons button').forEach(btn => {
+                    btn.disabled = false;
+                });
+            } else {
+                showFinalScore();
+            }
+        }, 2000);
     }
 
     function showFinalScore() {
-      const scoreElement = document.getElementById('final-score');
-      const percentage = Math.round((score / currentQuestions.length) * 100);
-      
-      let message = '';
-      let emoji = '';
-      let color = '';
-      
-      if (score === currentQuestions.length) {
-        message = '🏆 PERFECT SCORE! You are a cybersecurity expert!';
-        emoji = '🎯';
-        color = 'linear-gradient(135deg, #10b981, #059669)';
-      } else if (percentage >= 80) {
-        message = '✅ Excellent! Strong cybersecurity awareness.';
-        emoji = '🌟';
-        color = 'linear-gradient(135deg, #3b82f6, #2563eb)';
-      } else if (percentage >= 60) {
-        message = '⚠️ Good effort! Review the security protocols to improve.';
-        emoji = '📚';
-        color = 'linear-gradient(135deg, #f59e0b, #d97706)';
-      } else {
-        message = '🚨 Needs improvement. Study the security alerts carefully.';
-        emoji = '🎯';
-        color = 'linear-gradient(135deg, #ef4444, #dc2626)';
-      }
-      
-      scoreElement.innerHTML = `
-        <h3 style="margin-bottom: 1rem;">Quiz Complete! ${emoji}</h3>
-        <div style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0; color: white;">${score}/${currentQuestions.length}</div>
-        <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: white;">${percentage}% Accuracy</div>
-        <p style="margin-bottom: 1.5rem;">${message}</p>
-        <p><small>Questions were randomly selected from our pool of 25 cybersecurity scenarios.</small></p>
-      `;
-      
-      scoreElement.style.background = color;
-      scoreElement.style.color = 'white';
-      scoreElement.style.display = 'block';
-      
-      document.querySelector('.question-box').style.display = 'none';
-      document.getElementById('save-btn').style.display = 'flex';
-      document.getElementById('progress-fill').style.width = '100%';
-      
-      // Add confetti effect for perfect score
-      if (score === currentQuestions.length) {
-        createConfetti();
-      }
+        const scoreElement = document.getElementById('final-score');
+        const percentage = Math.round((score / currentQuestions.length) * 100);
+        
+        let message = '';
+        let emoji = '';
+        let color = '';
+        
+        if (score === currentQuestions.length) {
+            message = '🏆 PERFECT SCORE! You are a cybersecurity expert!';
+            emoji = '🎯';
+            color = 'linear-gradient(135deg, #10b981, #059669)';
+        } else if (percentage >= 80) {
+            message = '✅ Excellent! Strong cybersecurity awareness.';
+            emoji = '🌟';
+            color = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+        } else if (percentage >= 60) {
+            message = '⚠️ Good effort! Review the security protocols to improve.';
+            emoji = '📚';
+            color = 'linear-gradient(135deg, #f59e0b, #d97706)';
+        } else {
+            message = '🚨 Needs improvement. Study the security alerts carefully.';
+            emoji = '🎯';
+            color = 'linear-gradient(135deg, #ef4444, #dc2626)';
+        }
+        
+        scoreElement.innerHTML = `
+            <h3 style="margin-bottom: 1rem;">Quiz Complete! ${emoji}</h3>
+            <div style="font-size: 2.5rem; font-weight: 700; margin: 1rem 0; color: white;">${score}/${currentQuestions.length}</div>
+            <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: white;">${percentage}% Accuracy</div>
+            <p style="margin-bottom: 1.5rem;">${message}</p>
+            <p><small>Questions were randomly selected from our pool of 25 cybersecurity scenarios.</small></p>
+        `;
+        
+        scoreElement.style.background = color;
+        scoreElement.style.color = 'white';
+        scoreElement.style.display = 'block';
+        
+        document.querySelector('.question-box').style.display = 'none';
+        document.getElementById('save-btn').style.display = 'flex';
+        document.getElementById('progress-fill').style.width = '100%';
+        
+        if (score === currentQuestions.length) {
+            createConfetti();
+        }
     }
 
-    function saveScore() {
-      const playerName = prompt('Enter your name for the leaderboard:', 'Cyber Defender');
-      if (!playerName || playerName.trim() === '') return;
-      
-      const scoreData = {
-        name: playerName.trim(),
-        score: score,
-        total: currentQuestions.length,
-        percentage: Math.round((score / currentQuestions.length) * 100),
-        date: new Date().toLocaleDateString('en-US', { 
-          year: 'numeric', 
-          month: 'short', 
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit'
-        }),
-        timestamp: Date.now()
-      };
-      
-      leaderboard.push(scoreData);
-      
-      // Sort by score (descending) and then by date (newest first)
-      leaderboard.sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return b.timestamp - a.timestamp;
-      });
-      
-      // Keep only top 10 scores
-      leaderboard = leaderboard.slice(0, 10);
-      
-      // Save to localStorage
-      localStorage.setItem('cyber-shield-leaderboard', JSON.stringify(leaderboard));
-      
-      // Update leaderboard display
-      updateLeaderboard();
-      
-      // Show success message
-      alert(`🎉 Score saved! You're rank #${leaderboard.findIndex(s => s.timestamp === scoreData.timestamp) + 1} on the leaderboard!`);
+    async function saveScore() {
+        const playerName = prompt('Enter your name for the leaderboard:', 'Cyber Defender');
+        if (!playerName || playerName.trim() === '') {
+            console.log('Save cancelled: No name entered');
+            return;
+        }
+        
+        const scoreData = {
+            name: playerName.trim(),
+            score: score,
+            total: currentQuestions.length,
+            percentage: Math.round((score / currentQuestions.length) * 100),
+            date: new Date().toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            }),
+            timestamp: Date.now()
+        };
+        
+        console.log('Attempting to save score:', scoreData);
+        
+        // Try to save to Google Sheets first
+        const googleSheetsSuccess = await submitToGoogleSheets(scoreData);
+        
+        if (googleSheetsSuccess) {
+            // If successful, add to local leaderboard and reload from Google Sheets
+            leaderboard.push(scoreData);
+            leaderboard.sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return b.timestamp - a.timestamp;
+            });
+            leaderboard = leaderboard.slice(0, 10);
+            saveLeaderboardToLocalStorage();
+            
+            // Reload from Google Sheets to get the updated list
+            setTimeout(() => {
+                loadLeaderboardFromGoogleSheets();
+            }, 1000);
+            
+            alert(`🎉 Score saved to GLOBAL leaderboard!\n\nName: ${scoreData.name}\nScore: ${scoreData.score}/${scoreData.total}\nPercentage: ${scoreData.percentage}%`);
+        } else {
+            // Fallback to local storage
+            console.log('Falling back to local storage');
+            leaderboard.push(scoreData);
+            leaderboard.sort((a, b) => {
+                if (b.score !== a.score) return b.score - a.score;
+                return b.timestamp - a.timestamp;
+            });
+            leaderboard = leaderboard.slice(0, 10);
+            saveLeaderboardToLocalStorage();
+            updateLeaderboard();
+            
+            alert(`🎉 Score saved to LOCAL leaderboard!\n\nName: ${scoreData.name}\nScore: ${scoreData.score}/${scoreData.total}\nPercentage: ${scoreData.percentage}%`);
+        }
+        
+        const rank = leaderboard.findIndex(s => s.timestamp === scoreData.timestamp) + 1;
+        if (rank > 0) {
+            console.log(`Player rank: #${rank}`);
+        }
     }
 
-    function clearLeaderboard() {
-      if (confirm('Are you sure you want to clear the leaderboard? This action cannot be undone.')) {
-        leaderboard = [];
-        localStorage.removeItem('cyber-shield-leaderboard');
-        updateLeaderboard();
-      }
+    async function clearLeaderboard() {
+        if (!confirm('Are you sure you want to clear the leaderboard? This action cannot be undone.')) {
+            return;
+        }
+        
+        console.log('Attempting to clear leaderboard...');
+        
+        // Try to clear Google Sheets first
+        const googleSheetsSuccess = await clearGoogleSheetsLeaderboard();
+        
+        if (googleSheetsSuccess) {
+            // Clear local storage
+            leaderboard = [];
+            localStorage.removeItem('cyber-shield-leaderboard');
+            updateLeaderboard();
+            
+            // Reload from Google Sheets to confirm
+            setTimeout(() => {
+                loadLeaderboardFromGoogleSheets();
+            }, 1000);
+            
+            alert('✅ Global leaderboard cleared successfully!');
+        } else {
+            // Fallback to local storage only
+            leaderboard = [];
+            localStorage.removeItem('cyber-shield-leaderboard');
+            updateLeaderboard();
+            alert('✅ Local leaderboard cleared successfully!');
+        }
     }
 
     function updateLeaderboard() {
-      const leaderboardBody = document.getElementById('leaderboard-body');
-      const emptyLeaderboard = document.getElementById('empty-leaderboard');
-      
-      if (leaderboard.length === 0) {
+        const leaderboardBody = document.getElementById('leaderboard-body');
+        const emptyLeaderboard = document.getElementById('empty-leaderboard');
+        
+        if (leaderboard.length === 0) {
+            leaderboardBody.innerHTML = '';
+            emptyLeaderboard.style.display = 'block';
+            return;
+        }
+        
+        emptyLeaderboard.style.display = 'none';
         leaderboardBody.innerHTML = '';
-        emptyLeaderboard.style.display = 'block';
-        return;
-      }
-      
-      emptyLeaderboard.style.display = 'none';
-      leaderboardBody.innerHTML = '';
-      
-      leaderboard.forEach((entry, index) => {
-        const row = document.createElement('tr');
-        row.className = `rank-${index === 0 ? '1' : index === 1 ? '2' : index === 2 ? '3' : 'other'}`;
         
-        // Calculate rank
-        const rank = index + 1;
-        let rankIcon = '';
-        if (rank === 1) rankIcon = '👑';
-        else if (rank === 2) rankIcon = '🥈';
-        else if (rank === 3) rankIcon = '🥉';
-        else rankIcon = '🏅';
+        leaderboard.forEach((entry, index) => {
+            const row = document.createElement('tr');
+            row.className = `rank-${index === 0 ? '1' : index === 1 ? '2' : index === 2 ? '3' : 'other'}`;
+            
+            const rank = index + 1;
+            let rankIcon = '';
+            if (rank === 1) rankIcon = '👑';
+            else if (rank === 2) rankIcon = '🥈';
+            else if (rank === 3) rankIcon = '🥉';
+            else rankIcon = '🏅';
+            
+            row.innerHTML = `
+                <td>
+                    <div class="rank-badge">${rankIcon} ${rank}</div>
+                </td>
+                <td style="font-weight: 600; color: var(--text-dark);">${entry.name}</td>
+                <td class="score-cell">${entry.score}/${entry.total}</td>
+                <td class="date-cell">${entry.date}</td>
+                <td>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                            <div style="width: ${entry.percentage}%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary));"></div>
+                        </div>
+                        <span style="font-weight: 600; color: var(--primary);">${entry.percentage}%</span>
+                    </div>
+                </td>
+            `;
+            
+            leaderboardBody.appendChild(row);
+        });
         
-        row.innerHTML = `
-          <td>
-            <div class="rank-badge">${rankIcon} ${rank}</div>
-          </td>
-          <td style="font-weight: 600; color: var(--text-dark);">${entry.name}</td>
-          <td class="score-cell">${entry.score}/${entry.total}</td>
-          <td class="date-cell">${entry.date}</td>
-          <td>
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
-                <div style="width: ${entry.percentage}%; height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary));"></div>
-              </div>
-              <span style="font-weight: 600; color: var(--primary);">${entry.percentage}%</span>
-            </div>
-          </td>
-        `;
-        
-        leaderboardBody.appendChild(row);
-      });
+        console.log('Leaderboard updated with', leaderboard.length, 'entries');
     }
 
     function restartQuiz() {
-      initializeQuiz();
+        initializeQuiz();
+        console.log('Quiz restarted with new questions');
     }
 
     function createConfetti() {
-      const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
-      const confettiCount = 50;
-      
-      for (let i = 0; i < confettiCount; i++) {
-        const confetti = document.createElement('div');
-        confetti.style.position = 'fixed';
-        confetti.style.width = '10px';
-        confetti.style.height = '10px';
-        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = '-20px';
-        confetti.style.opacity = '0.8';
-        confetti.style.zIndex = '9999';
-        confetti.style.pointerEvents = 'none';
+        const colors = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
+        const confettiCount = 50;
         
-        // Animation
-        confetti.animate([
-          { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
-          { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-        ], {
-          duration: Math.random() * 2000 + 1000,
-          easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-        });
-        
-        document.body.appendChild(confetti);
-        
-        // Remove after animation
-        setTimeout(() => confetti.remove(), 3000);
-      }
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-20px';
+            confetti.style.opacity = '0.8';
+            confetti.style.zIndex = '9999';
+            confetti.style.pointerEvents = 'none';
+            
+            confetti.animate([
+                { transform: `translateY(0) rotate(0deg)`, opacity: 1 },
+                { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+            ], {
+                duration: Math.random() * 2000 + 1000,
+                easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+            });
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 3000);
+        }
     }
-async function submitToGoogleSheet(payload) {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbz9gkcqnzBKFm3MSDgdqDB6JmmtXOBqpk3o_4SEDRrh3BElO-yRlmP_qnZ8oGDOjw6Ikg/exec';
 
-    try {
-        await fetch(scriptURL, {
-            method: 'POST',
-            // Using text/plain prevents the 'TypeError' and CORS blocks
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
-            body: JSON.stringify(payload)
-        });
-      async function submitScore(name, score) {
-    await fetch(API_URL, {
-        method: "POST",
-        body: JSON.stringify({ name: name, score: score })
+    // ==== INITIALIZATION ====
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Cyber Shield Pro initialized');
+    console.log('Apps Script URL:', APPS_SCRIPT_URL);
+    
+    initializeQuiz();
+    
+    // Try to load from Google Sheets first
+    console.log('Loading leaderboard...');
+    loadLeaderboardFromGoogleSheets().then(success => {
+        if (!success) {
+            console.log('Falling back to local storage');
+            loadLeaderboardFromLocalStorage();
+        }
     });
-    loadLeaderboard(); // Refresh the list
-}
-        
-        // Because of how Google handles redirects, the data often arrives 
-        // even if the response looks 'empty' in the console.
-        console.log("Data sent to script.");
-        return true;
-    } catch (error) {
-        console.error("Submission error:", error);
-        return false;
-    }
-}
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      initializeQuiz();
-      updateLeaderboard();
-      
-      // Add scroll animations
-      const observerOptions = {
+    
+    // Scroll animations
+    const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-      }, observerOptions);
-      
-      // Observe all sections for scroll animations
-      document.querySelectorAll('section').forEach(section => {
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
         section.style.opacity = '0';
         section.style.transform = 'translateY(20px)';
         section.style.transition = 'opacity 0.6s, transform 0.6s';
         observer.observe(section);
-      });
     });
-  </script>
+});
+</script>
 </body>
-</html> debug
+</html>
+
